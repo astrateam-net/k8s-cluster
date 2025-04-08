@@ -25,18 +25,19 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cilium-gateway
+  name: &app cilium-config
   namespace: &namespace kube-system
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cert-manager
-      namespace: cert-manager
-  interval: 1h
-  path: ./kubernetes/apps/kube-system/cilium/gateway
+    - name: cilium
+      namespace: *namespace
+  interval: 30m
+  path: ./kubernetes/apps/kube-system/cilium/config
   prune: true
+  retryInterval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system

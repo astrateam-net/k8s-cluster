@@ -8,18 +8,18 @@ Before you start contributing, please make sure you have read and understood our
 
 1. Fork the Repository
 
-First, fork the [repository](https://github.com/onedr0p/home-ops) to your own GitHub account. This will create a copy of the project under your account.
+First, fork the [repository](https://github.com/astrateam-net/k8s-cluster) to your own GitHub account. This will create a copy of the project under your account.
 
 2. Clone the Repository
 
     ```sh
-    git clone https://github.com/onedr0p/home-ops
+    git clone https://github.com/astrateam-net/k8s-cluster
     ```
 
 3. Navigate to the project directory 📁
 
     ```sh
-    cd home-ops
+    cd k8s-cluster
     ```
 
 4. Create a new branch for your feature or bug fix:

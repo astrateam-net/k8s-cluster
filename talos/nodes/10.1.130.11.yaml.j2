@@ -1,0 +1,21 @@
+machine:
+  install:
+    diskSelector:
+      serial: S78GNL0X981951V
+  network:
+    hostname: k8s-01
+    interfaces:
+      - deviceSelector:
+          hardwareAddr: bc:24:11:87:77:55
+        mtu: 9000
+        dhcp: true
+        vip:
+          ip: 10.1.130.10
+      - deviceSelector:
+          hardwareAddr: bc:24:11:08:5b:09
+        addresses:
+          - 10.1.115.21/24
+        mtu: 9000
+        dhcp: false
+  install:
+    image: factory.talos.dev/installer/0befeb10b160245164e9416f25ce3752bf4725d37c9e7ceb153aade164884579:{{ ENV.TALOS_VERSION }}

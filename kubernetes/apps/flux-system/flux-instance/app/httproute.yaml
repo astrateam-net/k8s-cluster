@@ -5,10 +5,10 @@ kind: HTTPRoute
 metadata:
   name: github-webhook
 spec:
-  hostnames: ["flux-webhook.devbu.io"]
+  hostnames: ["flux-webhook.astrateam.net"]
   parentRefs:
     - name: external
-      namespace: kube-system
+      namespace: network
       sectionName: https
   rules:
     - backendRefs:

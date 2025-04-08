@@ -22,21 +22,22 @@ cni:
   exclusive: false
 dashboards:
   enabled: true
-devices: enp+
+devices: eth+
 enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
 envoy:
-  rollOutPods: true
+  enabled: false
+  # rollOutPods: true
 gatewayAPI:
-  enabled: true
-  enableAlpn: true
-  xffNumTrustedHops: 1
+  enabled: false
+  # enableAlpn: true
+  # xffNumTrustedHops: 1
 hubble:
   enabled: false
 ipam:
   mode: kubernetes
-ipv4NativeRoutingCIDR: 10.42.0.0/16
+ipv4NativeRoutingCIDR: 172.21.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
@@ -83,3 +84,6 @@ securityContext:
       - NET_ADMIN
       - SYS_ADMIN
       - SYS_RESOURCE
+# tls:
+#   secretsNamespace:
+#     create: true

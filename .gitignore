@@ -1,6 +1,9 @@
 /.private/
 /.task/
 /.venv/
+/github-deploy.key
+/github-deploy.key.pub
+/github-push-token.txt
 *.crt
 *.key
 .decrypted~*
