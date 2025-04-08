@@ -9,10 +9,10 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  components:
-    - ../../../../components/gatus/external
+  # components:
+  #   - ../../../../components/gatus/external
   interval: 1h
-  path: ./kubernetes/apps/network/echo/app
+  path: ./kubernetes/apps/network/echo-server/app
   postBuild:
     substitute:
       APP: *app
