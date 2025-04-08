@@ -31,7 +31,7 @@ spec:
     remediation:
       retries: 3
   values:
-    githubConfigUrl: https://github.com/onedr0p/home-ops
+    githubConfigUrl: https://github.com/astrateam-net/k8s-cluster
     githubConfigSecret: home-ops-runner-secret
     minRunners: 1
     maxRunners: 3

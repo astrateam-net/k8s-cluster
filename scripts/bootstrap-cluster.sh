@@ -130,64 +130,27 @@ function apply_crds() {
     done
 }
 
-# # Resources to be applied before the helmfile charts are installed
-# function apply_resources() {
-#     log debug "Applying resources"
+# Resources to be applied before the helmfile charts are installed
+function apply_resources() {
+    log debug "Applying resources"
 
-#     local -r resources_file="${ROOT_DIR}/bootstrap/resources.yaml.j2"
+    local -r resources_file="${ROOT_DIR}/bootstrap/resources.yaml.j2"
 
-#     if ! output=$(render_template "${resources_file}") || [[ -z "${output}" ]]; then
-#         exit 1
-#     fi
+    if ! output=$(render_template "${resources_file}") || [[ -z "${output}" ]]; then
+        exit 1
+    fi
 
-#     if echo "${output}" | kubectl diff --filename - &>/dev/null; then
-#         log info "Resources are up-to-date"
-#         return
-#     fi
+    if echo "${output}" | kubectl diff --filename - &>/dev/null; then
+        log info "Resources are up-to-date"
+        return
+    fi
 
-#     if echo "${output}" | kubectl apply --server-side --filename - &>/dev/null; then
-#         log info "Resources applied"
-#     else
-#         log error "Failed to apply resources"
-#     fi
-# }
-
-# # Disks in use by rook-ceph must be wiped before Rook is installed
-# function wipe_rook_disks() {
-#     log debug "Wiping Rook disks"
-
-#     # Skip disk wipe if Rook is detected running in the cluster
-#     # NOTE: Is there a better way to detect Rook / OSDs?
-#     if kubectl --namespace rook-ceph get kustomization rook-ceph &>/dev/null; then
-#         log warn "Rook is detected running in the cluster, skipping disk wipe"
-#         return
-#     fi
-
-#     if ! nodes=$(talosctl config info --output json 2>/dev/null | jq --exit-status --raw-output '.nodes | join(" ")') || [[ -z "${nodes}" ]]; then
-#         log error "No Talos nodes found"
-#     fi
-
-#     log debug "Talos nodes discovered" "nodes=${nodes}"
-
-#     # Wipe disks on each node that match the ROOK_DISK environment variable
-#     for node in ${nodes}; do
-#         if ! disks=$(talosctl --nodes "${node}" get disk --output json 2>/dev/null |
-#             jq --exit-status --raw-output --slurp '. | map(select(.spec.model == env.ROOK_DISK) | .metadata.id) | join(" ")') || [[ -z "${nodes}" ]]; then
-#             log error "No disks found" "node=${node}" "model=${ROOK_DISK}"
-#         fi
-
-#         log debug "Talos node and disk discovered" "node=${node}" "disks=${disks}"
-
-#         # Wipe each disk on the node
-#         for disk in ${disks}; do
-#             if talosctl --nodes "${node}" wipe disk "${disk}" &>/dev/null; then
-#                 log info "Disk wiped" "node=${node}" "disk=${disk}"
-#             else
-#                 log error "Failed to wipe disk" "node=${node}" "disk=${disk}"
-#             fi
-#         done
-#     done
-# }
+    if echo "${output}" | kubectl apply --server-side --filename - &>/dev/null; then
+        log info "Resources applied"
+    else
+        log error "Failed to apply resources"
+    fi
+}
 
 # Apply Helm releases using helmfile
 function apply_helm_releases() {
@@ -221,7 +184,6 @@ function main() {
 
     # Apply resources and Helm releases
     wait_for_nodes
-    # wipe_rook_disks
     apply_crds
     apply_resources
     apply_helm_releases

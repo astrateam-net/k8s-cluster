@@ -17,10 +17,10 @@ machine:
       validSubnets: ["10.1.130.0/24"]
     disableManifestsDirectory: true
   network:
-    nameservers: ["10.1.130.1"]
-  # install:
-  #   diskSelector:
-  #     model: Samsung SSD 870
+    nameservers: ["10.1.130.254"]
+  install:
+    diskSelector:
+      model: Samsung SSD 980 500GB
   #   extraKernelArgs:
   #     - i915.enable_guc=3                   # Meteor Lake CPU / iGPU
   #     - apparmor=0                          # Less security, faster puter
@@ -100,14 +100,14 @@ cluster:
   id: op://kubernetes/talos/CLUSTER_ID
   secret: op://kubernetes/talos/CLUSTER_SECRET
   controlPlane:
-    endpoint: https://192.168.42.120:6443
+    endpoint: https://10.1.130.10:6443
   clusterName: main
   network:
     cni:
       name: none
     dnsDomain: cluster.local
-    podSubnets: ["10.42.0.0/16"]
-    serviceSubnets: ["10.43.0.0/16"]
+    podSubnets: ["172.21.0.0/16"]
+    serviceSubnets: ["172.22.0.0/16"]
   coreDNS:
     disabled: true
   token: op://kubernetes/talos/CLUSTER_TOKEN
@@ -126,7 +126,7 @@ cluster:
       enable-aggregator-routing: true
       feature-gates: MutatingAdmissionPolicy=true
       runtime-config: admissionregistration.k8s.io/v1alpha1=true
-    certSANs: ["127.0.0.1", "192.168.42.120"]
+    certSANs: ["127.0.0.1", "10.1.130.10", "10.1.135.10"]
     disablePodSecurityPolicy: true
     auditPolicy:
       apiVersion: audit.k8s.io/v1
@@ -167,5 +167,5 @@ cluster:
       key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
-    advertisedSubnets: ["192.168.42.0/24"]
+    advertisedSubnets: ["10.1.130.0/24"]
   allowSchedulingOnControlPlanes: true
