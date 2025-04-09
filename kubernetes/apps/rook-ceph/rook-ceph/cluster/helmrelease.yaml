@@ -41,7 +41,7 @@ spec:
       external:
         enable: true
       allowUnsupported: true
-      image: quay.io/ceph/ceph:v19.2.1
+      # image: quay.io/ceph/ceph:v19.2.1
       # cephConfig:
       #   global:
       #     bdev_enable_discard: "true" # quote
