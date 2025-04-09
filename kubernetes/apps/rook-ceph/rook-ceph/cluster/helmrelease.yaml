@@ -40,7 +40,7 @@ spec:
     cephClusterSpec:
       external:
         enable: true
-      allowUnsupported: true
+      # allowUnsupported: true
       # image: quay.io/ceph/ceph:v19.2.1
       # cephConfig:
       #   global:
@@ -78,7 +78,7 @@ spec:
         connections:
           requireMsgr2: true
     cephBlockPools:
-      - name: ceph-blockpool
+      - name: k8s
         spec:
           failureDomain: host
           replicated:
