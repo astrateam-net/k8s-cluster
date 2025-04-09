@@ -1,0 +1,23 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ceph-block
+provisioner: rook-ceph.rbd.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  pool: k8s
+  imageFormat: "2"
+  imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner-main-k8s
+  csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner-main-k8s
+  csi.storage.k8s.io/controller-expand-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node-main-k8s
+  csi.storage.k8s.io/node-stage-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/fstype: ext4
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+isDefault: true
+mountOptions: ["discard"]
+volumeBindingMode: Immediate

@@ -5,7 +5,7 @@ metadata:
   name: rook-ceph-mon-endpoints
   namespace: rook-ceph
 data:
-  data: "pve03=10.1.115.13:3300"
+  data: "pve01=10.1.115.11:3300"
   mapping: "{}"
   maxMonId: "2"
 
