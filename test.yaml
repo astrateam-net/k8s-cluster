@@ -1,0 +1,24 @@
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: k8s
+  namespace: rook-ceph
+  labels:
+    app.kubernetes.io/managed-by: "Helm"
+    helm.toolkit.fluxcd.io/name: "rook-ceph-cluster"
+    helm.toolkit.fluxcd.io/namespace: "rook-ceph"
+  annotations:
+    meta.helm.sh/release-name: "rook-ceph-cluster"
+    meta.helm.sh/release-namespace: "rook-ceph"
+spec:
+  failureDomain: host
+  replicated:
+    size: 3
+  erasureCoded:
+    # Leave these as 0 unless intending to use erasure coding.
+    codingChunks: 0
+    dataChunks: 0
+  mirroring: {}
+  quotas: {}
+  statusCheck: {}
+
