@@ -42,7 +42,7 @@ spec:
         enable: true
       cephVersion:
         image: quay.io/ceph/ceph:v19.2.1
-      # allowUnsupported: true
+      allowUnsupported: true
       # image: quay.io/ceph/ceph:v19.2.1
       # cephConfig:
       #   global:
@@ -60,11 +60,11 @@ spec:
       csi:
         readAffinity:
           enabled: true
-      # dashboard:
-      #   enabled: true
-      #   urlPrefix: /
-      #   ssl: false
-      #   prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
+      dashboard:
+        enabled: true
+        urlPrefix: /
+        ssl: false
+        prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mgr:
         modules:
           - name: diskprediction_local
