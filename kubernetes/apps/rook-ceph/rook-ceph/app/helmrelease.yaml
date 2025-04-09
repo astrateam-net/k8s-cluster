@@ -43,9 +43,7 @@ spec:
         enabled: true
     enableDiscoveryDaemon: true
     image:
-      repository: quay.io/ceph/ceph
-      tag: v19.2.1
-      pullPolicy: IfNotPresent
+      repository: ghcr.io/rook/ceph
     monitoring:
       enabled: true
     resources:
