@@ -11,11 +11,7 @@ spec:
       namespace: network
       sectionName: https
   rules:
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /
-      backendRefs:
+    - backendRefs:
         - name: jira
           namespace: atlassian
           port: 80
