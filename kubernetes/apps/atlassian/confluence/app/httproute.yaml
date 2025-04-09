@@ -11,7 +11,11 @@ spec:
       namespace: network
       sectionName: https
   rules:
-    - backendRefs:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
         - name: confluence
           namespace: atlassian
           port: 80
