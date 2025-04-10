@@ -4,7 +4,7 @@ machine:
     interfaces:
       - deviceSelector:
           hardwareAddr: bc:24:11:bf:a0:aa
-        mtu: 9000
+        mtu: 1500
         dhcp: true
         vip:
           ip: 10.1.130.10
@@ -14,5 +14,9 @@ machine:
           - 10.1.115.22/24
         mtu: 9000
         dhcp: false
+  # disks:
+  #   - device: /dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S78GNL0X981951V
+  #     partitions:
+  #       - mountpoint: /var/mnt/extra
   install:
     image: factory.talos.dev/installer/0befeb10b160245164e9416f25ce3752bf4725d37c9e7ceb153aade164884579:{{ ENV.TALOS_VERSION }}
