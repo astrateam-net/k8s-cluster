@@ -88,3 +88,5 @@ spec:
           endpointOverride:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
+      additionalCertificates:
+        secretName: prod-certificates
