@@ -78,6 +78,10 @@ spec:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
         enabled: true
+      resources:
+        jvm:
+          maxHeap: "2g"
+          minHeap: "2g"
       s3AttachmentsStorage:
         bucketName:
         bucketRegion:

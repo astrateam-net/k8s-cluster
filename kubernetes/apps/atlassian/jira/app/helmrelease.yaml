@@ -72,6 +72,10 @@ spec:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
         enabled: true
+      resources:
+        jvm:
+          maxHeap: "2g"
+          minHeap: "2g"
       s3Storage:
 
         avatars:
