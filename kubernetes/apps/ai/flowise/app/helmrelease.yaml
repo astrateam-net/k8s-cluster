@@ -78,4 +78,4 @@ spec:
       username: flowise
       existingSecret: "flowdb-credentials-secret"
       existingSecretKeyPassword: FLOWISE_DB_PASSWORD
-      database: flowise
+      database: flowisedb
