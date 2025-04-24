@@ -1,0 +1,81 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: flowise
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 3.11.3
+  url: oci://ghcr.io/astrateam-net/oci-charts/flowise
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: "^https://token.actions.githubusercontent.com$"
+        subject: "^https://github.com/astrateam-net/oci-charts.*$"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flowise
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: flowise
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    replicaCount: 1
+    updateStrategy:
+      type: Recreate
+    image:
+      registry: docker.io
+      repository: flowiseai/flowise
+      tag: 2.2.7
+      pullPolicy: IfNotPresent
+    serviceAccount:
+      create: true
+    containerPorts:
+      ## @param containerPorts.http Container port for HTTP
+      http: 3000
+    service:
+      type: ClusterIP
+      externalTrafficPolicy: Cluster
+      ports:
+        http: 3000
+    resources: {}
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
+      # requests:
+      #   cpu: 100m
+      #   memory: 128Mi
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 3Gi
+      storageClass: ceph-block
+    config:
+      username: "flowise"
+    existingSecret: "flowise-credentials-secret"
+    existingSecretKeyPassword: FLOWISE_PASSWORD
+    externalPostgresql:
+      ## @param externalPostgresql.enabled Whether to use an external PostgreSQL
+      enabled: true
+      host: 10.1.125.55
+      port: 5000
+      username: flowisedb_user
+      existingSecret: "flowdb-credentials-secret"
+      existingSecretKeyPassword: FLOWISE_DB_PASSWORD
+      database: flowisedb
