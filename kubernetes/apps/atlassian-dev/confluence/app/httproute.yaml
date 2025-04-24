@@ -5,7 +5,7 @@ kind: HTTPRoute
 metadata:
   name: confluence
 spec:
-  hostnames: ["wiki.astrateam.net"]
+  hostnames: ["wikidev.astrateam.net"]
   parentRefs:
     - name: external
       namespace: network
@@ -17,7 +17,7 @@ spec:
           value: /
       backendRefs:
         - name: confluence
-          namespace: atlassian
+          namespace: atlassian-dev
           port: 80
     - matches:
       - path:
@@ -25,5 +25,5 @@ spec:
           value: /synchrony
       backendRefs:
         - name: confluence-synchrony
-          namespace: atlassian
+          namespace: atlassian-dev
           port: 80
