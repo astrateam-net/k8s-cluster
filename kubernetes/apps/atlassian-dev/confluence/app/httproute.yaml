@@ -16,7 +16,7 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: confluence
+        - name: confluence-dev
           namespace: atlassian-dev
           port: 80
     - matches:
@@ -24,6 +24,6 @@ spec:
           type: PathPrefix
           value: /synchrony
       backendRefs:
-        - name: confluence-synchrony
+        - name: confluence-dev-synchrony
           namespace: atlassian-dev
           port: 80

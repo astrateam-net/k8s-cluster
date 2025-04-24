@@ -16,6 +16,6 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: jira
+        - name: jira-dev
           namespace: atlassian-dev
           port: 80
