@@ -61,6 +61,9 @@ spec:
       # requests:
       #   cpu: 100m
       #   memory: 128Mi
+    extraEnvVars:
+      - name: DATABASE_SSL
+        value: "false"
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
