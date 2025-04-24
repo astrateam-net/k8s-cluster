@@ -86,6 +86,8 @@ spec:
         bucketName:
         bucketRegion:
         endpointOverride:
+      readinessProbe:
+        enabled: false
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
