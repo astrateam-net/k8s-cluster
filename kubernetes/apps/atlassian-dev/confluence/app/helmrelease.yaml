@@ -94,13 +94,13 @@ spec:
       additionalCertificates:
         secretName: prod-certificates
     synchrony:
-      enabled: true
+      enabled: false
       resources:
         container:
           requests:
             cpu: "1"
     opensearch:
-      enabled: true
+      enabled: false
       persistence:
         storageClass: ceph-block
         size: 10Gi
