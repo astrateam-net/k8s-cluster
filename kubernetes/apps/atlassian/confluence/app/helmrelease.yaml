@@ -84,7 +84,7 @@ spec:
           minHeap: "2g"
       s3AttachmentsStorage:
         bucketName: confluence
-        bucketRegion:
+        bucketRegion: main
         endpointOverride: https://confluence.s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
