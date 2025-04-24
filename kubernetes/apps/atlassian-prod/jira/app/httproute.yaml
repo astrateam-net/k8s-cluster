@@ -17,5 +17,5 @@ spec:
           value: /
       backendRefs:
         - name: jira
-          namespace: atlassian
+          namespace: atlassian-prod
           port: 80
