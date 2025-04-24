@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app confluence
+  name: &app confluence-dev
   namespace: &namespace atlassian-dev
 spec:
   commonMetadata:
