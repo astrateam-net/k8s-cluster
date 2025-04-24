@@ -75,7 +75,7 @@ spec:
       enabled: true
       host: 10.1.125.55
       port: 5000
-      username: flowise
+      username: flowisedb_user
       existingSecret: "flowdb-credentials-secret"
       existingSecretKeyPassword: FLOWISE_DB_PASSWORD
       database: flowisedb
