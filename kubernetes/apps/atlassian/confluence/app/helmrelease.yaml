@@ -82,10 +82,10 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
-      # s3AttachmentsStorage:
-      #   bucketName: confluence
-      #   bucketRegion: main
-      #   endpointOverride: https://s3.astrateam.net
+      s3AttachmentsStorage:
+        bucketName:
+        bucketRegion:
+        endpointOverride:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
