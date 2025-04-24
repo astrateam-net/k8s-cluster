@@ -22,7 +22,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: confluence
+  name: confluence-dev
 spec:
   interval: 1h
   chartRef:
@@ -36,7 +36,7 @@ spec:
     remediation:
       retries: 3
   values:
-    fullnameOverride: confluence
+    fullnameOverride: confluence-dev
     replicaCount: 1
     image:
       repository: astraautoio/astrawiki
