@@ -82,6 +82,9 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
+        container:
+          requests:
+            cpu: "1"
       s3AttachmentsStorage:
         bucketName:
         bucketRegion:
@@ -92,6 +95,10 @@ spec:
         secretName: prod-certificates
     synchrony:
       enabled: true
+      resources:
+        container:
+          requests:
+            cpu: "1"
     opensearch:
       enabled: true
       persistence:
