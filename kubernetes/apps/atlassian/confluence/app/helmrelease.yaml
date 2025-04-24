@@ -85,7 +85,7 @@ spec:
       s3AttachmentsStorage:
         bucketName: confluence
         bucketRegion: main
-        endpointOverride: https://confluence.s3.astrateam.net
+        endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
