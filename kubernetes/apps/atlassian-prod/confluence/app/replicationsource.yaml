@@ -52,3 +52,57 @@ spec:
     retain:
       hourly: 24
       daily: 7
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: "opensearch-cluster-master-opensearch-cluster-master-0"
+spec:
+  sourcePVC: "opensearch-cluster-master-opensearch-cluster-master-0"
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "opensearch-cluster-master-opensearch-cluster-master-0-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 10Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: "synchrony-home-confluence-synchrony-0"
+spec:
+  sourcePVC: "synchrony-home-confluence-synchrony-0"
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "synchrony-home-confluence-synchrony-0-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 10Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
