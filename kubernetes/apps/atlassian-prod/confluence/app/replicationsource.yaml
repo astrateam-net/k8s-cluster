@@ -57,7 +57,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "opensearch-cluster-master-opensearch-cluster-master-0"
+  name: "opensearch-cluster-master-0"
 spec:
   sourcePVC: "opensearch-cluster-master-opensearch-cluster-master-0"
   trigger:
@@ -65,7 +65,7 @@ spec:
   restic:
     copyMethod: "Snapshot"
     pruneIntervalDays: 14
-    repository: "opensearch-cluster-master-opensearch-cluster-master-0-volsync-secret"
+    repository: "opensearch-cluster-master-0-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheCapacity: 10Gi
     cacheStorageClassName: "ceph-block"
