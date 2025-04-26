@@ -22,7 +22,7 @@ machine:
       validSubnets: ["10.1.130.0/24"]
     disableManifestsDirectory: true
   network:
-    nameservers: ["10.1.130.254"]
+    nameservers: ["10.1.130.1"]
   install:
     diskSelector:
       model: Samsung SSD 980 500GB
@@ -55,6 +55,10 @@ machine:
         hard=True
         nconnect=16
         noatime=True
+  time:
+    disabled: false
+    servers:
+      - 10.1.130.1
   sysctls:
     fs.inotify.max_user_watches: "1048576"      # Watchdog
     fs.inotify.max_user_instances: "8192"       # Watchdog
