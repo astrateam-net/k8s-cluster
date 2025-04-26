@@ -94,7 +94,7 @@ spec:
     pruneIntervalDays: 14
     repository: "synchrony-home-confluence-synchrony-0-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
-    cacheCapacity: 10Gi
+    cacheCapacity: 2Gi
     cacheStorageClassName: "ceph-block"
     cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: "ceph-block"
