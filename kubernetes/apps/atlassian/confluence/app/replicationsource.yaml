@@ -1,0 +1,81 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: "confluence-shared-home"
+spec:
+  sourcePVC: "confluence-shared-home"
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "confluence-shared-home-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 5Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: "confluence-local-home"
+spec:
+  sourcePVC: "confluence-local-home"
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "confluence-local-home-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 25Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: "confluence-syncrhony-home"
+spec:
+  sourcePVC: "confluence-syncrhony-home"
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "confluence-syncrhony-home-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 5Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7

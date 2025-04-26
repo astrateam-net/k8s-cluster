@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: jira
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.22.9
+  url: oci://ghcr.io/astrateam-net/oci-charts/jira
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: "^https://token.actions.githubusercontent.com$"
+        subject: "^https://github.com/astrateam-net/oci-charts.*$"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jira
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: jira
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: jira
+    replicaCount: 1
+    image:
+      repository: astraautoio/astraagile
+      pullPolicy: IfNotPresent
+      tag: "10.4.1"
+    database:
+      type: postgresql
+      url: "jdbc:postgresql://10.1.125.55:5000/jiradbprod"
+      driver: org.postgresql.Driver
+      credentials:
+        secretName: jiradb-credentials-secret
+        usernameSecretKey: JIRA_DB_USERNAME
+        passwordSecretKey: JIRA_DBUSER_PASSWORD
+    volumes:
+      localHome:
+        customVolume:
+          persistentVolumeClaim:
+            claimName: "jira-local-home"
+      sharedHome:
+        customVolume:
+          persistentVolumeClaim:
+            claimName: "jira-shared-home"
+    jira:
+      useHelmReleaseNameAsContainerName: false
+      readinessProbe:
+        enabled: true
+      resources:
+        jvm:
+          maxHeap: "2g"
+          minHeap: "2g"
+      s3Storage:
+        avatars:
+          bucketName:
+          bucketRegion:
+          endpointOverride:
+        attachments:
+          bucketName:
+          bucketRegion:
+          endpointOverride:
+        backups:
+          bucketName:
+          bucketRegion:
+          endpointOverride:
+      additionalJvmArgs:
+        - "-Dupm.plugin.upload.enabled=true"
+      additionalCertificates:
+        secretName: prod-certificates
