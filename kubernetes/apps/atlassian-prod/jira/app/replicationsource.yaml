@@ -3,7 +3,7 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "local-home-jira-0"
+  name: "local-home-jira"
 spec:
   sourcePVC: "local-home-jira-0"
   trigger:
@@ -11,7 +11,7 @@ spec:
   restic:
     copyMethod: "Snapshot"
     pruneIntervalDays: 14
-    repository: "local-home-jira-0-volsync-secret"
+    repository: "local-home-jira-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheCapacity: 10Gi
     cacheStorageClassName: "ceph-block"

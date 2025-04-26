@@ -30,7 +30,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "local-home-confluence-0"
+  name: "local-home-confluence"
 spec:
   sourcePVC: "local-home-confluence-0"
   trigger:
@@ -38,7 +38,7 @@ spec:
   restic:
     copyMethod: "Snapshot"
     pruneIntervalDays: 14
-    repository: "local-home-confluence-0-volsync-secret"
+    repository: "local-home-confluence-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheCapacity: 10Gi
     cacheStorageClassName: "ceph-block"
@@ -57,7 +57,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "opensearch-cluster-master-0"
+  name: "opensearch-cluster"
 spec:
   sourcePVC: "opensearch-cluster-master-opensearch-cluster-master-0"
   trigger:
@@ -65,7 +65,7 @@ spec:
   restic:
     copyMethod: "Snapshot"
     pruneIntervalDays: 14
-    repository: "opensearch-cluster-master-0-volsync-secret"
+    repository: "opensearch-cluster-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheCapacity: 10Gi
     cacheStorageClassName: "ceph-block"
@@ -84,7 +84,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "synchrony-home-confluence-synchrony-0"
+  name: "synchrony-home-confluence"
 spec:
   sourcePVC: "synchrony-home-confluence-synchrony-0"
   trigger:
@@ -92,7 +92,7 @@ spec:
   restic:
     copyMethod: "Snapshot"
     pruneIntervalDays: 14
-    repository: "synchrony-home-confluence-synchrony-0-volsync-secret"
+    repository: "synchrony-home-confluence-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheCapacity: 2Gi
     cacheStorageClassName: "ceph-block"
