@@ -28,6 +28,7 @@ data:
     headerStyle: clean
     hideVersion: true
     useEqualHeights: true
+    language: ru
     quicklaunch:
       searchDescriptions: true
       hideInternetSearch: true
