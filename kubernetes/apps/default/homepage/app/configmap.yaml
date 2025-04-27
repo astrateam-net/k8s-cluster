@@ -141,6 +141,10 @@ data:
               #     params: # optional - additional params for the service
               #       showName: true # optional - show name before event title in event line - defaults to false
     - Главное:
+        - Ispring:
+            icon: booklogr.png
+            href: https://atacademy.ispring.ru/
+            description: Академия компании
         - Confluence:
             icon: confluence.png
             href: https://wiki.astrateam.net
