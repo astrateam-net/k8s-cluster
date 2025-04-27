@@ -24,7 +24,7 @@ data:
       brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
       opacity: 100 # 0-100
     theme: dark
-    color: slate
+    # color: slate
     headerStyle: clean
     hideVersion: true
     useEqualHeights: true
@@ -155,10 +155,6 @@ data:
             description: Система управления проектами
 
   widgets.yaml: |
-    # - search:
-    #     provider: [google]
-    #     focus: false
-    #     target: _blank
     - search:
         provider: custom
         url: https://wiki.astrateam.net/dosearchsite.action?queryString=
