@@ -38,7 +38,7 @@ data:
         header: false
       Home:
         style: row
-        columns: 2
+        columns: 3
         icon: mdi-home-analytics
       AI:
         style: row
@@ -124,7 +124,7 @@ data:
               href: https://simpleicons.org/
   services.yaml: |
     - Календарь:
-          - Корпоративные мероприятия:
+          - Календарь:
               widget:
                 type: calendar
                 firstDayInWeek: monday
@@ -139,6 +139,11 @@ data:
                 #     # color: zinc
                 #     params: # optional - additional params for the service
                 #       showName: true # optional - show name before event title in event line - defaults to false
+    - Home:
+        - База знаниий:
+            - icon: si-openapiinitiative
+              href: https://wiki.astrateam.net
+
   widgets.yaml: |
     # - search:
     #     provider: [google]
