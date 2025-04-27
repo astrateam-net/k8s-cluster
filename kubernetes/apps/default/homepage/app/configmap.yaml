@@ -145,12 +145,12 @@ data:
             href: http://localhost/
             description: Homepage is awesome
 
-    - My Second Group:
+    - Group C:
         - My Second Service:
             href: http://localhost/
             description: Homepage is the best
 
-    - My Third Group:
+    - Group C:
         - My Third Service:
             href: http://localhost/
             description: Homepage is 😎
