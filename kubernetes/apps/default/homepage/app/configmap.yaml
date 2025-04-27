@@ -113,25 +113,38 @@ data:
         - Homepage SI:
             - icon: si-simpleicons
               href: https://simpleicons.org/
+  services.yaml: |
+    - My First Group:
+        - My First Service:
+            href: http://localhost/
+            description: Homepage is awesome
 
+    - My Second Group:
+        - My Second Service:
+            href: http://localhost/
+            description: Homepage is the best
 
+    - My Third Group:
+        - My Third Service:
+            href: http://localhost/
+            description: Homepage is 😎
   widgets.yaml: |
     - search:
         provider: [google]
         focus: false
         target: _blank
-    - kubernetes:
-        cluster:
-          cpu: true
-          label: cluster
-          memory: true
-          show: true
-          showLabel: true
-        nodes:
-          cpu: true
-          memory: true
-          show: true
-          showLabel: true
+    # - kubernetes:
+    #     cluster:
+    #       cpu: true
+    #       label: cluster
+    #       memory: true
+    #       show: true
+    #       showLabel: true
+    #     nodes:
+    #       cpu: true
+    #       memory: true
+    #       show: true
+    #       showLabel: true
     - datetime:
         text_size: l
         format:

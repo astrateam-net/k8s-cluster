@@ -29,7 +29,7 @@ spec:
               tag: v1.1.1
             env:
               TZ: Europe/Moscow
-              HOMEPAGE_ALLOWED_HOSTS: "home.astrateam.net"
+              HOMEPAGE_ALLOWED_HOSTS: "test1.astrateam.net"
             # envFrom:
             #   - secretRef:
             #       name: homepage-secret
@@ -49,7 +49,7 @@ spec:
 
     route:
       app:
-        hostnames: ["home.astrateam.net"]
+        hostnames: ["test1.astrateam.net"]
         parentRefs:
           - name: external
             namespace: networking
@@ -71,8 +71,8 @@ spec:
             path: /app/config/docker.yaml
           - subPath: kubernetes.yaml
             path: /app/config/kubernetes.yaml
-          # - subPath: services.yaml
-          #   path: /app/config/services.yaml
+          - subPath: services.yaml
+            path: /app/config/services.yaml
           - subPath: settings.yaml
             path: /app/config/settings.yaml
           - subPath: widgets.yaml
