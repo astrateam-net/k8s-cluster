@@ -166,10 +166,15 @@ data:
             href: http://localhost/
             description: Homepage is 😎
   widgets.yaml: |
+    # - search:
+    #     provider: [google]
+    #     focus: false
+    #     target: _blank
     - search:
-        provider: [google]
-        focus: false
+        provider: custom
+        url: https://wiki.astrateam.net/dosearchsite.action?queryString=
         target: _blank
+        showSearchSuggestions: false
     # - kubernetes:
     #     cluster:
     #       cpu: true
