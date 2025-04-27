@@ -140,12 +140,14 @@ data:
               #     params: # optional - additional params for the service
               #       showName: true # optional - show name before event title in event line - defaults to false
     - Home:
-        - База знаниий:
+        - Confluence:
             icon: confluence.png
             href: https://wiki.astrateam.net
+            description: База знаний компании
         - Jira:
             icon: jira.png
             href: https://jira.astrateam.net
+            description: Система управления проектами
 
   widgets.yaml: |
     # - search:
