@@ -33,28 +33,18 @@ data:
       searchDescriptions: true
       hideInternetSearch: true
     layout:
-      Bookmark Group on First Tab:
-        tab: First
-
-      First Service Group:
-        tab: AstraTeam
+      Group A:
         style: row
         columns: 4
-
-      Second Service Group:
-        tab: AstraMotors
-        columns: 4
-
-      Third Service Group:
-        tab: AstraDetail
+      Group C:
         style: row
-
-      Bookmark Group on Fourth Tab:
-        tab: Fourth
-
-      Service Group on every Tab:
-        style: row
-        columns: 4
+        columns: 2
+        Nested Group A:
+          style: row
+          columns: 2
+        Nested Group B:
+          style: row
+          columns: 2
 
       Calendar:
         style: row
