@@ -37,16 +37,16 @@ data:
         tab: First
 
       First Service Group:
-        tab: First
+        tab: AstraTeam
         style: row
         columns: 4
 
       Second Service Group:
-        tab: Second
+        tab: AstraMotors
         columns: 4
 
       Third Service Group:
-        tab: Third
+        tab: AstraDetail
         style: row
 
       Bookmark Group on Fourth Tab:
