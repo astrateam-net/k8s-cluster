@@ -141,11 +141,11 @@ data:
               #       showName: true # optional - show name before event title in event line - defaults to false
     - Home:
         - База знаниий:
-            - icon: confluence.png
-              href: https://wiki.astrateam.net
+            icon: confluence.png
+            href: https://wiki.astrateam.net
         - Jira:
-            - icon: jira.png
-              href: https://jira.astrateam.net
+            icon: jira.png
+            href: https://jira.astrateam.net
 
   widgets.yaml: |
     # - search:
