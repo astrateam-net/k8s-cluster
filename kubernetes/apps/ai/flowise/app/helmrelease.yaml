@@ -97,7 +97,6 @@ spec:
     #     mountPath: /usr/local/share/ca-certificates/my-postgres-ca.crt
     #     subPath: my-postgres-ca.crt
     #     readOnly: true
-
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
