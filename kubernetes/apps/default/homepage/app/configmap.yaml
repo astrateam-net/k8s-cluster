@@ -124,17 +124,17 @@ data:
               href: https://simpleicons.org/
   services.yaml: |
     - Календарь:
-          - Calendar:
+          - Календарь:
               widget:
                 type: calendar
-                firstDayInWeek: sunday
+                firstDayInWeek: monday
                 view: monthly
                 maxEvents: 10
                 showTime: true
                 timezone: Europe/Moscow
                 integrations:
                   - type: ical
-                    url: https://domain.url/with/link/to.ics
+                    url: https://www.calend.ru/ical/ical-russtate.ics?v=yy2025&b=1
                     name: My Events
                     # color: zinc
                     params: # optional - additional params for the service
