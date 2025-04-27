@@ -52,6 +52,8 @@ spec:
       ## Whitelist domains allowed to sign-up. 'allowSignups' is ignored if set.
       signupDomains:
         - astrateam.net
+        - astramotors.ru
+        - astrdetail.ru
       # Verify e-mail before login is enabled. SMTP must be enabled.
       verifySignup: false
       # When a user logs in an email is required to be sent. If sending the email fails the login attempt will fail. SMTP must be enabled.
