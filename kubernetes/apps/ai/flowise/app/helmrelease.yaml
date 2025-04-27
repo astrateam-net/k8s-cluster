@@ -62,8 +62,8 @@ spec:
       #   cpu: 100m
       #   memory: 128Mi
     extraEnvVars:
-      - name: PGSSLMODE
-        value: "require"
+      - name: DATABASE_SSL
+        value: "true"
       - name: DATABASE_SSL_KEY_BASE64
         valueFrom:
           secretKeyRef:
