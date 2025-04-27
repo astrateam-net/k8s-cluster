@@ -146,8 +146,12 @@ data:
             - icon: si-simpleicons
               href: https://simpleicons.org/
   services.yaml: |
-    - My First Group:
+    - First Service Group:
         - My First Service:
+            href: http://localhost/
+            description: Homepage is awesome
+
+        - My Second Service:
             href: http://localhost/
             description: Homepage is awesome
 
