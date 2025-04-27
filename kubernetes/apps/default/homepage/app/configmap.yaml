@@ -141,6 +141,7 @@ data:
             href: http://localhost/
             description: Homepage is awesome
 
+    - Nested Group B:
         - My Second Service:
             href: http://localhost/
             description: Homepage is awesome
@@ -151,6 +152,16 @@ data:
             description: Homepage is the best
 
     - Group C:
+        - My Third Service:
+            href: http://localhost/
+            description: Homepage is 😎
+
+    - Group A:
+        - My Second Service:
+            href: http://localhost/
+            description: Homepage is the best
+
+    - Group A:
         - My Third Service:
             href: http://localhost/
             description: Homepage is 😎
