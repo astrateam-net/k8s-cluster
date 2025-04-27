@@ -70,6 +70,19 @@ spec:
             name: flowdb-credentials-secret
             key: PG_CRT
     extraEnvVarsSecret: flowdb-credentials-secret
+    extraVolumes:
+      - name: pg-ca
+        secret:
+          secretName: flowdb-credentials-secret
+          items:
+            - key: PG_CRT
+              path: my-postgres-ca.crt
+    extraVolumeMounts:
+      - name: pg-ca
+        mountPath: /usr/local/share/ca-certificates/my-postgres-ca.crt
+        subPath: my-postgres-ca.crt
+        readOnly: true
+
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
