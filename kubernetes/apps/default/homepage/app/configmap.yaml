@@ -189,9 +189,9 @@ data:
           timeStyle: short
           hourCycle: h23
     - openweathermap:
-        label: Ivanteevka #optional
-        latitude: 55.97506
-        longitude: 37.933692
+        label: Ивантеевка #optional
+        latitude: 55.976201
+        longitude: 37.907414
         units: metric # or imperial
         provider: openweathermap
         apiKey: {{HOMEPAGE_VAR_OPENWEATHERMAP_KEY}} # required only if not using provider, this reveals api key in requests
