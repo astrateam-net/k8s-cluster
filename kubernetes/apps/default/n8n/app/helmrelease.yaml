@@ -143,23 +143,26 @@ spec:
       #   memory: 1Gi
 
       # -- Extra environment variables
-      extraEnvVars: {}
+      extraEnvVars:
+        - name: DB_POSTGRESDB_SSL_CA
+          value: "/mnt/pg-certs/postgres-ca"
+        - name: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+          value: "true"
 
       # -- Extra secrets for environment variables
       extraSecretNamesForEnvFrom: []
 
       # -- Additional volumes on the output Deployment definition.
-      volumes: []
-      # - name: foo
-      #   secret:
-      #     secretName: mysecret
-      #     optional: false
+      volumes:
+      - name: pg-certs
+        secret:
+          secretName: n8n-credentials-secret
 
       # -- Additional volumeMounts on the output Deployment definition.
-      volumeMounts: []
-      # - name: foo
-      #   mountPath: "/etc/foo"
-      #   readOnly: true
+      volumeMounts:
+      - name: pg-certs
+        mountPath: /mnt/pg-certs
+        readOnly: true
 
     # -- Worker node configurations
     worker:
