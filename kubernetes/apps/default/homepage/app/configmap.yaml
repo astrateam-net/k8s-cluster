@@ -136,7 +136,7 @@ data:
             - icon: si-simpleicons
               href: https://simpleicons.org/
   services.yaml: |
-    - First Service Group:
+    - Nested Group A:
         - My First Service:
             href: http://localhost/
             description: Homepage is awesome
