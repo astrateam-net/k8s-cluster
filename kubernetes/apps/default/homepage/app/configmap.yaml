@@ -37,7 +37,7 @@ data:
         style: row
         header: false
       Главное:
-        style: column
+        style: row
         columns: 3
         icon: mdi-home-analytics
         header: false
