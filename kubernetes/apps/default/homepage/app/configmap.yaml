@@ -149,17 +149,16 @@ data:
             icon: confluence.png
             href: https://wiki.astrateam.net
             description: База знаний компании
-        - Jira:
-            icon: jira.png
-            href: https://jira.astrateam.net
-            description: Система управления проектами
-
-    - Ресурсы:
         - Bitwarden:
             icon: bitwarden.png
             href: https://pass.astrateam.net
             description: Менеджер паролей
 
+    - Ресурсы:
+        - Jira:
+            icon: jira.png
+            href: https://jira.astrateam.net
+            description: Система управления проектами
 
   widgets.yaml: |
     - search:
