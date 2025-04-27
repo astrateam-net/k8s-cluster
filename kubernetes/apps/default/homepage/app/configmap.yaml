@@ -123,7 +123,7 @@ data:
             - icon: si-simpleicons
               href: https://simpleicons.org/
   services.yaml: |
-    - Calendar:
+    - Календарь:
           - Calendar:
               widget:
                 type: calendar
@@ -132,6 +132,13 @@ data:
                 maxEvents: 10
                 showTime: true
                 timezone: Europe/Moscow
+                integrations:
+                  - type: ical
+                    url: https://domain.url/with/link/to.ics
+                    name: My Events
+                    # color: zinc
+                    params: # optional - additional params for the service
+                      showName: true # optional - show name before event title in event line - defaults to false
     - Nested Group A:
         - My First Service:
             href: http://localhost/
