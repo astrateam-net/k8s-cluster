@@ -124,7 +124,7 @@ data:
               href: https://simpleicons.org/
   services.yaml: |
     - Календарь:
-          - Календарь:
+          - Корпоративные мероприятия:
               widget:
                 type: calendar
                 firstDayInWeek: monday
