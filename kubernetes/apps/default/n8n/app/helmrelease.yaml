@@ -600,7 +600,7 @@ spec:
       # -- External PostgreSQL server host
       host: "10.1.125.55"
       # -- External PostgreSQL username
-      username: " n8ndbuser"
+      username: "n8ndbuser"
       # -- External PostgreSQL password
       password: ""
       # -- External PostgreSQL server port
