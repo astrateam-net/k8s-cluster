@@ -50,9 +50,9 @@ spec:
       # -- S3-compatible external storage configurations. For more information, see https://docs.n8n.io/hosting/configuration/environment-variables/external-data-storage/
       s3:
         # -- Host of the n8n bucket in S3-compatible external storage. For example, s3.us-east-1.amazonaws.com
-        host: ""
+        host: "s3.astrateam.net"
         # -- Name of the n8n bucket in S3-compatible external storage.
-        bucketName: ""
+        bucketName: "n8n"
         # -- Region of the n8n bucket in S3-compatible external storage. For example, us-east-1
         bucketRegion: "us-east-1"
         # -- Access key in S3-compatible external storage
@@ -60,7 +60,7 @@ spec:
         # -- Access secret in S3-compatible external storage.
         accessSecret: ""
         # -- This is for setting up the s3 file storage existing secret. Must contain access-key-id and secret-access-key keys.
-        existingSecret: ""
+        existingSecret: "n8n-credentials-secret"
 
     # -- n8n database configurations
     db:
@@ -155,11 +155,17 @@ spec:
       - name: pg-certs
         secret:
           secretName: n8n-ca-secret
+      - name: custom-ca
+        secret:
+          secretName: n8n-ca-secret
 
       # -- Additional volumeMounts on the output Deployment definition.
       volumeMounts:
       - name: pg-certs
         mountPath: /mnt/pg-certs
+        readOnly: true
+      - name: custom-ca                  # <-- Add this block
+        mountPath: /opt/custom-certificates
         readOnly: true
 
     # -- Worker node configurations
