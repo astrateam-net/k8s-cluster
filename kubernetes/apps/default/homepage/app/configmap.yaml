@@ -132,42 +132,13 @@ data:
                 maxEvents: 10
                 showTime: true
                 timezone: Europe/Moscow
-                integrations:
-                  - type: ical
-                    url: https://www.calend.ru/ical/ical-russtate.ics?v=yy2025&b=1
-                    name: Праздники РФ
-                    # color: zinc
-                    params: # optional - additional params for the service
-                      showName: true # optional - show name before event title in event line - defaults to false
-    - Nested Group A:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
-
-    - Nested Group B:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is awesome
-
-    - Group C:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
-
-    - Group C:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
-
-    - Group A:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
-
-    - Group A:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
+                # integrations:
+                #   - type: ical
+                #     url: https://www.calend.ru/ical/ical-russtate.ics?v=yy2025&b=1
+                #     name: Праздники РФ
+                #     # color: zinc
+                #     params: # optional - additional params for the service
+                #       showName: true # optional - show name before event title in event line - defaults to false
   widgets.yaml: |
     # - search:
     #     provider: [google]
