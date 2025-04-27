@@ -33,7 +33,7 @@ data:
       searchDescriptions: true
       hideInternetSearch: true
     layout:
-      Calendar:
+      Календарь:
         style: row
         header: false
       Home:
