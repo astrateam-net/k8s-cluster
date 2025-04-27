@@ -113,55 +113,8 @@ data:
         - Homepage SI:
             - icon: si-simpleicons
               href: https://simpleicons.org/
-  # services.yaml: |
-  #   - Infrastructure:
-  #       - Cloudflared:
-  #           href: https://dash.cloudflare.com/
-  #           icon: cloudflare-zero-trust.png
-  #           description: Cloudflared Tunnel
-  #           widget:
-  #             type: cloudflared
-  #             accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}}
-  #             tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNELID}}
-  #             key: {{HOMEPAGE_VAR_CLOUDFLARE_API_TOKEN}}
-  #       - PiKVM:
-  #           href: https://pikvm.chestr.dev
-  #           icon: pikvm.png
-  #   - System:
-  #       - Mainsail:
-  #           href: https://mainsail.chestr.dev
-  #           icon: mdi-printer-3d-nozzle
-  #           widget:
-  #             type: moonraker
-  #             url: https://mainsail.chestr.dev:7130
-  #       - Unifi:
-  #           href: https://udm.chestr.dev
-  #           icon: unifi.png
-  #   - Storage:
-  #       - LochNAS:
-  #           href: https://lochnas.chestr.dev
-  #           icon: synology-dsm.png
-  #           widget:
-  #             type: diskstation
-  #             url: https://lochnas.chestr.dev:5001
-  #             username: {{HOMEPAGE_VAR_DSM_USER}}
-  #             password: {{HOMEPAGE_VAR_DSM_PASSWORD}}
-  #   - Calendar:
-  #       - Calendar:
-  #           widget:
-  #             type: calendar
-  #             firstDayInWeek: sunday
-  #             view: monthly
-  #             maxEvents: 10
-  #             showTime: true
-  #             timezone: America/Vancouver
-  #             integrations:
-  #               - type: sonarr
-  #                 service_group: Downloads
-  #                 service_name: Sonarr
-  #               - type: radarr
-  #                 service_group: Downloads
-  #                 service_name: Radarr
+
+
   widgets.yaml: |
     - search:
         provider: [google]
