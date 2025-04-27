@@ -37,7 +37,7 @@ data:
         style: row
         header: false
       Главное:
-        style: row
+        style: column
         columns: 3
         icon: mdi-home-analytics
         header: false
@@ -60,7 +60,7 @@ data:
       Observability:
         style: column
         icon: mdi-monitor-eye
-      Infrastructure:
+      Ресурсы:
         style: column
         icon: mdi-server-network
       Storage:
@@ -153,6 +153,13 @@ data:
             icon: jira.png
             href: https://jira.astrateam.net
             description: Система управления проектами
+
+    - Ресурсы:
+        - Bitwarden:
+            icon: bitwarden.png
+            href: https://pass.astrateam.net
+            description: Менеджер паролей
+
 
   widgets.yaml: |
     - search:
