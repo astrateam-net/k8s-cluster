@@ -95,8 +95,7 @@ spec:
       #emailChangeAllowed: true
       ## Map of custom environment variables. Use carefully.
       extraEnv:
-        ORG_GROUPS_ENABLED: true
-      #  IP_HEADER: CF-Connecting-IP
+        ORG_GROUPS_ENABLED: "true"
       #  ALLOWED_IFRAME_ANCESTORS: myintranet.local
       #  COOL_VARIABLE:
       #    secretKeyRef:
