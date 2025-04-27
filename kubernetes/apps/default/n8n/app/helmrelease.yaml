@@ -144,10 +144,8 @@ spec:
 
       # -- Extra environment variables
       extraEnvVars:
-        - name: DB_POSTGRESDB_SSL_CA
-          value: "/mnt/pg-certs/postgres-ca"
-        - name: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-          value: "false"
+        DB_POSTGRESDB_SSL_CA: "/mnt/pg-certs/postgres-ca"
+        DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED: "false"
 
       # -- Extra secrets for environment variables
       extraSecretNamesForEnvFrom: []
