@@ -33,19 +33,6 @@ data:
       searchDescriptions: true
       hideInternetSearch: true
     layout:
-      Group A:
-        style: row
-        columns: 4
-      Group C:
-        style: row
-        columns: 2
-        Nested Group A:
-          style: row
-          columns: 2
-        Nested Group B:
-          style: row
-          columns: 2
-
       Calendar:
         style: row
         header: false
@@ -136,6 +123,15 @@ data:
             - icon: si-simpleicons
               href: https://simpleicons.org/
   services.yaml: |
+    - Calendar:
+          - Calendar:
+              widget:
+                type: calendar
+                firstDayInWeek: sunday
+                view: monthly
+                maxEvents: 10
+                showTime: true
+                timezone: Europe/Moscow
     - Nested Group A:
         - My First Service:
             href: http://localhost/
