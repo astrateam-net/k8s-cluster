@@ -36,10 +36,11 @@ data:
       Календарь:
         style: row
         header: false
-      Home:
+      Главное:
         style: row
         columns: 4
         icon: mdi-home-analytics
+        header: false
       AI:
         style: row
         columns: 2
@@ -139,7 +140,7 @@ data:
               #     # color: zinc
               #     params: # optional - additional params for the service
               #       showName: true # optional - show name before event title in event line - defaults to false
-    - Home:
+    - Главное:
         - Confluence:
             icon: confluence.png
             href: https://wiki.astrateam.net
