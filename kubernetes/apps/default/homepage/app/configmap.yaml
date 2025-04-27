@@ -135,7 +135,7 @@ data:
                 integrations:
                   - type: ical
                     url: https://www.calend.ru/ical/ical-russtate.ics?v=yy2025&b=1
-                    name: My Events
+                    name: Праздники РФ
                     # color: zinc
                     params: # optional - additional params for the service
                       showName: true # optional - show name before event title in event line - defaults to false
