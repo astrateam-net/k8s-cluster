@@ -62,7 +62,14 @@ spec:
       #   cpu: 100m
       #   memory: 128Mi
     extraEnvVars:
-      DATABASE_SSL: "false"
+      - name: DATABASE_SSL
+        value: "true"
+      - name: DATABASE_SSL_KEY_BASE64
+        valueFrom:
+          secretKeyRef:
+            name: flowdb-credentials-secret
+            key: ca.crt
+    extraEnvVarsSecret: flowdb-credentials-secret
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
