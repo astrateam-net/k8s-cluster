@@ -1,0 +1,354 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: vaultwarden
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.2.5
+  url: oci://ghcr.io/astrateam-net/oci-charts/vaultwarden
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: "^https://token.actions.githubusercontent.com$"
+        subject: "^https://github.com/astrateam-net/oci-charts.*$"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vaultwarden
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: vaultwarden
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    database:
+      type: postgresql
+      wal: false
+      existingSecret: vaultwarden-credentials-secret
+      existingSecretKey: VAULT_DB_URL
+      maxConnections: 10
+      retries: 15
+    # Set vaultwarden application variables
+    vaultwarden:
+      ## Set Bitwarden URL, mandatory for invitations over email. Recommended if using a reverse proxy / ingress. Format is https://name or http://name
+      domain: https://pass.astrateam.net
+      # Allow any user to sign-up: https://github.com/dani-garcia/vaultwarden/wiki/Disable-registration-of-new-users
+      allowSignups: true
+      ## Whitelist domains allowed to sign-up. 'allowSignups' is ignored if set.
+      signupDomains:
+        - astrateam.net
+      # Verify e-mail before login is enabled. SMTP must be enabled.
+      verifySignup: false
+      # When a user logs in an email is required to be sent. If sending the email fails the login attempt will fail. SMTP must be enabled.
+      requireEmail: false
+      ## Maximum attempts before an email token is reset and a new email will need to be sent.
+      #emailAttempts: 3
+      ## Email token validity in seconds.
+      #emailTokenExpiration: 600
+      # Allow invited users to sign-up even feature is disabled: https://github.com/dani-garcia/vaultwarden/wiki/Disable-invitations
+      allowInvitation: true
+      ## Number of hours after which an organization invite token, emergency access invite token,
+      ## email verification token and deletion request token will expire
+      #invitationExpiration: 120
+      ## Allow users to set password hints. Applies to all users.
+      #passwordHintsAllowed: true
+      # Show password hints: https://github.com/dani-garcia/vaultwarden/wiki/Password-hint-display
+      showPasswordHint: false
+      ## Default organization name in invitation e-mails that are not coming from a specific organization.
+      defaultInviteName: "AstraTeam"
+      # Enable Web Vault (static content). https://github.com/dani-garcia/vaultwarden/wiki/Disabling-or-overriding-the-Vault-interface-hosting
+      enableWebVault: true
+      # Enable Bitwarden Sends globally
+      enableSends: true
+      # Restrict creation of orgs. Options are: 'all', 'none' or a comma-separated list of users.
+      orgCreationUsers: all
+      ## Limit attachment disk usage per organization.
+      #attachmentLimitOrg:
+      ## Limit attachment disk usage per user.
+      #attachmentLimitUser:
+      ## Limit send disk usage per user.
+      #sendLimitUser:
+      ## HaveIBeenPwned API Key. Can be purchased at https://haveibeenpwned.com/API/Key.
+      #hibpApiKey:
+      ## Number of days to auto-delete trashed items. By default iteams are not auto-deleted.
+      #autoDeleteDays:
+      ## Organization event logging
+      #orgEvents: false
+      ## Organization event retation. Leave empty to not delete.
+      #orgEventsRetention: ""
+      ## Allow users to change their email.
+      #emailChangeAllowed: true
+      ## Map of custom environment variables. Use carefully.
+      #extraEnv:
+      #  IP_HEADER: CF-Connecting-IP
+      #  ALLOWED_IFRAME_ANCESTORS: myintranet.local
+      #  COOL_VARIABLE:
+      #    secretKeyRef:
+      #      name: my-secret
+      #      key: my-secret-key
+      #  ANOTHER_VARIABLE:
+      #    configMapKeyRef:
+      #      name: my-config-map
+      #      key: my-config-map-key
+
+      admin:
+        # Enable admin portal.
+        enabled: true
+        # Disabling the admin token will make the admin portal accessible to anyone, use carefully: https://github.com/dani-garcia/vaultwarden/wiki/Disable-admin-token
+        disableAdminToken: false
+        ## Token for admin login, will be generated if not defined. https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page
+        #token:
+        ## Use existing secret for the admin token. Key is 'admin-token'.
+        existingSecret: vaultwarden-credentials-secret
+
+      emergency:
+        # Allow any user to enable emergency access.
+        enabled: true
+        ## Schedule to send expiration reminders to emergency access grantors. Cron schedule format.
+        #reminder: "0 3 * * * *"
+        ## Schedule to grant emergency access requests that have met the required wait time. Cron schedule format.
+        #timeout: "0 3 * * * *"
+
+      # Enable SMTP. https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration
+      smtp:
+        enabled: false
+        # SMTP hostname, required if SMTP is enabled.
+        host: ""
+        # SMTP sender e-mail address, required if SMTP is enabled.
+        from: ""
+        ## SMTP sender name, defaults to 'Vaultwarden'.
+        #fromName: ""
+        # Enable secure SSL connection. Options are: "starttls", "force_tls" and "off"
+        # Users migrating from 1.24 or lower using ssl/explicitTLS settings:
+        #   ssl = false -> "off"
+        #   ssl = true and explicitTLS = false -> "starttls"
+        #   ssl = true and explicitTLS = true -> "force_tls"
+        security: starttls
+        ## SMTP port. Defaults depends on security: 465 for "force_tls", 587 for "starttls" and 25 for "off"
+        #port: 587
+        ## SMTP Authentication Mechanisms. Comma-separated options: 'Plain', 'Login' and 'Xoauth2'. Defaults to 'Plain'.
+        #authMechanism: Plain
+        ## Hostname to be sent for SMTP HELO. Defaults to pod name.
+        #heloName: ""
+        ## SMTP timeout.
+        #timeout: 15
+        ## Accept SSL session if certificate is valid but hostname doesn't match. DANGEROUS, vulnerable to men-in-the-middle attacks!
+        #invalidHostname: false
+        ## Accept invalid certificates. DANGEROUS, vulnerable to men-in-the-middle attacks!
+        #invalidCertificate: false
+        ## SMTP username.
+        #user: ""
+        ## SMTP password. Required is user is specified, ignored if no user provided.
+        #password: ""
+        ## Use existing secret for SMTP authentication. Keys are 'smtp-user' and 'smtp-password'.
+        #existingSecret:
+        ## Embed images as email attachments
+        #embedImages: true
+
+      ## Enable Yubico OPT authentication. https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Yubikey-OTP-authentication
+      yubico:
+        enabled: false
+        ## Yubico server. Defaults to YubiCloud.
+        #server:
+        ## Yubico ID and Secret Key.
+        #clientId:
+        #secretKey:
+        ## Use existing secret for Yubico. Keys are 'yubico-client-id' and 'yubico-secret-key'.
+        #existingSecret:
+
+      ## Logging options. https://github.com/dani-garcia/vaultwarden/wiki/Logging
+      log:
+        # Log to file.
+        file: ""
+        # Log level. Options are "trace", "debug", "info", "warn", "error" or "off".
+        level: ""
+        ## Log timestamp format. See https://docs.rs/chrono/0.4.15/chrono/format/strftime/index.html. Defaults to time in milliseconds.
+        #timeFormat: ""
+
+      icons:
+        ## Icon download service. "internal" to fetch icons directly, otherwise options are: "bitwarden", "duckduckgo" or "google"
+        #service: internal
+        # Disables download of external icons on internal service. Setting to true will still serve icons from cache (/data/icon_cache). TTL will default to zero.
+        disableDownload: false
+        ## Cache time-to-live for icons fetched. 0 means no purging.
+        #cache: 2592000
+        ## Cache time-to-live for icons that were not available. 0 means no purging.
+        #cacheFailed: 259200
+        ## HTTP code for redirect to external icon service
+        #redirectCode: 302
+
+      # Push notifications. https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification
+      push:
+        enabled: true
+        ## Installation ID from Bitwarden.
+        #installationId:
+        ## Installation Key from Bitwarden.
+        #installationKey:
+        ## Relay URI
+        relayUri: https://api.bitwarden.eu
+        ## Identity URI
+        identityUri: https://identity.bitwarden.eu
+        ## Use existing secret for Push notifications. Keys are 'push-id' and 'push-key'.
+        existingSecret: vaultwarden-credentials-secret
+
+    service:
+      type: ClusterIP
+      httpPort: 80
+      externalTrafficPolicy: Cluster
+      # loadBalancerIP:
+      nodePorts:
+        # Choose NodePorts manually
+        http: ""
+
+    # Kubernetes Ingress
+    ingress:
+      enabled: false
+      className: ""
+      host: ""
+      annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      tls: []
+      #  - secretName: vaultwarden-tls
+      #    hosts:
+      #      - vaultwarden.local
+
+    # Traefik IngressRoute CRD
+    ingressRoute:
+      enabled: false
+      # Starting on Traefik 2.10, the IngressRoute CRD moved to traefik.io namespace
+      newCRD: false
+      # Mandatory to enable IngressRoute
+      host: ""
+      entrypoints:
+        - websecure
+      ## Enable Traefik middlewares
+      middlewares: {}
+      #  - name: my_middleware
+      #    namespace: default
+      tls: {}
+        #certResolver: letsencrypt
+
+    persistence:
+      enabled: true
+      size: 3Gi
+      accessMode: ReadWriteOnce
+      ## Persistent Volume storage class
+      # storageClass: "-"
+      ## Use existing Persistent Volume Claim
+      existingClaim: vaultwarden
+      ## Annotations to add to the Persistent Volume Claim
+      annotations: {}
+
+    # Use custom volume definition. Cannot be used with persistence.
+    customVolume: {}
+      #hostPath:
+      #  path: "/examplefolder/vaultwarden"
+
+    # Additional volumes, to be used by sidecars
+    #additionalVolumes: []
+
+    image:
+      pullPolicy: IfNotPresent
+      repository: vaultwarden/server
+      tag: ""
+
+    imagePullSecrets: []
+    nameOverride: ""
+    fullnameOverride: ""
+
+    replicaCount: 1
+
+    serviceAccount:
+      # Specifies whether a service account should be created
+      create: true
+      # Annotations to add to the service account
+      annotations: {}
+      # The name of the service account to use.
+      # If not set and create is true, a name is generated using the fullname template
+      name: ""
+
+    podAnnotations: {}
+    podLabels: {}
+
+    # Annotations to add to the Deployment
+    deploymentAnnotations: {}
+    # Readiness and Liveness probes
+    probes: {}
+      #liveness:
+        #timeoutSeconds: 1
+        #periodSeconds: 10
+        #successThreshold: 1
+        #failureThreshold: 3
+      #readiness:
+        #timeoutSeconds: 1
+        #periodSeconds: 10
+        #successThreshold: 1
+        #failureThreshold: 3
+
+    # initContainers containers, add container spec (https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)
+    # No templating possible, values need to be hardcoded
+    initContainers: []
+    #  - name: initcontainer
+    #    image: initcontainer:1.2.3
+    #    env:
+    #      - name: INITCONTAINER_END
+    #        value: "initcontainer"
+    #    volumeMounts:
+    #      - name: vaultwarden
+    #        mountPath: /data
+
+    # Sidecar containers, add container spec (https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)
+    # No templating possible, values need to be hardcoded
+    sidecars: []
+    #  - name: sidecar
+    #    image: sidecarimage:1.2.3
+    #    env:
+    #      - name: SIDECAR_END
+    #        value: "sidecar"
+    #    volumeMounts:
+    #      - name: vaultwarden
+    #        mountPath: /data
+
+    podSecurityContext:
+      fsGroup: 1000
+
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+
+    strategy: {}
+
+    resources: {}
+      # We usually recommend not to specify default resources and to leave this as a conscious
+      # choice for the user. This also increases chances charts run on environments with little
+      # resources, such as Minikube. If you do want to specify resources, uncomment the following
+      # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
+      # requests:
+      #   cpu: 100m
+      #   memory: 128Mi
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
