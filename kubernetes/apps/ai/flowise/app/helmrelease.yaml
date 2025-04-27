@@ -64,24 +64,39 @@ spec:
     extraEnvVars:
       - name: DATABASE_SSL
         value: "true"
+      - name: DATABASE_TYPE
+        value: "postgres"
+      - name: DATABASE_HOST
+        value: 10.1.125.55
+      - name: DATABASE_PORT
+        value: 5000
+      - name: DATABASE_NAME
+        value: flowisedbprod
+      - name: DATABASE_USER
+        value: flowisedb_user
+      - name: DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: flowdb-credentials-secret
+            key: FLOWISE_DBUSER_PASSWORD
       - name: DATABASE_SSL_KEY_BASE64
         valueFrom:
           secretKeyRef:
             name: flowdb-credentials-secret
             key: PG_CRT
     extraEnvVarsSecret: flowdb-credentials-secret
-    extraVolumes:
-      - name: pg-ca
-        secret:
-          secretName: flowdb-credentials-secret
-          items:
-            - key: PG_CRT
-              path: my-postgres-ca.crt
-    extraVolumeMounts:
-      - name: pg-ca
-        mountPath: /usr/local/share/ca-certificates/my-postgres-ca.crt
-        subPath: my-postgres-ca.crt
-        readOnly: true
+    # extraVolumes:
+    #   - name: pg-ca
+    #     secret:
+    #       secretName: flowdb-credentials-secret
+    #       items:
+    #         - key: PG_CRT
+    #           path: my-postgres-ca.crt
+    # extraVolumeMounts:
+    #   - name: pg-ca
+    #     mountPath: /usr/local/share/ca-certificates/my-postgres-ca.crt
+    #     subPath: my-postgres-ca.crt
+    #     readOnly: true
 
     persistence:
       enabled: true
@@ -94,7 +109,7 @@ spec:
     existingSecretKeyPassword: FLOWISE_PASSWORD
     externalPostgresql:
       ## @param externalPostgresql.enabled Whether to use an external PostgreSQL
-      enabled: true
+      enabled: false
       host: 10.1.125.55
       port: 5000
       username: flowisedb_user
