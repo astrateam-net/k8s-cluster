@@ -38,7 +38,7 @@ data:
         header: false
       Home:
         style: row
-        columns: 3
+        columns: 4
         icon: mdi-home-analytics
       AI:
         style: row
@@ -141,8 +141,11 @@ data:
                 #       showName: true # optional - show name before event title in event line - defaults to false
     - Home:
         - База знаниий:
-            - icon: si-openapiinitiative
+            - icon: confluence.png
               href: https://wiki.astrateam.net
+        - Jira:
+            - icon: jira.png
+              href: https://jira.astrateam.net
 
   widgets.yaml: |
     # - search:
