@@ -62,13 +62,13 @@ spec:
       #   cpu: 100m
       #   memory: 128Mi
     extraEnvVars:
-      - name: DATABASE_SSL
-        value: "true"
+      - name: PGSSLMODE
+        value: "require"
       - name: DATABASE_SSL_KEY_BASE64
         valueFrom:
           secretKeyRef:
             name: flowdb-credentials-secret
-            key: ca.crt
+            key: PG_CRT
     extraEnvVarsSecret: flowdb-credentials-secret
     persistence:
       enabled: true
