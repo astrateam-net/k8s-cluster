@@ -7,4 +7,4 @@ components:
   - ../../components/common
 resources:
   - ./confluence/ks.yaml
-  # - ./jira/ks.yaml
+  - ./jira/ks.yaml
