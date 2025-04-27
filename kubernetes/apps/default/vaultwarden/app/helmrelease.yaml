@@ -94,7 +94,8 @@ spec:
       ## Allow users to change their email.
       #emailChangeAllowed: true
       ## Map of custom environment variables. Use carefully.
-      #extraEnv:
+      extraEnv:
+        ORG_GROUPS_ENABLED: true
       #  IP_HEADER: CF-Connecting-IP
       #  ALLOWED_IFRAME_ANCESTORS: myintranet.local
       #  COOL_VARIABLE:
