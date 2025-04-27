@@ -33,6 +33,29 @@ data:
       searchDescriptions: true
       hideInternetSearch: true
     layout:
+      Bookmark Group on First Tab:
+        tab: First
+
+      First Service Group:
+        tab: First
+        style: row
+        columns: 4
+
+      Second Service Group:
+        tab: Second
+        columns: 4
+
+      Third Service Group:
+        tab: Third
+        style: row
+
+      Bookmark Group on Fourth Tab:
+        tab: Fourth
+
+      Service Group on every Tab:
+        style: row
+        columns: 4
+
       Calendar:
         style: row
         header: false
