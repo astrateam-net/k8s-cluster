@@ -156,7 +156,7 @@ spec:
       volumes:
       - name: pg-certs
         secret:
-          secretName: n8n-credentials-secret
+          secretName: n8n-ca-secret
 
       # -- Additional volumeMounts on the output Deployment definition.
       volumeMounts:
