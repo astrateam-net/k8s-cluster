@@ -3,11 +3,11 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: confluence
+  name: flowise
 spec:
-  hostnames: ["wiki.astrateam.net"]
+  hostnames: ["ai.astrateam.net"]
   parentRefs:
-    - name: external
+    - name: internal
       namespace: network
       sectionName: https
   rules:
@@ -16,14 +16,6 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: confluence
-          namespace: atlassian-prod
-          port: 80
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /synchrony
-      backendRefs:
-        - name: confluence-synchrony
-          namespace: atlassian-prod
-          port: 80
+        - name: flowise
+          namespace: ai
+          port: 3000

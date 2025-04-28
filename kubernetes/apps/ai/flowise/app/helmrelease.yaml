@@ -84,6 +84,16 @@ spec:
           secretKeyRef:
             name: flowdb-credentials-secret
             key: PG_CRT
+      - name: FLOWISE_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: flowise-credentials-secret
+            key: FLOWISE_USER
+      - name: FLOWISE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: flowise-credentials-secret
+            key: FLOWISE_PASSWORD
     extraEnvVarsSecret: flowdb-credentials-secret
     # extraVolumes:
     #   - name: pg-ca
@@ -102,10 +112,10 @@ spec:
       accessMode: ReadWriteOnce
       size: 3Gi
       storageClass: ceph-block
-    config:
-      username: "flowise"
-    existingSecret: "flowise-credentials-secret"
-    existingSecretKeyPassword: FLOWISE_PASSWORD
+    # config:
+    #   username: "flowise"
+    # existingSecret: "flowise-credentials-secret"
+    # existingSecretKeyPassword: FLOWISE_PASSWORD
     externalPostgresql:
       ## @param externalPostgresql.enabled Whether to use an external PostgreSQL
       enabled: false
