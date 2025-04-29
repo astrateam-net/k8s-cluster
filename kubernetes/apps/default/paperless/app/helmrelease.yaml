@@ -50,6 +50,7 @@ spec:
               # PAPERLESS_OCR_LANGUAGES: rus
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
+              PAPERLESS_CONSUMPTION_DIR: "/consumer"
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
@@ -156,6 +157,12 @@ spec:
                 path: /usr/src/paperless/data
               - subPath: media
                 path: /usr/src/paperless/media
+      consume:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: /volume1/Scan
+        globalMounts:
+          - path: /consumer
 
     networkpolicies:
       paperless:
