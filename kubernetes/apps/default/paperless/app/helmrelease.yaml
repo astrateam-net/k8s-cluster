@@ -159,8 +159,8 @@ spec:
                 path: /usr/src/paperless/media
       consume:
         type: nfs
-        server: 10.1.120.25
-        path: /volume1/Scan
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/Volsync"
         advancedMounts:
           paperless:
             app:
