@@ -51,6 +51,8 @@ spec:
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_CONSUMPTION_DIR: /usr/src/paperless/consume
+              PAPERLESS_MEDIA_ROOT: /usr/src/paperless/media
+              PAPERLESS_FILENAME_FORMAT: "{document_type}/{correspondent}/{created_year}{created_month}{created_day}_{correspondent}_{title}"
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
@@ -155,8 +157,8 @@ spec:
             app:
               - subPath: data
                 path: /usr/src/paperless/data
-              - subPath: media
-                path: /usr/src/paperless/media
+              # - subPath: media
+              #   path: /usr/src/paperless/media
       consume:
         type: nfs
         server: ivn-nas1.astrateam.net
@@ -164,8 +166,17 @@ spec:
         advancedMounts:
           paperless:
             app:
-              - path: /usr/src/paperless/consume
-                subPath: Paperless
+              - subPath: Paperless
+                path: /usr/src/paperless/consume
+      media:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/01_Документы"
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: "[99] АРХИВ"
+                path: /usr/src/paperless/media
     networkpolicies:
       paperless:
         controller: paperless
