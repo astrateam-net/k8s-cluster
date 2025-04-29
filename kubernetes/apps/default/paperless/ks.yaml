@@ -10,7 +10,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/dragonfly
-    - ../../../../components/volsync
+    # - ../../../../components/volsync
   dependsOn:
     - name: dragonfly
       namespace: database
