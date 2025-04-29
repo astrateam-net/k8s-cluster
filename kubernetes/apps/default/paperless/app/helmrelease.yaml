@@ -160,7 +160,7 @@ spec:
       consume:
         type: nfs
         server: ivn-nas1.astrateam.net
-        path: "/volume1/Volsync"
+        path: "/volume1/Scan"
         advancedMounts:
           paperless:
             app:
