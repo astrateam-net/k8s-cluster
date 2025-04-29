@@ -46,7 +46,7 @@ spec:
               tag: 2.15.3
             env:
               PAPERLESS_CONSUMER_POLLING: 5
-              PAPERLESS_OCR_LANGUAGE: rus
+              PAPERLESS_OCR_LANGUAGE: eng
               PAPERLESS_OCR_LANGUAGES: rus
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
