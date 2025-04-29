@@ -165,7 +165,7 @@ spec:
           paperless:
             app:
               - path: /usr/src/paperless/data/consume
-
+                subPath: Paperless
     networkpolicies:
       paperless:
         controller: paperless
