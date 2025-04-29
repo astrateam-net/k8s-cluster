@@ -42,12 +42,12 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/paperless-ngx/paperless-ngx
+              repository: astraautoio/paperless-ngx
               tag: 2.15.3
             env:
               PAPERLESS_CONSUMER_POLLING: 5
               PAPERLESS_OCR_LANGUAGE: rus
-              PAPERLESS_OCR_LANGUAGES: rus
+              # PAPERLESS_OCR_LANGUAGES: rus
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
