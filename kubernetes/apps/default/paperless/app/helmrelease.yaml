@@ -49,11 +49,11 @@ spec:
               PAPERLESS_OCR_LANGUAGE: rus
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.main.svc.cluster.local:3000
-              PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.main.svc.cluster.local:9998
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
+              PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
               PAPERLESS_URL: https://{{ .Release.Name }}.astrateam.net
-              PAPERLESS_REDIS: redis://paperless-dragonfly.main.svc.cluster.local:6379
+              PAPERLESS_REDIS: redis://paperless-dragonfly.default.svc.cluster.local:6379
               PAPERLESS_SOCIAL_AUTO_SIGNUP: "false"
               PAPERLESS_DISABLE_REGULAR_LOGIN: "true"
               PAPERLESS_REDIRECT_LOGIN_TO_SSO: "false"
@@ -134,7 +134,7 @@ spec:
           gethomepage.dev/name: Paperless
           gethomepage.dev/group: Home
           gethomepage.dev/widget.type: paperlessngx
-          gethomepage.dev/widget.url: http://paperless.main.svc.cluster.local:8000
+          gethomepage.dev/widget.url: http://paperless.default.svc.cluster.local:8000
           # gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_PAPERLESS_API_TOKEN}}" }}'
         parentRefs:
           - name: internal
