@@ -29,7 +29,7 @@ spec:
               TAGS: AI
             envFrom:
               - secretRef:
-                  name: paperless-ai-secret
+                  name: paperless-ai-credentials-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
