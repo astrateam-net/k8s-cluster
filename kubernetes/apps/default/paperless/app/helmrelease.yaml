@@ -1,0 +1,196 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app paperless
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
+    controllers:
+      paperless:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.15.3
+            env:
+              PAPERLESS_CONSUMER_POLLING: 5
+              PAPERLESS_OCR_LANGUAGE: rus
+              PAPERLESS_PORT: &port 8000
+              PAPERLESS_TIKA_ENABLED: 1
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.main.svc.cluster.local:3000
+              PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.main.svc.cluster.local:9998
+              PAPERLESS_TIME_ZONE: Europe/Moscow
+              PAPERLESS_URL: https://{{ .Release.Name }}.astrateam.net
+              PAPERLESS_REDIS: redis://paperless-dragonfly.main.svc.cluster.local:6379
+              PAPERLESS_SOCIAL_AUTO_SIGNUP: "false"
+              PAPERLESS_DISABLE_REGULAR_LOGIN: "true"
+              PAPERLESS_REDIRECT_LOGIN_TO_SSO: "false"
+              PAPERLESS_DBUSER:
+                valueFrom:
+                  secretKeyRef:
+                    name: &pguser paperless-pguser-secret
+                    key: user
+              PAPERLESS_DBPASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: *pguser
+                    key: password
+              PAPERLESS_DBHOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: *pguser
+                    key: host
+              PAPERLESS_DBPORT:
+                valueFrom:
+                  secretKeyRef:
+                    name: *pguser
+                    key: hostport
+              PAPERLESS_DBSSLROOTCERT:
+                valueFrom:
+                  secretKeyRef:
+                    name: *pguser
+                    key: sslrootcert
+              PAPERLESS_DBNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: *pguser
+                    key: db
+
+            envFrom:
+              - secretRef:
+                  name: paperless-secret
+
+      gotenburg:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/mchestr/gotenberg
+              tag: 8.17.3
+            env:
+              DISABLE_GOOGLE_CHROME: "1"
+
+      tika:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/paperless-ngx/tika
+              tag: 2.9.1-full
+
+    service:
+      paperless:
+        controller: *app
+        ports:
+          http:
+            port: *port
+      gotenburg:
+        controller: gotenburg
+        ports:
+          http:
+            port: 3000
+      tika:
+        controller: tika
+        ports:
+          http:
+            port: 9998
+
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.astrateam.net"]
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: paperless.png
+          gethomepage.dev/name: Paperless
+          gethomepage.dev/group: Home
+          gethomepage.dev/widget.type: paperlessngx
+          gethomepage.dev/widget.url: http://paperless.main.svc.cluster.local:8000
+          # gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_PAPERLESS_API_TOKEN}}" }}'
+        parentRefs:
+          - name: internal
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
+    persistence:
+      data:
+        existingClaim: *app
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: data
+                path: /usr/src/paperless/data
+              - subPath: media
+                path: /usr/src/paperless/media
+
+    networkpolicies:
+      paperless:
+        controller: paperless
+
+        policyTypes:
+          - Ingress
+
+        rules:
+          ingress:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/component: proxy
+                      app.kubernetes.io/managed-by: envoy-gateway
+                      app.kubernetes.io/name: envoy
+                      gateway.envoyproxy.io/owning-gateway-name: internal
+                  namespaceSelector:
+                    matchLabels:
+                      kubernetes.io/metadata.name: network
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/component: homepage
+                      app.kubernetes.io/instance: homepage
+                      app.kubernetes.io/name: homepage
+                  namespaceSelector:
+                    matchLabels:
+                      kubernetes.io/metadata.name: default
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/component: paperless-ai
+                      app.kubernetes.io/instance: paperless-ai
+                      app.kubernetes.io/name: paperless-ai
+                  namespaceSelector:
+                    matchLabels:
+                      kubernetes.io/metadata.name: ai
+              ports:
+                - protocol: TCP
+                  port: *port
