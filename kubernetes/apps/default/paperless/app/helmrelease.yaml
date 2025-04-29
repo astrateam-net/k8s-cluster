@@ -50,6 +50,7 @@ spec:
               # PAPERLESS_OCR_LANGUAGES: rus
               PAPERLESS_PORT: &port 8000
               PAPERLESS_TIKA_ENABLED: 1
+              PAPERLESS_OCR_SKIP_ARCHIVE_FILE: always
               PAPERLESS_CONSUMPTION_DIR: /usr/src/paperless/consume
               PAPERLESS_MEDIA_ROOT: /usr/src/paperless/media
               PAPERLESS_FILENAME_FORMAT: "{document_type}/{correspondent}/{created_year}{created_month}{created_day}_{correspondent}_{title}"
