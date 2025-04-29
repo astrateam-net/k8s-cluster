@@ -9,3 +9,4 @@ resources:
   - ./vaultwarden/ks.yaml
   - ./homepage/ks.yaml
   - ./n8n/ks.yaml
+  - ./paperless/ks.yaml

@@ -88,9 +88,9 @@ spec:
                     name: *pguser
                     key: db
 
-            envFrom:
-              - secretRef:
-                  name: paperless-secret
+            # envFrom:
+            #   - secretRef:
+            #       name: paperless-secret
 
       gotenburg:
         containers:
