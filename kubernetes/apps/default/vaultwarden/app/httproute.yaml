@@ -9,6 +9,7 @@ metadata:
     gethomepage.dev/icon: bitwarden.png
     gethomepage.dev/name: Bitwarden
     gethomepage.dev/group: Home
+    gethomepage.dev/description: Менеджер паролей
 spec:
   hostnames: ["pass.astrateam.net"]
   parentRefs:

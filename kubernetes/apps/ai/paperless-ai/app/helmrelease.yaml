@@ -64,6 +64,7 @@ spec:
           gethomepage.dev/icon: si-paperlessngx
           gethomepage.dev/name: Paperless AI
           gethomepage.dev/group: AI
+          gethomepage.dev/description: AI-платформа для работы с документами
         parentRefs:
           - name: internal
             namespace: network

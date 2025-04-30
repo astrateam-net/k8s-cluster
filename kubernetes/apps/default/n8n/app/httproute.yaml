@@ -8,7 +8,8 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/icon: n8n.png
     gethomepage.dev/name: N8N
-    gethomepage.dev/group: Automation
+    gethomepage.dev/group: Автоматизация
+    gethomepage.dev/description: Автоматизация рабочих процессов
 spec:
   hostnames: ["n8n.astrateam.net"]
   parentRefs:

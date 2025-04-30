@@ -9,6 +9,7 @@ metadata:
     gethomepage.dev/icon: openai.png
     gethomepage.dev/name: Flowise
     gethomepage.dev/group: AI
+    gethomepage.dev/description: Платформа для создания LLM-приложений
 spec:
   hostnames: ["ai.astrateam.net"]
   parentRefs:

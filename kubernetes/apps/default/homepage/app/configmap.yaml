@@ -36,7 +36,7 @@ data:
       Календарь:
         style: row
         header: false
-      Главное:
+      Главная:
         style: row
         columns: 3
         icon: mdi-home-analytics
@@ -53,7 +53,7 @@ data:
         style: row
         columns: 3
         icon: mdi-download-circle
-      Automation:
+      Автоматизация:
         style: column
         columns: 2
         icon: mdi-home-automation

@@ -8,7 +8,8 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/icon: confluence.png
     gethomepage.dev/name: Confluence
-    gethomepage.dev/group: Home
+    gethomepage.dev/group: Главная
+    gethomepage.dev/description: База знаний
 spec:
   hostnames: ["wiki.astrateam.net"]
   parentRefs:
