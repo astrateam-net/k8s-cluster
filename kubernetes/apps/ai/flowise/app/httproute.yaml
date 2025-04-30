@@ -4,6 +4,11 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: flowise
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: openai.png
+    gethomepage.dev/name: Flowise
+    gethomepage.dev/group: AI
 spec:
   hostnames: ["ai.astrateam.net"]
   parentRefs:
