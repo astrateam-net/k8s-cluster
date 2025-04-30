@@ -132,7 +132,7 @@ spec:
 
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.astrateam.net"]
+        hostnames: ["dms.astrateam.net"]
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/icon: paperless.png

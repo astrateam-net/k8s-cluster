@@ -24,7 +24,7 @@ spec:
               PROCESS_PREDEFINED_DOCUMENTS: true
               AI_PROVIDER: openai
               OLLAMA_MODEL: gpt-4o-mini
-              PAPERLESS_API_URL: https://paperless.astrateam.net/api
+              PAPERLESS_API_URL: https://dms.astrateam.net/api
               SCAN_INTERVAL: "*/30 * * * *"
               TAGS: AI
             envFrom:
@@ -58,7 +58,7 @@ spec:
 
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.astrateam.net"]
+        hostnames: ["dms-ai.astrateam.net"]
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/icon: si-paperlessngx
