@@ -57,7 +57,7 @@ spec:
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
-              PAPERLESS_URL: https://{{ .Release.Name }}.astrateam.net
+              PAPERLESS_URL: https://dms.astrateam.net
               PAPERLESS_REDIS: redis://paperless-dragonfly.default.svc.cluster.local:6379
               PAPERLESS_SOCIAL_AUTO_SIGNUP: "false"
               PAPERLESS_DISABLE_REGULAR_LOGIN: "false"
