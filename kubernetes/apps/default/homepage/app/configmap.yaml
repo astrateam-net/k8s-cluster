@@ -143,19 +143,20 @@ data:
               #     # color: zinc
               #     params: # optional - additional params for the service
               #       showName: true # optional - show name before event title in event line - defaults to false
-    - Главное:
+    - Главная:
         - Ispring:
             icon: booklogr.png
             href: https://atacademy.ispring.ru/
             description: Академия компании
-        - Confluence:
-            icon: confluence.png
-            href: https://wiki.astrateam.net
-            description: База знаний компании
-        - Bitwarden:
-            icon: bitwarden.png
-            href: https://pass.astrateam.net
-            description: Менеджер паролей
+            ping: atacademy.ispring.ru
+        # - Confluence:
+        #     icon: confluence.png
+        #     href: https://wiki.astrateam.net
+        #     description: База знаний компании
+        # - Bitwarden:
+        #     icon: bitwarden.png
+        #     href: https://pass.astrateam.net
+        #     description: Менеджер паролей
 
     - Ресурсы:
         - Jira:

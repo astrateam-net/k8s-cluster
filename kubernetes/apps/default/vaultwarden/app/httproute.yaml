@@ -8,7 +8,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/icon: bitwarden.png
     gethomepage.dev/name: Bitwarden
-    gethomepage.dev/group: Home
+    gethomepage.dev/group: Главная
     gethomepage.dev/description: Менеджер паролей
 spec:
   hostnames: ["pass.astrateam.net"]
