@@ -158,11 +158,11 @@ data:
         #     href: https://pass.astrateam.net
         #     description: Менеджер паролей
 
-    - Ресурсы:
-        - Jira:
-            icon: jira.png
-            href: https://jira.astrateam.net
-            description: Система управления проектами
+    # - Ресурсы:
+    #     - Jira:
+    #         icon: jira.png
+    #         href: https://jira.astrateam.net
+    #         description: Система управления проектами
 
   widgets.yaml: |
     - search:
