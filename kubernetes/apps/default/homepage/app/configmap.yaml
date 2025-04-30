@@ -147,8 +147,8 @@ data:
         - Ispring:
             icon: booklogr.png
             href: https://atacademy.ispring.ru/
-            description: Академия компании
-            ping: atacademy.ispring.ru
+            description: Платформа для онлайн-обучения
+            siteMonitor: https://atacademy.ispring.ru/
         # - Confluence:
         #     icon: confluence.png
         #     href: https://wiki.astrateam.net
