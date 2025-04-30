@@ -123,6 +123,9 @@ data:
         - Homepage SI:
             - icon: si-simpleicons
               href: https://simpleicons.org/
+        - Armtek:
+            - icon: si-simpleicons
+              href: https://etp.armtek.ru/
   services.yaml: |
     - Календарь:
         - Календарь:
