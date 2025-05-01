@@ -43,7 +43,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/paperless-ngx
-              tag: 2.15.3@sha256:12156164571605e20b0aea725ed63b0fba0cdbb00395a67885e9ea1ebebe6681
+              tag: 2@sha256:3cf8e0898aac5861796362e26e6411046fc5461c3c3b96813fea75cad4ddedc1
             env:
               PAPERLESS_CONSUMER_POLLING: 5
               PAPERLESS_OCR_LANGUAGE: rus
@@ -102,7 +102,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/gotenberg
-              tag: 8.20.1
+              tag: 8.20@sha256:e8f2aad22d570277f08479b479b0c96cacff46d7bc41b4278d35030887dd71b2
             env:
               DISABLE_GOOGLE_CHROME: "1"
 
