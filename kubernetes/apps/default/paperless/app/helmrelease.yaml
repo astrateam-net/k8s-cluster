@@ -170,15 +170,15 @@ spec:
             app:
               - subPath: Paperless
                 path: /usr/src/paperless/consume
-      media:
-        type: nfs
-        server: ivn-nas1.astrateam.net
-        path: "/volume1/01_Документы"
-        advancedMounts:
-          paperless:
-            app:
-              - subPath: "[99] АРХИВ"
-                path: /usr/src/paperless/media
+      # media:
+      #   type: nfs
+      #   server: ivn-nas1.astrateam.net
+      #   path: "/volume1/01_Документы"
+      #   advancedMounts:
+      #     paperless:
+      #       app:
+      #         - subPath: "[99] АРХИВ"
+      #           path: /usr/src/paperless/media
       docs:
         type: nfs
         server: ivn-nas1.astrateam.net
