@@ -39,7 +39,7 @@ spec:
     fullnameOverride: jira
     replicaCount: 1
     image:
-      repository: ghcr.io/astrateam-net/jira
+      repository: astraautoio/astraagile
       pullPolicy: IfNotPresent
       tag: 10.4.1
     database:
