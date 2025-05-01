@@ -52,8 +52,8 @@ spec:
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_OCR_SKIP_ARCHIVE_FILE: always
               PAPERLESS_CONSUMPTION_DIR: /usr/src/paperless/consume
-              # PAPERLESS_MEDIA_ROOT: /usr/src/paperless/media
-              PAPERLESS_FILENAME_FORMAT: "/usr/src/paperless/docs/Test/Test1/{title}"
+              PAPERLESS_MEDIA_ROOT: /usr/src/paperless/media
+              # PAPERLESS_FILENAME_FORMAT: "/usr/src/paperless/docs/Test/Test1/{title}"
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
@@ -159,8 +159,8 @@ spec:
             app:
               - subPath: data
                 path: /usr/src/paperless/data
-              - subPath: media
-                path: /usr/src/paperless/media
+              # - subPath: media
+              #   path: /usr/src/paperless/media
       consume:
         type: nfs
         server: ivn-nas1.astrateam.net
@@ -170,21 +170,21 @@ spec:
             app:
               - subPath: Paperless
                 path: /usr/src/paperless/consume
-      # media:
-      #   type: nfs
-      #   server: ivn-nas1.astrateam.net
-      #   path: "/volume1/01_Документы"
-      #   advancedMounts:
-      #     paperless:
-      #       app:
-      #         - subPath: "[99] АРХИВ"
-      #           path: /usr/src/paperless/media
+      media:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/01_Документы"
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: "[99] АРХИВ"
+                path: /usr/src/paperless/media
       docs:
         type: nfs
         server: ivn-nas1.astrateam.net
         path: "/volume1/01_Документы"
         globalMounts:
-        - path: /usr/src/paperless/docs
+        - path: /usr/src/paperless/media/docs
 
     networkpolicies:
       paperless:
