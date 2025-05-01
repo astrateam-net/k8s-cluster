@@ -39,7 +39,7 @@ spec:
     fullnameOverride: confluence
     replicaCount: 1
     image:
-      repository: astraautoio/astrawiki
+      repository:  ghcr.io/astrateam-net/confluence
       pullPolicy: IfNotPresent
       tag: "9.3.2"
     database:
