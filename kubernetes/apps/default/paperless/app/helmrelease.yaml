@@ -53,7 +53,7 @@ spec:
               PAPERLESS_OCR_SKIP_ARCHIVE_FILE: always
               PAPERLESS_CONSUMPTION_DIR: /usr/src/paperless/consume
               # PAPERLESS_MEDIA_ROOT: /usr/src/paperless/media
-              # PAPERLESS_FILENAME_FORMAT: "{document_type}/{correspondent}/{created_year}{created_month}{created_day}_{correspondent}_{title}"
+              PAPERLESS_FILENAME_FORMAT: "/usr/src/paperless/docs/Test/Test1/{{title}}"
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenburg.default.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-tika.default.svc.cluster.local:9998
               PAPERLESS_TIME_ZONE: Europe/Moscow
