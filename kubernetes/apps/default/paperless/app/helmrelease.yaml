@@ -42,8 +42,8 @@ spec:
         containers:
           app:
             image:
-              repository: astraautoio/paperless-ngx
-              tag: 2.15.3
+              repository: ghcr.io/astrateam-net/paperless
+              tag: 2.15.3@sha256:25be741b459e84ff106eee78425a1f892c0baef06abb6736f86ec6ca11c5c8ca
             env:
               PAPERLESS_CONSUMER_POLLING: 5
               PAPERLESS_OCR_LANGUAGE: rus
