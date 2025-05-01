@@ -39,9 +39,9 @@ spec:
     fullnameOverride: confluence
     replicaCount: 1
     image:
-      repository:  ghcr.io/astrateam-net/confluence
+      repository:  ghcr.io/astrateam-net/wiki
       pullPolicy: IfNotPresent
-      tag: 9.3.2@sha256:e0ef2ac2c0b217eb326bfc6f6277370c1696264341f3b6a903e0bce98b0fb7b5
+      tag: 9.3.2@sha256:80c90cd6e60dac5c6cfb0a49cf28086f5ece8f04a5ff8f41151a25a30305b70f
     database:
       type: postgresql
       url: "jdbc:postgresql://10.1.125.55:5000/confdbprod"
