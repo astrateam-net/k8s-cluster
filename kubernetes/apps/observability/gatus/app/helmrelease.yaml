@@ -93,7 +93,7 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.astrateam.net"
-          - status.devbu.io
+          - status.astrateam.net
         parentRefs:
           - name: external
             namespace: network
