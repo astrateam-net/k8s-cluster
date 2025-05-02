@@ -32,6 +32,15 @@ spec:
       retries: 3
   values:
     fullnameOverride: promtail
+    image:
+      # # -- The Docker registry
+      # registry: docker.io
+      # # -- Docker image repository
+      # repository: grafana/promtail
+      # # -- Overrides the image tag whose default is the chart's appVersion
+      # tag: ""
+      # # -- Docker image pull policy
+      pullPolicy: Always
     config:
       clients:
         - url: http://loki-headless.observability.svc.cluster.local:3100/loki/api/v1/push
