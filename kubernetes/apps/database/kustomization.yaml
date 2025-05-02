@@ -6,3 +6,4 @@ components:
 namespace: database
 resources:
   - ./dragonfly/ks.yaml
+  - ./nocodb/ks.yaml
