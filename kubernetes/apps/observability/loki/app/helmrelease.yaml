@@ -95,7 +95,7 @@ spec:
       enabled: false
     sidecar:
       image:
-        repository: ghcr.io/astrateam-net/k8s-sidecar
-        tag: rolling@sha256:c39b39cdcf24e9af9d87fc3c48cb684fe2f8514618b2605ef0bc34b886d211d7
+        repository: ghcr.io/home-operations/k8s-sidecar
+        tag: 1.30.3@sha256:39cca7abcad8f1621b9462d95f7d0e60301b92fcb0ff4de0ad4561859011cddf
       rules:
         searchNamespace: ALL
