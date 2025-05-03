@@ -85,8 +85,8 @@ spec:
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
       additionalCertificates:
         secretName: prod-certificates
-      additionalFiles:
-        - name: jira-storage-secret
-          type: secret
-          key: credentials
-          mountPath: /var/atlassian/application-data/jira/.aws/
+    additionalFiles:
+      - name: jira-storage-secret
+        type: secret
+        key: credentials
+        mountPath: /var/atlassian/application-data/jira/.aws/
