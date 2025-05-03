@@ -68,18 +68,18 @@ spec:
           maxHeap: "2g"
           minHeap: "2g"
       s3Storage:
-        avatars:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+        # avatars:
+        #   bucketName: jira
+        #   bucketRegion: us-east-1
+        #   endpointOverride: https://s3.astrateam.net
         attachments:
           bucketName: jira
           bucketRegion: us-east-1
           endpointOverride: https://s3.astrateam.net
-        backups:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+        # backups:
+        #   bucketName: jira
+        #   bucketRegion: us-east-1
+        #   endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
