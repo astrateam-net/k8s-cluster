@@ -22,7 +22,7 @@ cni:
   exclusive: false
 dashboards:
   enabled: true
-devices: eth+
+devices: 'eth+'
 enableIPv4BIGTCP: false
 endpointRoutes:
   enabled: true
