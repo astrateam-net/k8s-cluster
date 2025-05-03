@@ -82,6 +82,7 @@ spec:
         #   endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
+        - "-Datlassian.plugins.startup.options=--disable-all-addons"
       additionalCertificates:
         secretName: prod-certificates
       additionalFiles:
