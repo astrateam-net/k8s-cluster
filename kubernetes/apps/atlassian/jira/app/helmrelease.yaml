@@ -59,10 +59,6 @@ spec:
         customVolume:
           persistentVolumeClaim:
             claimName: "jira-shared-home"
-      additional:
-        - name: minio-ca-certs
-          secret:
-            secretName: minio-ca
     jira:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
@@ -71,16 +67,11 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
-      additionalVolumeMounts:
-        - name: minio-ca-certs       # Matches the name in 'volumes.additional'
-          mountPath: /etc/minio-certs
-          readOnly: true
       postStart:
         command:
           - /bin/sh
           - -c
           - |
-            cp /etc/minio-certs/minio.crt /usr/local/share/ca-certificates/minio.crt
             update-ca-certificates
       s3Storage:
         avatars:
@@ -105,3 +96,8 @@ spec:
         type: secret
         key: credentials
         mountPath: /var/atlassian/application-data/jira/.aws/
+      - name: minio-ca
+        type: secret
+        key: minio.crt
+        mountPath: /usr/local/share/ca-certificates/minio.crt
+        readOnly: true
