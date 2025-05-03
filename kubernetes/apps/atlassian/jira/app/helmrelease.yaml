@@ -69,18 +69,23 @@ spec:
           minHeap: "2g"
       s3Storage:
         avatars:
-          bucketName:
-          bucketRegion:
-          endpointOverride:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
         attachments:
-          bucketName:
-          bucketRegion:
-          endpointOverride:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
         backups:
-          bucketName:
-          bucketRegion:
-          endpointOverride:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
         secretName: prod-certificates
+      additionalFiles:
+        - name: jira-storage-secret
+          type: secret
+          key: credentials
+          mountPath: /var/atlassian/application-data/jira/.aws/
