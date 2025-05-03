@@ -30,9 +30,9 @@ spec:
               TZ: Europe/Moscow
               HASS_HTTP_TRUSTED_PROXY_1: 10.1.130.0/24
               HASS_HTTP_TRUSTED_PROXY_2: 172.21.0.0/16
-            envFrom:
-              - secretRef:
-                  name: home-assistant-secret
+            # envFrom:
+            #   - secretRef:
+            #       name: home-assistant-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
