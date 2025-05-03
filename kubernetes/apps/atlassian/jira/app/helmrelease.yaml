@@ -79,10 +79,10 @@ spec:
           bucketName: jira
           bucketRegion: us-east-1
           endpointOverride: https://s3.astrateam.net
-        # backups:
-        #   bucketName: jira
-        #   bucketRegion: us-east-1
-        #   endpointOverride: https://s3.astrateam.net
+        backups:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
