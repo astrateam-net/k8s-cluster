@@ -84,7 +84,15 @@ spec:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
       additionalCertificates:
-        secretName: prod-certificates
+        secretName: root-ca
+        # secretList:
+        #   - name: self-signed-ca
+        #     keys:
+        #       - root.crt
+        #       - intermediate.crt
+        #   - name: minio-ca
+        #     keys:
+        #       - minio.crt
     additionalFiles:
       - name: jira-storage-secret
         type: secret
