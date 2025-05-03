@@ -72,10 +72,10 @@ spec:
         #   bucketName: jira
         #   bucketRegion: us-east-1
         #   endpointOverride: https://s3.astrateam.net
-        attachments:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+        # attachments:
+        #   bucketName: jira
+        #   bucketRegion: us-east-1
+        #   endpointOverride: https://s3.astrateam.net
         # backups:
         #   bucketName: jira
         #   bucketRegion: us-east-1
