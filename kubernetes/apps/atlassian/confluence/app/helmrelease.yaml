@@ -81,7 +81,7 @@ spec:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
-        secretName: prod-certificates
+        secretName: root-ca
     synchrony:
       enabled: true
     additionalFiles:
