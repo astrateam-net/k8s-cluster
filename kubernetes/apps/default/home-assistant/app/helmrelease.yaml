@@ -24,8 +24,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/astrateam-net/home-assistant
-              tag: rolling@sha256:7aa1a8619e8e4d347a911e39a6213b98dc1c187506132e749c1204fbf15898dd
+              repository: ghcr.io/home-operations/home-assistant
+              tag: 2025.4.4@sha256:dc7bb47eb6b3f62405c185cbc633771527b9710530023f7177d99a09eb858fc4
             env:
               TZ: Europe/Moscow
               HASS_HTTP_TRUSTED_PROXY_1: 10.1.130.0/24
