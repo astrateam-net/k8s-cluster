@@ -24,8 +24,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/astrateam-net/nocodb
-              tag: 0.263.0@sha256:6a54dbd230360d01675d4bbd5b5b73b4c88313733c96fbdcce76bed45c239513
+              repository: docker.io/nocodb/nocodb
+              tag: 0.263.0
             env:
               PORT: &port "8080"
               NC_JWT_EXPIRES_IN: 48h
