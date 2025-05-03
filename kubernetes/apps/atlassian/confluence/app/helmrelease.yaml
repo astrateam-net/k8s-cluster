@@ -82,7 +82,7 @@ spec:
     synchrony:
       enabled: true
     additionalFiles:
-      - name: conf-storage
+      - name: conf-storage-secret
         type: secret
         key: credentials
         mountPath: /var/atlassian/application-data/confluence/.aws/
