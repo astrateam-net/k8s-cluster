@@ -71,6 +71,9 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
+      postStart:
+        command: |
+          update-ca-certificates
       s3AttachmentsStorage:
         bucketName: confluence
         bucketRegion: us-east-1
@@ -86,6 +89,11 @@ spec:
         type: secret
         key: credentials
         mountPath: /var/atlassian/application-data/confluence/.aws/
+      - name: minio-ca
+        type: secret
+        key: minio.crt
+        mountPath: /usr/local/share/ca-certificates/minio.crt
+        readOnly: true
     opensearch:
       enabled: true
       persistence:
