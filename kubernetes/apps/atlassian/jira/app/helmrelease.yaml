@@ -67,7 +67,7 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
-      s3Storage:
+      # s3Storage:
         # avatars:
         #   bucketName: jira
         #   bucketRegion: us-east-1
