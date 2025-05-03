@@ -59,6 +59,10 @@ spec:
         customVolume:
           persistentVolumeClaim:
             claimName: "jira-shared-home"
+      additional:
+        - name: minio-ca-certs
+          secret:
+            secretName: minio-ca
     jira:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
@@ -67,6 +71,17 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
+      additionalVolumeMounts:
+        - name: minio-ca-certs       # Matches the name in 'volumes.additional'
+          mountPath: /etc/minio-certs
+          readOnly: true
+      postStart:
+        command:
+          - /bin/sh
+          - -c
+          - |
+            cp /etc/minio-certs/minio.crt /usr/local/share/ca-certificates/minio.crt
+            update-ca-certificates
       s3Storage:
         avatars:
           bucketName: jira
@@ -85,14 +100,6 @@ spec:
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
       additionalCertificates:
         secretName: root-ca
-        # secretList:
-        #   - name: self-signed-ca
-        #     keys:
-        #       - root.crt
-        #       - intermediate.crt
-        #   - name: minio-ca
-        #     keys:
-        #       - minio.crt
     additionalFiles:
       - name: jira-storage-secret
         type: secret
