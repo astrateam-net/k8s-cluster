@@ -68,11 +68,8 @@ spec:
           maxHeap: "2g"
           minHeap: "2g"
       postStart:
-        command:
-          - /bin/sh
-          - -c
-          - |
-            update-ca-certificates
+        command: |
+          update-ca-certificates
       s3Storage:
         avatars:
           bucketName: jira
