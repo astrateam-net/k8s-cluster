@@ -98,6 +98,8 @@ spec:
             #       name: paperless-secret
 
       gotenberg:
+        nodeSelector:
+          kubernetes.io/hostname: k8s-02
         containers:
           app:
             image:
