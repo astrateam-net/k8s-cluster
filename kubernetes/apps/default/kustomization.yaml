@@ -9,6 +9,6 @@ resources:
   - ./vaultwarden/ks.yaml
   - ./homepage/ks.yaml
   - ./n8n/ks.yaml
-  # - ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   - ./emqx/ks.yaml
   - ./home-assistant/ks.yaml
