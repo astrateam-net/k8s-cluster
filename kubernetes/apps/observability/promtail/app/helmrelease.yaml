@@ -34,11 +34,11 @@ spec:
     fullnameOverride: promtail
     image:
       # # -- The Docker registry
-      # registry: docker.io
+      registry: docker.io
       # # -- Docker image repository
-      # repository: grafana/promtail
+      repository: grafana/promtail
       # # -- Overrides the image tag whose default is the chart's appVersion
-      # tag: ""
+      tag: latest-amd64@sha256:450959b22a0eabbf7c364dc3b0c6483573a22012ab853fa5e88025fdd12deda5
       # # -- Docker image pull policy
       pullPolicy: Always
     config:
