@@ -119,8 +119,8 @@ spec:
         ports:
           http:
             port: *port
-      gotenburg:
-        controller: gotenburg
+      gotenberg:
+        controller: gotenberg
         ports:
           http:
             port: 3000
