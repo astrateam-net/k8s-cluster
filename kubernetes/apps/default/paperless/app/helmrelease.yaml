@@ -33,6 +33,8 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
+    nodeSelector:
+      kubernetes.io/hostname: k8s-02
 
     controllers:
       paperless:
@@ -98,8 +100,6 @@ spec:
             #       name: paperless-secret
 
       gotenberg:
-        nodeSelector:
-          kubernetes.io/hostname: k8s-02
         containers:
           app:
             image:
