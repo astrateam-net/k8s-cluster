@@ -16,7 +16,7 @@ spec:
       retries: 5
   values:
     controllers:
-      homepage:
+      vlmcsd:
         replicas: 1
         strategy: RollingUpdate
         annotations:
