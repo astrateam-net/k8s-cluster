@@ -41,6 +41,7 @@ spec:
     service:
       app:
         controller: vlmcsd
+        type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 10.1.130.114
         ports:
