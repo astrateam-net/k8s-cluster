@@ -1,0 +1,51 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app vlmcsd
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controllers:
+      homepage:
+        replicas: 1
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/astrateam-net/kms
+              tag: 3.21
+            command: ["/vlmcsd"]
+            args: ["-D", "-d", "-t", "3", "-e", "-v", "-R172800", "-A10080"]
+            # env:
+            #   TZ: Europe/Moscow
+            resources:
+              requests:
+                cpu: 5m
+                memory: 32Mi
+              limits:
+                memory: 64Mi
+
+    service:
+      app:
+        controller: vlmcsd
+        annotations:
+          lbipam.cilium.io/ips: 10.1.130.114
+        ports:
+          http:
+            port: &port 1688
+
+    # serviceAccount:
+    #   create: true

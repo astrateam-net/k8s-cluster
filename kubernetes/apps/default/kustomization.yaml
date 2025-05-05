@@ -12,3 +12,4 @@ resources:
   - ./paperless/ks.yaml
   - ./emqx/ks.yaml
   - ./home-assistant/ks.yaml
+  - ./vlmcsd.yaml
