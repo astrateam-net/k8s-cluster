@@ -84,8 +84,8 @@ spec:
         secretName: root-ca
     synchrony:
       enabled: true
-      nodeSelector:
-        kubernetes.io/hostname: k8s-03
+      # nodeSelector:
+      #   kubernetes.io/hostname: k8s-03
     additionalFiles:
       - name: conf-storage-secret
         type: secret
