@@ -98,3 +98,5 @@ spec:
         key: minio.crt
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
+    nodeSelector:
+        name: "k8s-01"
