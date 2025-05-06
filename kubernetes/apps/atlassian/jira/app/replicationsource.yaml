@@ -19,9 +19,9 @@ spec:
     storageClassName: "ceph-block"
     accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
-      runAsUser: 2001
-      runAsGroup: 2001
-      fsGroup: 2001
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
@@ -46,9 +46,9 @@ spec:
     storageClassName: "ceph-block"
     accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
-      runAsUser: 2001
-      runAsGroup: 2001
-      fsGroup: 2001
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
