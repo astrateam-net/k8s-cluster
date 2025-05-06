@@ -98,5 +98,5 @@ spec:
         key: minio.crt
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
-    nodeSelector:
-        kubernetes.io/hostname: k8s-01
+    # nodeSelector:
+    #     kubernetes.io/hostname: k8s-01

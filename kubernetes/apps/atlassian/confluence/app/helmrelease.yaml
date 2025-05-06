@@ -101,5 +101,5 @@ spec:
       persistence:
         storageClass: ceph-block
         size: 10Gi
-    nodeSelector:
-      kubernetes.io/hostname: k8s-02
+    # nodeSelector:
+    #   kubernetes.io/hostname: k8s-02
