@@ -86,6 +86,7 @@ spec:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
+        - "-Dcom.atlassian.jira.status.index.check=false"
       additionalCertificates:
         secretName: root-ca
     additionalFiles:
