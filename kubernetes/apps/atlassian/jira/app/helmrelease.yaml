@@ -59,6 +59,8 @@ spec:
         customVolume:
           persistentVolumeClaim:
             claimName: "jira-shared-home"
+        nfsPermissionFixer:
+          enabled: false
     jira:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:

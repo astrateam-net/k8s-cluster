@@ -1,54 +1,56 @@
 ---
-# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
-kind: ReplicationSource
+kind: ReplicationDestination
 metadata:
-  name: "jira-local-home"
+  name: "jira-local-home-dst"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
-  sourcePVC: "jira-local-home"
   trigger:
-    schedule: "0 * * * *"
+    manual: restore-once
   restic:
-    copyMethod: "Snapshot"
-    pruneIntervalDays: 14
     repository: "jira-local-home-volsync-secret"
+    copyMethod: Snapshot
     volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
     cacheCapacity: 25Gi
-    cacheStorageClassName: "ceph-block"
-    cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: "ceph-block"
     accessModes: ["ReadWriteOnce"]
+    capacity: 25Gi
     moverSecurityContext:
       runAsUser: 2001
       runAsGroup: 2001
       fsGroup: 2001
-    retain:
-      hourly: 24
-      daily: 7
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
 ---
-# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
-kind: ReplicationSource
+kind: ReplicationDestination
 metadata:
-  name: "jira-shared-home"
+  name: "jira-shared-home-dst"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
-  sourcePVC: "jira-shared-home"
   trigger:
-    schedule: "0 * * * *"
+    manual: restore-once
   restic:
-    copyMethod: "Snapshot"
-    pruneIntervalDays: 14
     repository: "jira-shared-home-volsync-secret"
+    copyMethod: Snapshot
     volumeSnapshotClassName: "csi-ceph-blockpool"
-    cacheCapacity: 20Gi
     cacheStorageClassName: "ceph-block"
     cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 20Gi
     storageClassName: "ceph-block"
     accessModes: ["ReadWriteOnce"]
+    capacity: 20Gi
     moverSecurityContext:
       runAsUser: 2001
       runAsGroup: 2001
       fsGroup: 2001
-    retain:
-      hourly: 24
-      daily: 7
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

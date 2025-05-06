@@ -5,6 +5,10 @@ metadata:
   name: jira-local-home
 spec:
   accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "jira-local-home-dst"
   resources:
     requests:
       storage: 25Gi
@@ -16,7 +20,11 @@ metadata:
   name: jira-shared-home
 spec:
   accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "jira-shared-home-dst"
   resources:
     requests:
-      storage: 5Gi
+      storage: 20Gi
   storageClassName: ceph-block
