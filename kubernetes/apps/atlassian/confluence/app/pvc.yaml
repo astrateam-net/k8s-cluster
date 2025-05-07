@@ -5,6 +5,10 @@ metadata:
   name: confluence-local-home
 spec:
   accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "confluence-local-home-dst"
   resources:
     requests:
       storage: 25Gi
@@ -16,6 +20,10 @@ metadata:
   name: confuence-shared-home
 spec:
   accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "confuence-shared-home-dst"
   resources:
     requests:
       storage: 5Gi
@@ -27,6 +35,10 @@ metadata:
   name: confluence-syncrhony-home
 spec:
   accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "confluence-syncrhony-home-dst"
   resources:
     requests:
       storage: 5Gi

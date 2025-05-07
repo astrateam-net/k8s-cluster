@@ -59,6 +59,8 @@ spec:
         customVolume:
           persistentVolumeClaim:
             claimName: "confuence-shared-home"
+        nfsPermissionFixer:
+          enabled: false
       synchronyHome:
         customVolume:
           persistentVolumeClaim:
@@ -99,7 +101,15 @@ spec:
     opensearch:
       enabled: true
       persistence:
+        enabled: false
         storageClass: ceph-block
         size: 10Gi
+      extraVolumes:
+        - name: opensearch-data
+          persistentVolumeClaim:
+            claimName: confluence-opensearch
+      extraVolumeMounts:
+        - name: opensearch-data
+          mountPath: /usr/share/opensearch/data
     # nodeSelector:
     #   kubernetes.io/hostname: k8s-02

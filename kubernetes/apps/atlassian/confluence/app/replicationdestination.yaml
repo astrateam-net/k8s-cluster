@@ -1,0 +1,112 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "confluence-local-home"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "confluence-local-home-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 25Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 25Gi
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "confuence-shared-home-dst"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "confluence-shared-home-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 5Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 5Gi
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "confluence-syncrhony-home"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "confluence-syncrhony-home-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 5Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 5Gi
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "confluence-opensearch-home"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "confluence-opensearch-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 10Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 10Gi
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

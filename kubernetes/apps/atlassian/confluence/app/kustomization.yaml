@@ -7,4 +7,5 @@ resources:
   - ./helmrelease.yaml
   - ./httproute.yaml
   - ./replicationsource.yaml
+  - ./replicationdestination.yaml
   - ./pvc.yaml
