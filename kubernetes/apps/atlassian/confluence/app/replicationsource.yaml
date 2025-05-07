@@ -79,30 +79,30 @@ spec:
     retain:
       hourly: 24
       daily: 7
----
-# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
-apiVersion: volsync.backube/v1alpha1
-kind: ReplicationSource
-metadata:
-  name: "confluence-opensearch"
-spec:
-  sourcePVC: "cconfluence-opensearch"
-  trigger:
-    schedule: "0 * * * *"
-  restic:
-    copyMethod: "Snapshot"
-    pruneIntervalDays: 14
-    repository: "confluence-opensearch-volsync-secret"
-    volumeSnapshotClassName: "csi-ceph-blockpool"
-    cacheCapacity: 10Gi
-    cacheStorageClassName: "ceph-block"
-    cacheAccessModes: ["ReadWriteOnce"]
-    storageClassName: "ceph-block"
-    accessModes: ["ReadWriteOnce"]
-    moverSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-    retain:
-      hourly: 24
-      daily: 7
+# ---
+# # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+# apiVersion: volsync.backube/v1alpha1
+# kind: ReplicationSource
+# metadata:
+#   name: "confluence-opensearch"
+# spec:
+#   sourcePVC: "cconfluence-opensearch"
+#   trigger:
+#     schedule: "0 * * * *"
+#   restic:
+#     copyMethod: "Snapshot"
+#     pruneIntervalDays: 14
+#     repository: "confluence-opensearch-volsync-secret"
+#     volumeSnapshotClassName: "csi-ceph-blockpool"
+#     cacheCapacity: 10Gi
+#     cacheStorageClassName: "ceph-block"
+#     cacheAccessModes: ["ReadWriteOnce"]
+#     storageClassName: "ceph-block"
+#     accessModes: ["ReadWriteOnce"]
+#     moverSecurityContext:
+#       runAsUser: 1000
+#       runAsGroup: 1000
+#       fsGroup: 1000
+#     retain:
+#       hourly: 24
+#       daily: 7

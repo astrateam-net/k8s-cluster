@@ -101,22 +101,22 @@ spec:
     opensearch:
       enabled: false
       credentials:
-        createSecret: false
-        existingSecretRef:
-          name: opensearch-initial-password
+        createSecret: true
+        # existingSecretRef:
+        #   name: opensearch-initial-password
       persistence:
-        enabled: false
+        enabled: true
         storageClass: ceph-block
         size: 10Gi
-      envFrom:
-        - secretRef:
-            name: opensearch-initial-password
-      extraVolumes:
-        - name: opensearch-data
-          persistentVolumeClaim:
-            claimName: confluence-opensearch
-      extraVolumeMounts:
-        - name: opensearch-data
-          mountPath: /usr/share/opensearch/data
+      # envFrom:
+      #   - secretRef:
+      #       name: opensearch-initial-password
+      # extraVolumes:
+      #   - name: opensearch-data
+      #     persistentVolumeClaim:
+      #       claimName: confluence-opensearch
+      # extraVolumeMounts:
+      #   - name: opensearch-data
+      #     mountPath: /usr/share/opensearch/data
     # nodeSelector:
     #   kubernetes.io/hostname: k8s-02
