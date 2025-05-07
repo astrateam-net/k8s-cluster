@@ -26,5 +26,5 @@ spec:
     name: "jira-shared-home-dst"
   resources:
     requests:
-      storage: 20Gi
+      storage: 5Gi
   storageClassName: ceph-block
