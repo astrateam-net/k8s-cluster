@@ -84,6 +84,12 @@ spec:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
         secretName: root-ca
+      additionalEnvironmentVariables:
+        - name: ATL_OPENSEARCH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: opensearch-initial-password
+              key: OPENSEARCH_INITIAL_ADMIN_PASSWORD
     synchrony:
       enabled: true
       # nodeSelector:
@@ -101,22 +107,22 @@ spec:
     opensearch:
       enabled: true
       credentials:
-        createSecret: true
-        # existingSecretRef:
-        #   name: opensearch-initial-password
+        createSecret: false
+        existingSecretRef:
+          name: opensearch-initial-password
       persistence:
-        enabled: true
+        enabled: false
         storageClass: ceph-block
         size: 10Gi
-      # envFrom:
-      #   - secretRef:
-      #       name: opensearch-initial-password
-      # extraVolumes:
-      #   - name: opensearch-data
-      #     persistentVolumeClaim:
-      #       claimName: confluence-opensearch
-      # extraVolumeMounts:
-      #   - name: opensearch-data
-      #     mountPath: /usr/share/opensearch/data
+      envFrom:
+        - secretRef:
+            name: opensearch-initial-password
+      extraVolumes:
+        - name: opensearch-data
+          persistentVolumeClaim:
+            claimName: confluence-opensearch
+      extraVolumeMounts:
+        - name: opensearch-data
+          mountPath: /usr/share/opensearch/data
     # nodeSelector:
     #   kubernetes.io/hostname: k8s-02
