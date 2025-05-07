@@ -6,5 +6,5 @@ namespace: atlassian
 components:
   - ../../components/common
 resources:
-  - ./confluence/ks.yaml
+  # - ./confluence/ks.yaml
   - ./jira/ks.yaml
