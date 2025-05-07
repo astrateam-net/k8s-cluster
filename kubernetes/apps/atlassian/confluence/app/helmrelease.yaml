@@ -99,16 +99,18 @@ spec:
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
     opensearch:
-      enabled: false
+      enabled: true
       credentials:
         createSecret: false
         existingSecretRef:
           name: opensearch-initial-password
-      name:
       persistence:
         enabled: false
         storageClass: ceph-block
         size: 10Gi
+      envFrom:
+        - secretRef:
+            name: opensearch-initial-password
       extraVolumes:
         - name: opensearch-data
           persistentVolumeClaim:
