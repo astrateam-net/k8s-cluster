@@ -43,18 +43,18 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: ceph-block
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: confluence-opensearch
-# spec:
-#   accessModes: ["ReadWriteOnce"]
-#   dataSourceRef:
-#     kind: ReplicationDestination
-#     apiGroup: volsync.backube
-#     name: "confluence-opensearch-dst"
-#   resources:
-#     requests:
-#       storage: 10Gi
-#   storageClassName: ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: confluence-opensearch
+spec:
+  accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "confluence-opensearch-dst"
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ceph-block
