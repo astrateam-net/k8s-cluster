@@ -105,7 +105,7 @@ spec:
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
     opensearch:
-      enabled: true
+      enabled: false
       credentials:
         createSecret: true
         # existingSecretRef:
