@@ -10,7 +10,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.0.0
+    tag: 1.22.9
   url: oci://ghcr.io/astrateam-net/oci-charts/confluence
   verify:
     provider: cosign
@@ -84,12 +84,12 @@ spec:
         - "-Dupm.plugin.upload.enabled=true"
       additionalCertificates:
         secretName: root-ca
-      additionalEnvironmentVariables:
-        - name: ATL_OPENSEARCH_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: opensearch-initial-password
-              key: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+      # additionalEnvironmentVariables:
+      #   - name: ATL_OPENSEARCH_PASSWORD
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: opensearch-initial-password
+      #         key: OPENSEARCH_INITIAL_ADMIN_PASSWORD
     synchrony:
       enabled: true
       # nodeSelector:
@@ -107,9 +107,9 @@ spec:
     opensearch:
       enabled: true
       credentials:
-        createSecret: false
-        existingSecretRef:
-          name: opensearch-initial-password
+        createSecret: true
+        # existingSecretRef:
+        #   name: opensearch-initial-password
       persistence:
         enabled: false
         storageClass: ceph-block
