@@ -60,7 +60,7 @@ spec:
           persistentVolumeClaim:
             claimName: "confuence-shared-home"
         nfsPermissionFixer:
-          enabled: false
+          enabled: true
       synchronyHome:
         customVolume:
           persistentVolumeClaim:
@@ -99,7 +99,7 @@ spec:
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
     opensearch:
-      enabled: false
+      enabled: true
       credentials:
         createSecret: true
         # existingSecretRef:
