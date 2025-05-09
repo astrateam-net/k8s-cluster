@@ -39,16 +39,16 @@ spec:
       webhook:
         readinessProbe: null
     env:
-      - name: EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME
+      - name: &name EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME
         valueFrom:
           secretKeyRef:
             name: &secret rfc2136-keys-secret
-            key: rfc2136_kerberos_username
-      - name: EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD
+            key: *name
+      - name: &name EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD
         valueFrom:
           secretKeyRef:
             name: *secret
-            key: rfc2136_kerberos_password
+            key: *name
     extraVolumeMounts:
       - name: kerberos-config-volume
         mountPath: /etc/krb5.conf
@@ -65,9 +65,12 @@ spec:
       - --rfc2136-host=IVN-DC02.astrateam.net
       - --rfc2136-load-balancing-strategy=round-robin
       - --rfc2136-port=53
+      - --rfc2136-kerberos-username=$(EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME)
+      - --rfc2136-kerberos-password=$(EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD)
       - --rfc2136-zone=astrateam.net
       - --rfc2136-kerberos-realm=ASTRATEAM.NET
       - --rfc2136-tsig-axfr
+
     triggerLoopOnEvent: true
     policy: sync
     sources: ["crd", "gateway-httproute"]
