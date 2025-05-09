@@ -65,8 +65,8 @@ spec:
       # - --rfc2136-kerberos-realm=ASTRATEAM.NET
       - --rfc2136-zone=astrateam.net
       - --rfc2136-host=IVN-DC01.astrateam.net
-      # - --rfc2136-host=IVN-DC02.astrateam.net
-      # - --rfc2136-load-balancing-strategy=round-robin
+      - --rfc2136-host=IVN-DC02.astrateam.net
+      - --rfc2136-load-balancing-strategy=round-robin
       - --rfc2136-port=53
       - --rfc2136-tsig-axfr
       - --rfc2136-insecure
