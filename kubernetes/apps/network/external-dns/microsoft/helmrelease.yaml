@@ -80,5 +80,5 @@ spec:
     logLevel: debug
     serviceMonitor:
       enabled: true
-    podAnnotations:
-      secret.reloader.stakater.com/reload: *secret
+    # podAnnotations:
+    #   secret.reloader.stakater.com/reload: *secret
