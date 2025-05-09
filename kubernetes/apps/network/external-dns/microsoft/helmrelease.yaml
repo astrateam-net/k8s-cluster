@@ -38,38 +38,38 @@ spec:
       name: rfc2136
       webhook:
         readinessProbe: null
-    env:
-      - name: &name RFC2136_KERBEROS_USERNAME
-        valueFrom:
-          secretKeyRef:
-            name: &secret rfc2136-keys-secret
-            key: *name
-      - name: &name RFC2136_KERBEROS_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: *secret
-            key: *name
-    extraVolumeMounts:
-      - name: kerberos-config-volume
-        mountPath: /etc/krb5.conf
-        subPath: krb5.conf
-    extraVolumes:
-      - name: kerberos-config-volume
-        configMap:
-          name: krb5.conf
-          defaultMode: 420
+    # env:
+    #   - name: &name RFC2136_KERBEROS_USERNAME
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: &secret rfc2136-keys-secret
+    #         key: *name
+    #   - name: &name RFC2136_KERBEROS_PASSWORD
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: *secret
+    #         key: *name
+    # extraVolumeMounts:
+    #   - name: kerberos-config-volume
+    #     mountPath: /etc/krb5.conf
+    #     subPath: krb5.conf
+    # extraVolumes:
+    #   - name: kerberos-config-volume
+    #     configMap:
+    #       name: krb5.conf
+    #       defaultMode: 420
     extraArgs:
-      # - --provider=rfc2136
-      - --rfc2136-gss-tsig
-      - --rfc2136-host=IVN-DC01.astrateam.net
-      - --rfc2136-host=IVN-DC02.astrateam.net
-      - --rfc2136-load-balancing-strategy=round-robin
-      - --rfc2136-port=53
-      - --rfc2136-kerberos-username=$(RFC2136_KERBEROS_USERNAME)
-      - --rfc2136-kerberos-password=$(RFC2136_KERBEROS_PASSWORD)
+      # - --rfc2136-gss-tsig
+      # - --rfc2136-kerberos-username=$(RFC2136_KERBEROS_USERNAME)
+      # - --rfc2136-kerberos-password=$(RFC2136_KERBEROS_PASSWORD)
+      # - --rfc2136-kerberos-realm=ASTRATEAM.NET
       - --rfc2136-zone=astrateam.net
-      - --rfc2136-kerberos-realm=ASTRATEAM.NET
+      - --rfc2136-host=IVN-DC01.astrateam.net
+      # - --rfc2136-host=IVN-DC02.astrateam.net
+      # - --rfc2136-load-balancing-strategy=round-robin
+      - --rfc2136-port=53
       - --rfc2136-tsig-axfr
+      - --rfc2136-insecure
 
     triggerLoopOnEvent: true
     policy: sync
