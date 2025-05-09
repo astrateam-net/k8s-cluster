@@ -60,7 +60,7 @@ spec:
           defaultMode: 420
     extraArgs:
       # - --provider=rfc2136
-      # - --rfc2136-gss-tsig
+      - --rfc2136-gss-tsig
       - --rfc2136-host=IVN-DC01.astrateam.net
       - --rfc2136-host=IVN-DC02.astrateam.net
       - --rfc2136-load-balancing-strategy=round-robin
