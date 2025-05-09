@@ -36,6 +36,8 @@ spec:
     fullnameOverride: *app
     provider:
       name: rfc2136
+      webhook:
+        readinessProbe: null
     env:
       - name: "EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME"
         valueFrom:
@@ -77,7 +79,6 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
-    readinessProbe: null
     command:
       - /bin/sh
       - -c
