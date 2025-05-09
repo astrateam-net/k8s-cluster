@@ -61,7 +61,7 @@ spec:
       - --rfc2136-gss-tsig
       - --rfc2136-host="ivn-dc01.astrateam.net"
       - --rfc2136-host="ivn-dc02.astrateam.net"
-      - --rfc2136-load-balancing-strategy="round-robin"
+      - --rfc2136-load-balancing-strategy=round-robin
       - --rfc2136-port=53
       - --rfc2136-zone=astrateam.net
       - --rfc2136-kerberos-realm=astrateam.net
