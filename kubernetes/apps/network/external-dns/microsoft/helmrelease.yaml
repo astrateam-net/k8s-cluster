@@ -61,8 +61,8 @@ spec:
     extraArgs:
       # - --provider=rfc2136
       - --rfc2136-gss-tsig
-      - --rfc2136-host=10.1.120.2
-      - --rfc2136-host=10.1.120.3
+      - --rfc2136-host=ivn-dc01.astrateam.net
+      - --rfc2136-host=ivn-dc02.astrateam.net
       - --rfc2136-load-balancing-strategy=round-robin
       - --rfc2136-port=53
       - --rfc2136-zone=astrateam.net

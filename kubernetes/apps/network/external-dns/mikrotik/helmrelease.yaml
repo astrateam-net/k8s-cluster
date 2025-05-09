@@ -100,12 +100,3 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
-    extraVolumeMounts:
-      - name: kerberos-config-volume
-        mountPath: /etc/krb5.conf
-        subPath: krb5.conf
-    extraVolumes:
-      - name: kerberos-config-volume
-        configMap:
-          name: krb5.conf
-          defaultMode: 420
