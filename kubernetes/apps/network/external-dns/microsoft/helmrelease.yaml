@@ -39,15 +39,15 @@ spec:
       webhook:
         readinessProbe: null
     env:
-      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME"
+      - name: EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME
         valueFrom:
           secretKeyRef:
-            name: &secret rfc2136-keys-secret
+            name: rfc2136-keys-secret
             key: rfc2136-kerberos-username
-      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD"
+      - name: EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: *secret
+            name: rfc2136-keys-secret
             key: rfc2136-kerberos-password
     extraVolumeMounts:
       - name: kerberos-config-volume
@@ -68,6 +68,8 @@ spec:
       - --rfc2136-zone=astrateam.net
       - --rfc2136-kerberos-realm=ASTRATEAM.NET
       - --rfc2136-tsig-axfr
+      # - --rfc2136-kerberos-username=$(EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME)
+      # - --rfc2136-kerberos-password=$(EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD)
     triggerLoopOnEvent: true
     policy: sync
     sources: ["crd", "gateway-httproute"]
@@ -79,12 +81,3 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
-    pod:
-      extraContainers:
-        - name: debug-shell
-          image: nicolaka/netshoot:latest
-          command: ["/bin/bash", "-c", "sleep infinity"]
-          volumeMounts:
-            - name: kerberos-config-volume
-              mountPath: /etc/krb5.conf
-              subPath: krb5.conf
