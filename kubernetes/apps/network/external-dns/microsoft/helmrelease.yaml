@@ -42,12 +42,12 @@ spec:
       - name: EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME
         valueFrom:
           secretKeyRef:
-            name: rfc2136-keys-secret
+            name: &secret rfc2136-keys-secret
             key: rfc2136-kerberos-username
       - name: EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: rfc2136-keys-secret
+            name: *secret
             key: rfc2136-kerberos-password
     extraVolumeMounts:
       - name: kerberos-config-volume
