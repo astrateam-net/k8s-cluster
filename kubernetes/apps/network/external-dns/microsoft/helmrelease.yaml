@@ -72,7 +72,9 @@ spec:
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["astrateam.net"]
+    logLevel: debug
     serviceMonitor:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
+    readinessProbe: null
