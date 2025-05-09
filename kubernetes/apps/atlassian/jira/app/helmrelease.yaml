@@ -41,7 +41,7 @@ spec:
     image:
       repository: ghcr.io/astrateam-net/agile
       pullPolicy: IfNotPresent
-      tag: 10.4.1@sha256:60cd3d85d08389e5907dab0a459316111fd02747c20bf12dd0d49452bf85d4c1
+      tag: 10.6.0@sha256:f368a904925e6ffe8c3ecd998c46f49547066a8ee22cc3dbc1cfe3543bd43a1d
     database:
       type: postgres72
       url: "jdbc:postgresql://10.1.125.55:5000/jiradbprod"
