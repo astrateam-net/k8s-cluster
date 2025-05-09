@@ -78,3 +78,7 @@ spec:
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
     readinessProbe: null
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
