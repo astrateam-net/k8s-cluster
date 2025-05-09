@@ -37,12 +37,12 @@ spec:
     provider:
       name: rfc2136
     env:
-      - name: "EXTERNAL_DNS_RFC2136_TSIG_SECRET"
+      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME"
         valueFrom:
           secretKeyRef:
             name: &secret rfc2136-keys-secret
             key: rfc2136-kerberos-username
-      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME"
+      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_PASSWORD"
         valueFrom:
           secretKeyRef:
             name: *secret
