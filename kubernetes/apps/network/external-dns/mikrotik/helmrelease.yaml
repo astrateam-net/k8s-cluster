@@ -72,6 +72,15 @@ spec:
               secretKeyRef:
                 name: *secret
                 key: MIKROTIK_SKIP_TLS_VERIFY
+        extraVolumeMounts:
+          - name: kerberos-config-volume
+            mountPath: /etc/krb5.conf
+            subPath: krb5.conf
+        extraVolumes:
+          - name: kerberos-config-volume
+            configMap:
+              name: krb5.conf
+              defaultMode: 420
         livenessProbe:
           httpGet:
             path: /healthz
