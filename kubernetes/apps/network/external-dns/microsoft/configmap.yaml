@@ -17,8 +17,8 @@ data:
     renew_lifetime = 7d
     forwardable = true
     rdns = false
-    # pkinit_anchors = /etc/pki/tls/certs/ca-bundle.crt
-    # default_ccache_name = KEYRING:persistent:%{uid}
+    pkinit_anchors = /etc/pki/tls/certs/ca-bundle.crt
+    default_ccache_name = KEYRING:persistent:%{uid}
 
     default_realm = ASTRATEAM.NET
 
