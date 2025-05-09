@@ -24,7 +24,6 @@ data:
     [realms]
     ASTRATEAM.NET = {
       kdc = ivn-dc01.astrateam.net
-      kdc = ivn-dc02.astrateam.net
       admin_server = ivn-dc01.astrateam.net
     }
 
