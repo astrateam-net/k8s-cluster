@@ -1,0 +1,78 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: microosft-dns
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.16.1
+  url: oci://ghcr.io/home-operations/charts-mirror/external-dns
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app microsoft-dns
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: micrososft-dns
+  install:
+    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: *app
+    provider:
+      name: rfc2136
+    env:
+      - name: "EXTERNAL_DNS_RFC2136_TSIG_SECRET"
+        valueFrom:
+          secretKeyRef:
+            name: rfc2136-keys-secret
+            key: rfc2136-kerberos-username
+      - name: "EXTERNAL_DNS_RFC2136_KERBEROS_USERNAME"
+        valueFrom:
+          secretKeyRef:
+            name: rfc2136-keys-secret
+            key: rfc2136-kerberos-password
+    extraVolumeMounts:
+      - name: kerberos-config-volume
+        mountPath: /etc/krb5.conf
+        subPath: krb5.conf
+    extraVolumes:
+      - name: kerberos-config-volume
+        configMap:
+          name: krb5.conf
+          defaultMode: 420
+    extraArgs:
+      # - --provider=rfc2136
+      - --rfc2136-gss-tsig
+      - --rfc2136-host="ivn-dc01.astrateam.net"
+      - --rfc2136-host="ivn-dc02.astrateam.net"
+      - --rfc2136-load-balancing-strategy="round-robin"
+      - --rfc2136-port=53
+      - --rfc2136-zone=astrateam.net
+      - --rfc2136-kerberos-realm=astrateam.net
+      - --rfc2136-tsig-axfr
+    triggerLoopOnEvent: true
+    policy: sync
+    sources: ["crd", "gateway-httproute"]
+    txtOwnerId: default
+    txtPrefix: k8s.
+    domainFilters: ["astrateam.net"]
+    serviceMonitor:
+      enabled: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *secret
