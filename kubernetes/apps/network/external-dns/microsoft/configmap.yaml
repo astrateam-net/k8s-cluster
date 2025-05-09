@@ -22,7 +22,7 @@ data:
     default_realm = ASTRATEAM.NET
 
     [realms]
-    YOUR-REALM.COM = {
+    ASTRATEAM.NET = {
       kdc = ivn-dc01.astrateam.net
       kdc = ivn-dc02.astrateam.net
       admin_server = ivn-dc01.astrateam.net
