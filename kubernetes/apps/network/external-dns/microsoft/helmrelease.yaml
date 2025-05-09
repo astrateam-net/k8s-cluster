@@ -79,3 +79,12 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
+    pod:
+      extraContainers:
+        - name: debug-shell
+          image: nicolaka/netshoot:latest
+          command: ["/bin/bash", "-c", "sleep infinity"]
+          volumeMounts:
+            - name: kerberos-config-volume
+              mountPath: /etc/krb5.conf
+              subPath: krb5.conf
