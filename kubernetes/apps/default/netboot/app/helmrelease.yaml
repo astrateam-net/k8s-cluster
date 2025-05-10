@@ -38,13 +38,13 @@ spec:
                 memory: 128M
               limits:
                 memory: 2G
-    defaultPodOptions:
-      securityContext:
+    # defaultPodOptions:
+    #   securityContext:
         # runAsNonRoot: false
         # runAsUser: 1000
         # runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+        # fsGroup: 1000
+        # fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: *app
@@ -63,7 +63,7 @@ spec:
             enabled: true
             primary: false
             port: 80
-            targetPort: 80
+            targetPort: 3000
             protocol: HTTP
       tftp:
         enabled: true
