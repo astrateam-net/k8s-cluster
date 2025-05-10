@@ -28,10 +28,10 @@ spec:
               tag: 0.7.5-nbxyz6@sha256:ff8202d8ee4022d063864458d9ed355040a0492542d893a390a73a07a9e921b9
             env:
               TZ: Europe/Moscow
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   readOnlyRootFilesystem: true
+            #   capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
