@@ -24,7 +24,7 @@ spec:
         containers:
           app:
             image:
-              repository: pull ghcr.io/netbootxyz/netbootxyz
+              repository: ghcr.io/netbootxyz/netbootxyz
               tag: 0.7.5-nbxyz6@sha256:ff8202d8ee4022d063864458d9ed355040a0492542d893a390a73a07a9e921b9
             # env:
             #   PORT: &port "8080"
