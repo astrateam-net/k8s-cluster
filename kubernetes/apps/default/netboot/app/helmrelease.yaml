@@ -103,7 +103,7 @@ spec:
         enabled: true
         type: nfs
         server: ivn-nas1.astrateam.net
-        path: "/volume1/Shared/Netboot"
+        path: "/volume1/Netboot"
         advancedMounts:
           netboot:
             app:
