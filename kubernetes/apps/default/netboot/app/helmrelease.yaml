@@ -93,7 +93,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: *app
+              - name: netboot-app
                 port: 3000
     persistence:
       config:
