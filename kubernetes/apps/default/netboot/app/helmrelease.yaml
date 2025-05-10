@@ -101,4 +101,10 @@ spec:
         existingClaim: *app
       assets:
         enabled: true
-        type: emptyDir
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/Shared/Netboot"
+        advancedMounts:
+          netboot:
+            app:
+              - path: /assets
