@@ -74,7 +74,9 @@ spec:
         enabled: true
         primary: false
         controller: *app
-        type: NodePort
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 10.1.130.116
         ports:
           tftp:
             enabled: true
