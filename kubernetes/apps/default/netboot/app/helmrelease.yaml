@@ -21,35 +21,30 @@ spec:
       netboot:
         annotations:
           reloader.stakater.com/auto: "true"
-        # pod:
-        #   hostNetwork: true
         containers:
           app:
             image:
               repository: ghcr.io/netbootxyz/netbootxyz
               tag: 0.7.5-nbxyz6@sha256:ff8202d8ee4022d063864458d9ed355040a0492542d893a390a73a07a9e921b9
-            # env:
-            #   PORT: &port "8080"
-            #   NC_JWT_EXPIRES_IN: 48h
-            #   NC_S3_REGION: us-east-1
-            #   NC_PUBLIC_URL: "https://nocodb.astrateam.net"
-            #   NC_REDIS_URL: redis://nocodb-dragonfly.database.svc.cluster.local:6379
-            #   NC_DISABLE_TELE: "true"
-            #   NODE_EXTRA_CA_CERTS: "/usr/local/share/ca-certificates/global-bundle.pem"
-            #   NC_INVITE_ONLY_SIGNUP: "true"
-            # envFrom:
-            #   - secretRef:
-            #         name: nocodb-secret
-            # # securityContext:
-            # #   allowPrivilegeEscalation: false
-            # #   readOnlyRootFilesystem: true
-            # #   capabilities: { drop: ["ALL"] }
+            env:
+              TZ: Europe/Moscow
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
                 memory: 128M
               limits:
                 memory: 2G
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: *app
