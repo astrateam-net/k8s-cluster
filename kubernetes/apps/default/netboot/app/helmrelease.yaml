@@ -57,7 +57,7 @@ spec:
           http:
             port: &port 3000
       web:
-        enabled: false
+        enabled: true
         primary: false
         type: LoadBalancer
         annotations:
@@ -68,7 +68,7 @@ spec:
             enabled: true
             primary: false
             port: 80
-            targetPort: 3000
+            targetPort: 80
             protocol: HTTP
       tftp:
         enabled: true
