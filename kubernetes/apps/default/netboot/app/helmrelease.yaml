@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/netbootxyz/netbootxyz
-              tag: 0.7.5-nbxyz6@sha256:ff8202d8ee4022d063864458d9ed355040a0492542d893a390a73a07a9e921b9
+              tag: 0.7.5-nbxyz6@sha256:8694852e650bf1d95b494cb99a0e03ea519d0742aed507b18c1d8da8b8fc4c02
             env:
               TZ: Europe/Moscow
             # securityContext:
