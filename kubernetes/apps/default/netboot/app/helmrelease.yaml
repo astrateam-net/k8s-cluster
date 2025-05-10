@@ -21,6 +21,8 @@ spec:
       netboot:
         annotations:
           reloader.stakater.com/auto: "true"
+        pod:
+          hostNetwork: true
         containers:
           app:
             image:
