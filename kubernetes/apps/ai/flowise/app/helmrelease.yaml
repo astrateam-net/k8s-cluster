@@ -42,7 +42,7 @@ spec:
     image:
       registry: docker.io
       repository: flowiseai/flowise
-      tag: 2.2.8
+      tag: 3.0.0
       pullPolicy: IfNotPresent
     serviceAccount:
       create: true
