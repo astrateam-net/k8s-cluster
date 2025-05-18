@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/nocodb
-              tag: 0.263.3@sha256:909acf180da431005466da8b94e0e15d0695089a5354e2a9625ab40fc863c4e6
+              tag: 0.263.3@sha256:4b2680622376be61b4f285a8dcf3a2f558da0f58dc09ca6904b7b3b3b0bc36aa
             env:
               PORT: &port "8080"
               NC_JWT_EXPIRES_IN: 48h
