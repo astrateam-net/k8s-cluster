@@ -57,6 +57,7 @@ spec:
             env:
               REDIS_HOST: redis-api-dragonfly.default.svc.cluster.local
               REDIS_PORT: 6379
+
               HTTP_USER:
                   valueFrom:
                     secretKeyRef:
