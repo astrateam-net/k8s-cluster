@@ -54,19 +54,19 @@ spec:
             image:
               repository: ghcr.io/joeferner/redis-commander
               tag: latest@sha256:671436ace259bf1f5ab849c1d6dabacd2f0ebff60b6552945f6a175088169c96
-          env:
-            REDIS_HOST: redis-api-dragonfly.default.svc.cluster.local
-            REDIS_PORT: 6379
-            HTTP_USER:
+            env:
+              REDIS_HOST: redis-api-dragonfly.default.svc.cluster.local
+              REDIS_PORT: 6379
+              HTTP_USER:
+                  valueFrom:
+                    secretKeyRef:
+                      name: &pguser paperless-pguser-secret
+                      key: HTTP_USER
+              HTTP_PASSWORD:
                 valueFrom:
                   secretKeyRef:
-                    name: &pguser paperless-pguser-secret
-                    key: HTTP_USER
-            HTTP_PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: *pguser
-                  key: HTTP_PASSWORD
+                    name: *pguser
+                    key: HTTP_PASSWORD
 
 
     service:
