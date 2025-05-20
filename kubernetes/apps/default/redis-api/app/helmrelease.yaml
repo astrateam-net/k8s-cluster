@@ -60,12 +60,12 @@ spec:
               HTTP_USER:
                   valueFrom:
                     secretKeyRef:
-                      name: &pguser paperless-pguser-secret
+                      name: &secret redis-commander-secret
                       key: HTTP_USER
               HTTP_PASSWORD:
                 valueFrom:
                   secretKeyRef:
-                    name: *pguser
+                    name: *secret
                     key: HTTP_PASSWORD
 
 
