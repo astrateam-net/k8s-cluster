@@ -44,14 +44,6 @@ spec:
             image:
               repository: ghcr.io/astrateam-net/rest-api-redis
               tag: 2.15.3@sha256:6fce48ebb9b3252e7cd7fad97644752d8476202c7db081ac5c31b9bada10566f
-            volumeMounts:
-              - name: appsettings
-                mountPath: /app/appsettings.json
-                subPath: appsettings.json
-        volumes:
-          - name: appsettings
-            secret:
-              secretName: redis-api-secret
 
 
     service:
@@ -74,3 +66,12 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
+
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: redis-api-config
+        globalMounts:
+          - subPath: appsettings.json
+            path: /app/appsettings.json
