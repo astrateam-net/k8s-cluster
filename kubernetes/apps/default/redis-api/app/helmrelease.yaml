@@ -45,6 +45,29 @@ spec:
               repository: ghcr.io/astrateam-net/rest-api-redis
               tag: 2.15.3@sha256:6fce48ebb9b3252e7cd7fad97644752d8476202c7db081ac5c31b9bada10566f
 
+      redis-commander:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/joeferner/redis-commander
+              tag: latest@sha256:671436ace259bf1f5ab849c1d6dabacd2f0ebff60b6552945f6a175088169c96
+          env:
+            REDIS_HOST: redis-api-dragonfly.default.svc.cluster.local
+            REDIS_PORT: 6379
+            HTTP_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: &pguser paperless-pguser-secret
+                    key: HTTP_USER
+            HTTP_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: *pguser
+                  key: HTTP_PASSWORD
+
 
     service:
       redis-api:
@@ -55,10 +78,15 @@ spec:
         ports:
           http:
             port: &port 8080
+      redis-commander:
+        controller: redis-commander
+        ports:
+          http:
+            port: 8081
 
     route:
       app:
-        hostnames: ["redisapi.astrateam.net"]
+        hostnames: ["1cqueue.astrateam.net"]
         parentRefs:
           - name: internal
             namespace: network
@@ -67,6 +95,17 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
+      redis-mng:
+        hostnames: ["redmng.astrateam.net"]
+        parentRefs:
+          - name: internal
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: redis-commander
+                port: 8081
+
 
     persistence:
       config:
