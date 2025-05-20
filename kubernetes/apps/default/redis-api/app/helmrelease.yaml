@@ -49,6 +49,7 @@ spec:
     service:
       redis-api:
         controller: *app
+        type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 10.1.130.117
         ports:
