@@ -6,14 +6,14 @@ metadata:
   name: ${APP}-mysql
 spec:
   instances: 1
-  podSpec:
-    resources:
-      requests:
-        cpu: 50m
-        memory: 1200M
-      limits:
-        cpu: 300m
-        memory: 2250M
+  # podSpec:
+  #   resources:
+  #     requests:
+  #       cpu: 50m
+  #       memory: 1200M
+  #     limits:
+  #       cpu: 300m
+  #       memory: 2250M
   router:
     instances: 1
     podSpec:
