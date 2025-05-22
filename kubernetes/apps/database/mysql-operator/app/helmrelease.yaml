@@ -45,3 +45,4 @@ spec:
       pullPolicy: IfNotPresent
     envs:
         imagesPullPolicy: IfNotPresent
+        CLUSTER_DOMAIN: cluster.local
