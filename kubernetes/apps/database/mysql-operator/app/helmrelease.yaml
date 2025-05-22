@@ -30,9 +30,11 @@ spec:
     name: mysql-operator
   maxHistory: 2
   install:
+    crds: Create
     remediation:
       retries: -1
   upgrade:
+    crds: CreateReplace
     cleanupOnFail: true
     remediation:
       retries: 3
