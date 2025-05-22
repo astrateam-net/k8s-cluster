@@ -30,11 +30,9 @@ spec:
     name: mysql-operator
   maxHistory: 2
   install:
-    crds: Create
     remediation:
       retries: -1
   upgrade:
-    crds: CreateReplace
     cleanupOnFail: true
     remediation:
       retries: 3
@@ -45,4 +43,4 @@ spec:
       pullPolicy: IfNotPresent
     envs:
         imagesPullPolicy: IfNotPresent
-        CLUSTER_DOMAIN: cluster.local
+        # CLUSTER_DOMAIN: cluster.local
