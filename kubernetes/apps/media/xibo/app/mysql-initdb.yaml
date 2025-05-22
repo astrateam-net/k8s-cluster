@@ -9,7 +9,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: mysql-client
-          image: mysql:8
+          image: mysql:9
           env:
             - name: MYSQL_PWD
               valueFrom:
