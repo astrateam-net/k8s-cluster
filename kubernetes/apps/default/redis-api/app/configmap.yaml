@@ -7,9 +7,9 @@ data:
   appsettings.json: |-
     {
       "Serilog": {
-        "MinimumLevel": "Information",
+        "MinimumLevel": "Iformation",
         "LevelSwitches": {
-          "$controlSwitch": "Information"
+          "$controlSwitch": "Debug"
         },
         "WriteTo": [
           {
