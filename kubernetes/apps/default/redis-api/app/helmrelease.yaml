@@ -111,7 +111,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configmap
+        type: configMap
         name: appsettings.json
         globalMounts:
           - subPath: appsettings.json
