@@ -23,12 +23,18 @@ spec:
           memory: 64M
 
   secretName: ${APP}-mysql-secret
+
   datadirVolumeClaimTemplate:
-    storageClassName: openebs-hostpath
-    accessModes: ReadWriteOnce
-    resources:
-      requests:
-        storage: 20Gi
+    metadata:
+      name: ${APP}-datadir
+    spec:
+      storageClassName: openebs-hostpath
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+
   tlsUseSelfSigned: true
   backupProfiles:
     - name: ${APP}-mysql-backup-pvc
