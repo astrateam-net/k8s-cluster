@@ -33,14 +33,10 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
-      # nodeSelector:
-      #   kubernetes.io/hostname: k8s-02
-
     controllers:
-      paperless:
+      xibo:
         annotations:
           reloader.stakater.com/auto: "true"
-
         containers:
           app:
             image:
@@ -48,12 +44,15 @@ spec:
               tag: release-4.2.3@sha256:3db820a540804b854a5b3234026ca5b2c938a5d65dc1145f74e9933529064d19
             env:
               CMS_USE_MEMCACHED: "true"
-              MEMCACHED_HOST: redis://xibo-dragonfly.default.svc.cluster.local:6379
-              XMR_HOST:
-              MYSQL_HOST:
+              MEMCACHED_HOST: redis://xibo-dragonfly.media.svc.cluster.local:6379
+              XMR_HOST: cms-xmr.media.svc.cluster.local
+              MYSQL_HOST: xibo-mysql.media.svc.cluster.local:3306
           envFrom:
             - secretRef:
                 name: xibo-secret
+          resources:
+            limits:
+              memory: 1Gi
 
       cms-xmr:
         containers:
@@ -64,6 +63,9 @@ spec:
           envFrom:
             - secretRef:
                 name: xibo-secret
+          resources:
+            limits:
+              memory: 265Mi
 
       cms-quickchart:
         containers:
@@ -71,38 +73,33 @@ spec:
             image:
               repository: ianw/quickchart
               tag: v1.8.1@sha256:12e2d442e2db9974f2b310b72fadd4f6d595d0a0bf5480c3d50ef5cb5967ee56
-          envFrom:
-            - secretRef:
-                name: xibo-secret
     service:
       xibo:
         controller: *app
         ports:
           http:
-            port: 80
+            port: &port 80
       cms-xmr:
         controller: cms-xmr
         ports:
           http:
-            port: 9506
-      tika:
-        controller: tika
+            port: 9505
+      cms-quickchart:
+        controller: cms-quickchart
         ports:
           http:
-            port: 9998
+            port: 3400
+
+
 
     route:
       app:
-        hostnames: ["dms.astrateam.net"]
+        hostnames: ["xibo.astrateam.net"]
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: paperless.png
-          gethomepage.dev/name: Paperless
+          gethomepage.dev/name: Xibo
           gethomepage.dev/group: Главная
-          gethomepage.dev/description: Cистема управления документами
-          gethomepage.dev/widget.type: paperlessngx
-          gethomepage.dev/widget.url: http://paperless.default.svc.cluster.local:8000
-          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_PAPERLESS_API_TOKEN}}" }}'
+          gethomepage.dev/description: Digital Signage
         parentRefs:
           - name: internal
             namespace: network
@@ -116,33 +113,17 @@ spec:
       data:
         existingClaim: *app
         advancedMounts:
-          paperless:
+          xibo:
             app:
-              - subPath: data
-                path: /usr/src/paperless/data
-              # - subPath: media
-              #   path: /usr/src/paperless/media
-      consume:
-        type: nfs
-        server: ivn-nas1.astrateam.net
-        path: "/volume1/Scan"
-        advancedMounts:
-          paperless:
-            app:
-              - subPath: Paperless
-                path: /usr/src/paperless/consume
-      media:
-        type: nfs
-        server: ivn-nas1.astrateam.net
-        path: "/volume1/01_Документы"
-        advancedMounts:
-          paperless:
-            app:
-              - subPath: "[99] АРХИВ"
-                path: /usr/src/paperless/media
-      docs:
-        type: nfs
-        server: ivn-nas1.astrateam.net
-        path: "/volume1/01_Документы"
-        globalMounts:
-        - path: /usr/src/paperless/media/docs
+              - path: /var/www/cms/custom:Z
+                subPath: cms/custom
+              - path: /var/www/backup:Z
+                subPath: backup
+              - path: /var/www/cms/web/theme/custom:Z
+                subPath: cms/web/theme/custom
+              - path: /var/www/cms/library:Z
+                subPath: cms/library
+              - path: /var/www/cms/web/userscripts:Z
+                subPath: cms/web/userscripts
+              - path: /var/www/cms/ca-certs:Z
+                subPath: cms/ca-certs

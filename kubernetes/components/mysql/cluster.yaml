@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/mysql.oracle.com/innodbcluster_v2.json
+apiVersion: mysql.oracle.com/v2
+kind: InnoDBCluster
+metadata:
+  name: ${APP}-mysql
+spec:
+  instances: 1
+  podSpec:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 1200M
+      limits:
+        cpu: 300m
+        memory: 2250M
+  router:
+    instances: 1
+    podSpec:
+      resources:
+        requests:
+          cpu: 48m
+          memory: 64M
+
+  secretName: ${APP}-mysql-secret
+  datadirVolumeClaimTemplate:
+    storageClassName: openebs-hostpath
+    accessModes: ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
+  tlsUseSelfSigned: true
+  backupProfiles:
+    - name: ${APP}-mysql-backup-pvc
+      dumpInstance:
+        storage:
+          persistentVolumeClaim:
+            claimName: ${APP}-db-backup
+  backupSchedules:
+    - name: ${APP}-mysql-backup-pvc-schedule
+      schedule: "0 * * * *"
+      backupProfileName:  ${APP}-mysql-backup-pvc
+      enabled: true
+
+
+
+
+
+

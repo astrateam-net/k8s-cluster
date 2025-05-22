@@ -3,26 +3,31 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app xibo
-  namespace: &namespace default
+  namespace: &namespace media
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/dragonfly
+    - ../../../../components/mysql
     - ../../../../components/volsync
   dependsOn:
     - name: dragonfly
       namespace: database
+    - name: mysql-operator
+      namespace: database
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 30m
-  path: ./kubernetes/apps/default/xibo/app
+  path: ./kubernetes/apps/media/xibo/app
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CACHE_CAPACITY: 8Gi
-      VOLSYNC_CAPACITY: 8Gi
+      MEMCACHED: --memcached_port
+      MEMCACHED_PORT: "11211"
+      VOLSYNC_CACHE_CAPACITY: 30Gi
+      VOLSYNC_CAPACITY: 30Gi
   prune: true
   retryInterval: 1m
   sourceRef:
@@ -30,5 +35,5 @@ spec:
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
-  timeout: 5m
+  timeout: 15m
   wait: false

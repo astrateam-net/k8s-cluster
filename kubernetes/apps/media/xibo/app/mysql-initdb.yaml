@@ -1,0 +1,28 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: xibo-mysql-initdb
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: mysql-client
+          image: mysql:8
+          env:
+            - name: MYSQL_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: xibo-mysql-secret
+                  key: rootPassword
+          command: [ "sh", "-c" ]
+          args:
+            - |
+              for i in $(seq 1 30); do
+                echo "Waiting for MySQL to be ready ($i/30)..."
+                mysqladmin ping -h xibo-mysql.media.svc.cluster.local -u root > /dev/null 2>&1 && break
+                sleep 10
+              done
+              echo "MySQL available, creating database..."
+              mysql -h xibo-mysql.media.svc.cluster.local -u root -e "CREATE DATABASE IF NOT EXISTS \`xibo-db\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
