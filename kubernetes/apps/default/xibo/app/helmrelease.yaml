@@ -1,0 +1,148 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app xibo
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+      # nodeSelector:
+      #   kubernetes.io/hostname: k8s-02
+
+    controllers:
+      paperless:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/xibosignage/xibo-cms
+              tag: release-4.2.3@sha256:3db820a540804b854a5b3234026ca5b2c938a5d65dc1145f74e9933529064d19
+            env:
+              CMS_USE_MEMCACHED: "true"
+              MEMCACHED_HOST: redis://xibo-dragonfly.default.svc.cluster.local:6379
+              XMR_HOST:
+              MYSQL_HOST:
+          envFrom:
+            - secretRef:
+                name: xibo-secret
+
+      cms-xmr:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/xibosignage/xibo-xmr
+              tag: 1.1@sha256:b0216efd38bb892e3bbf85fcdcaa91246940faaa4678b639665b3d1d53cfc5c2
+          envFrom:
+            - secretRef:
+                name: xibo-secret
+
+      cms-quickchart:
+        containers:
+          app:
+            image:
+              repository: ianw/quickchart
+              tag: v1.8.1@sha256:12e2d442e2db9974f2b310b72fadd4f6d595d0a0bf5480c3d50ef5cb5967ee56
+          envFrom:
+            - secretRef:
+                name: xibo-secret
+    service:
+      xibo:
+        controller: *app
+        ports:
+          http:
+            port: 80
+      cms-xmr:
+        controller: cms-xmr
+        ports:
+          http:
+            port: 9506
+      tika:
+        controller: tika
+        ports:
+          http:
+            port: 9998
+
+    route:
+      app:
+        hostnames: ["dms.astrateam.net"]
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: paperless.png
+          gethomepage.dev/name: Paperless
+          gethomepage.dev/group: Главная
+          gethomepage.dev/description: Cистема управления документами
+          gethomepage.dev/widget.type: paperlessngx
+          gethomepage.dev/widget.url: http://paperless.default.svc.cluster.local:8000
+          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_PAPERLESS_API_TOKEN}}" }}'
+        parentRefs:
+          - name: internal
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
+    persistence:
+      data:
+        existingClaim: *app
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: data
+                path: /usr/src/paperless/data
+              # - subPath: media
+              #   path: /usr/src/paperless/media
+      consume:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/Scan"
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: Paperless
+                path: /usr/src/paperless/consume
+      media:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/01_Документы"
+        advancedMounts:
+          paperless:
+            app:
+              - subPath: "[99] АРХИВ"
+                path: /usr/src/paperless/media
+      docs:
+        type: nfs
+        server: ivn-nas1.astrateam.net
+        path: "/volume1/01_Документы"
+        globalMounts:
+        - path: /usr/src/paperless/media/docs

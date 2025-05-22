@@ -7,3 +7,4 @@ namespace: database
 resources:
   - ./dragonfly/ks.yaml
   - ./nocodb/ks.yaml
+  - ./mysql-operator/ks.yaml
