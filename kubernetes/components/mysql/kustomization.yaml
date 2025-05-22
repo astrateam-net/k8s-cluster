@@ -7,4 +7,3 @@ resources:
   - ./replicationdestination.yaml
   - ./cluster.yaml
   - ./replicationsource.yaml
-  # - ./podmonitor.yaml

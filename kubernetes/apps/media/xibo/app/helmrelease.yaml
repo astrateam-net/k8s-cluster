@@ -43,13 +43,10 @@ spec:
               repository: ghcr.io/xibosignage/xibo-cms
               tag: release-4.2.3@sha256:3db820a540804b854a5b3234026ca5b2c938a5d65dc1145f74e9933529064d19
             env:
-              CMS_USE_MEMCACHED: "true"
-              MEMCACHED_HOST: redis://xibo-dragonfly.media.svc.cluster.local:6379
               XMR_HOST: cms-xmr.media.svc.cluster.local
-              MYSQL_HOST: xibo-mysql.media.svc.cluster.local:3306
           envFrom:
-            - secretRef:
-                name: xibo-secret
+            secretRef:
+              name: xibo-secret
           resources:
             limits:
               memory: 1Gi
@@ -61,8 +58,8 @@ spec:
               repository: ghcr.io/xibosignage/xibo-xmr
               tag: 1.1@sha256:b0216efd38bb892e3bbf85fcdcaa91246940faaa4678b639665b3d1d53cfc5c2
           envFrom:
-            - secretRef:
-                name: xibo-secret
+            secretRef:
+              name: xibo-secret
           resources:
             limits:
               memory: 265Mi
