@@ -14,4 +14,4 @@ resources:
   - ./home-assistant/ks.yaml
   - ./vlmcsd/ks.yaml
   - ./netboot/ks.yaml
-  - ./redis-api/ks.yaml
+  # - ./redis-api/ks.yaml

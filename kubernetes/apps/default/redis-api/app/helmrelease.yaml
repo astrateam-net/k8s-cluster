@@ -111,8 +111,8 @@ spec:
     persistence:
       config:
         enabled: true
-        type: secret
-        name: redis-api-secret
+        type: configmap
+        name: appsettings.json
         globalMounts:
           - subPath: appsettings.json
             path: /app/appsettings.json

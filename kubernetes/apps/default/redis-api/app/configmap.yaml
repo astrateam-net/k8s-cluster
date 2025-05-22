@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appsettings.json
+data:
+  appsettings.json: |-
+    {
+      "Serilog": {
+        "MinimumLevel": "Information",
+        "LevelSwitches": {
+          "$controlSwitch": "Information"
+        },
+        "WriteTo": [
+          {
+            "Name": "Seq",
+            "Args": {
+              "serverUrl": "http://localhost:5341",
+              "apiKey": "API_KEY",
+              "controlLevelSwitch": "$controlSwitch"
+            }
+          },
+          {
+            "Name": "Console"
+          }
+        ]
+      },
+      "Redis": {
+        "ConnectionString": "redis-api-dragonfly.default.svc.cluster.local:6379"
+      },
+      "Docs": true
+    }
