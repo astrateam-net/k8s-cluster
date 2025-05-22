@@ -211,9 +211,9 @@ spec:
           revision: 4
           datasource: Prometheus
         windows-exporter:
-          # renovate: depName="Windows Exporter Dashboard"
-          gnetID: 14694
-          revision: 2
+          # renovate: depName="Windows Server Status Dashboard - Prometheus"
+          gnetID: 16523
+          revision: 4
           datasource: Prometheus
     sidecar:
       image:
