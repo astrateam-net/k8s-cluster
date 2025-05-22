@@ -41,7 +41,7 @@ spec:
           app:
             image:
               repository: ghcr.io/xibosignage/xibo-cms
-              tag: release-4.2.3@sha256:3db820a540804b854a5b3234026ca5b2c938a5d65dc1145f74e9933529064d19
+              tag: release-4.2.3@sha256:2209f718d04378fd3328913b23f9cff774228f73956eac62e6ec54e6aee41ec8
             env:
               CMS_USE_MEMCACHED: "true"
               MEMCACHED_HOST: redis://xibo-dragonfly.media.svc.cluster.local:6379
