@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   # - ./mutatingadmissionpolicy.yaml
   - ./externalsecret.yaml
-  - ./mysql-initdb.yaml
+  # - ./mysql-initdb.yaml
   - ./helmrelease.yaml
   - ./pvc.yaml

@@ -23,7 +23,9 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   values:
-    # defaultPodOptions:
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-02
     #   automountServiceAccountToken: false
     #   enableServiceLinks: false
     #   securityContext:
