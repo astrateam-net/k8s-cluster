@@ -14,7 +14,7 @@ spec:
             - name: MYSQL_PWD
               valueFrom:
                 secretKeyRef:
-                  name: xibo-mysql-secret
+                  name:  mysql-innodbcluster
                   key: rootPassword
           command: [ "sh", "-c" ]
           args:
