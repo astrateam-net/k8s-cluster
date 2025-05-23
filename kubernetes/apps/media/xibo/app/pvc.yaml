@@ -4,8 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: xibo
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   resources:
     requests:
       storage: 10Gi
-  storageClassName: ceph-block
+  storageClassName: nfs-slow
