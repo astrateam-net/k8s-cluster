@@ -44,12 +44,12 @@ spec:
               tag: release-4.2.3@sha256:3db820a540804b854a5b3234026ca5b2c938a5d65dc1145f74e9933529064d19
             env:
               XMR_HOST: cms-xmr.media.svc.cluster.local
-          envFrom:
-            secretRef:
-              name: xibo-secret
-          resources:
-            limits:
-              memory: 1Gi
+            envFrom:
+              secretRef:
+                name: xibo-secret
+            resources:
+              limits:
+                memory: 1Gi
 
       cms-xmr:
         containers:
@@ -57,12 +57,12 @@ spec:
             image:
               repository: ghcr.io/xibosignage/xibo-xmr
               tag: 1.1@sha256:b0216efd38bb892e3bbf85fcdcaa91246940faaa4678b639665b3d1d53cfc5c2
-          envFrom:
-            secretRef:
-              name: xibo-secret
-          resources:
-            limits:
-              memory: 265Mi
+            envFrom:
+              secretRef:
+                name: xibo-secret
+            resources:
+              limits:
+                memory: 265Mi
 
       cms-quickchart:
         containers:
