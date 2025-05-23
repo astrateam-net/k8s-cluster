@@ -18,7 +18,6 @@ spec:
     - --proactor_threads=2
     - --cluster_mode=emulated
     - $(MEMCACHED)
-    - $(MEMCACHED_PORT)
   resources:
     requests:
       cpu: 100m

@@ -10,7 +10,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/dragonfly
-    - ../../../../components/mysql
+    # - ../../../../components/mysql
     - ../../../../components/volsync
   dependsOn:
     - name: dragonfly
@@ -24,8 +24,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      MEMCACHED: --memcached_port
-      MEMCACHED_PORT: "11211"
+      MEMCACHED: --memcached_port=11211
       VOLSYNC_CACHE_CAPACITY: 30Gi
       VOLSYNC_CAPACITY: 30Gi
   prune: true
