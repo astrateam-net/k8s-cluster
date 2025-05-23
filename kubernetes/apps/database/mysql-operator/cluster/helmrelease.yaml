@@ -69,6 +69,17 @@ spec:
         requests:
           cpu: 48m
           memory: 64M
+    backupProfiles:
+      - name: mysql-db-backup
+        dumpInstance:
+          storage:
+            persistentVolumeClaim:
+              claimName: mysql-db-backup-pvc
+    backupSchedules:
+      - name: mysql-backup-pvc-schedule
+        schedule: "0 1 * * *"
+        backupProfileName: mysql-db-backup
+        enabled: true
 
     #instanceService:
     #  annotations:

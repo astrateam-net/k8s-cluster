@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: &name "mysql-db-backup-src"
+spec:
+  sourcePVC: "mysql-db-backup-pvc"
+  trigger:
+    schedule: "0 2 * * *"
+  restic:
+    copyMethod: "Snapshot"
+    pruneIntervalDays: 14
+    repository: "mysql-db-backup-volsync-secret"
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheCapacity: 30Gi
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    moverSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      daily: 7
