@@ -8,7 +8,7 @@ spec:
   dataSourceRef:
     kind: ReplicationDestination
     apiGroup: volsync.backube
-    name: "mysql-db-backup-pvc"
+    name: "mysql-db-backup-pvc-dst"
   resources:
     requests:
       storage: 30Gi

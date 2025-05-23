@@ -3,7 +3,7 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: "mysql-db-backup-pvc"
+  name: "mysql-db-backup-pvc-dst"
   labels:
     kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
