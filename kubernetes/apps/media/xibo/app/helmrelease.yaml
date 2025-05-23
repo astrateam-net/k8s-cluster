@@ -45,7 +45,7 @@ spec:
               repository: ghcr.io/xibosignage/xibo-cms
               tag: release-4.2.3
             env:
-              XMR_HOST: xibo-cms-xmr.media.svc.cluster.local:9505
+              XMR_HOST: xibo-cms-xmr.media.svc.cluster.local
             envFrom:
               - secretRef:
                   name: xibo-secret
@@ -85,7 +85,7 @@ spec:
         controller: cms-xmr
         ports:
           http:
-            port: 9505
+            port: 8080
       cms-quickchart:
         controller: cms-quickchart
         ports:
