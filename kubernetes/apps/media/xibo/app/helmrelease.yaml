@@ -84,8 +84,8 @@ spec:
       cms-xmr:
         controller: cms-xmr
         type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 10.1.130.120
+        # annotations:
+        #   lbipam.cilium.io/ips: 10.1.130.120
         ports:
           http:
             port: 9505
