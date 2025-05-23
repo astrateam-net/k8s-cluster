@@ -29,24 +29,23 @@ spec:
       name: ${APP}-datadir
     spec:
       storageClassName: openebs-hostpath
-      accessModes:
-        - ReadWriteOnce
+      accessModes: ReadWriteOnce
       resources:
         requests:
           storage: 20Gi
 
   tlsUseSelfSigned: true
-  backupProfiles:
-    - name: ${APP}-mysql-backup-pvc
-      dumpInstance:
-        storage:
-          persistentVolumeClaim:
-            claimName: ${APP}-db-backup
-  backupSchedules:
-    - name: ${APP}-mysql-backup-pvc-schedule
-      schedule: "0 * * * *"
-      backupProfileName:  ${APP}-mysql-backup-pvc
-      enabled: true
+  # backupProfiles:
+  #   - name: ${APP}-mysql-backup-pvc
+  #     dumpInstance:
+  #       storage:
+  #         persistentVolumeClaim:
+  #           claimName: ${APP}-db-backup
+  # backupSchedules:
+  #   - name: ${APP}-mysql-backup-pvc-schedule
+  #     schedule: "0 * * * *"
+  #     backupProfileName:  ${APP}-mysql-backup-pvc
+  #     enabled: true
 
 
 
