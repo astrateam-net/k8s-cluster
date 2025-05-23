@@ -49,11 +49,11 @@ spec:
       accessModes: ReadWriteOnce
       resources:
         requests:
-          storage: 30Gi
+          storage: 10Gi
     tls:
       useSelfSigned: true
     serverVersion: 8.0.31
-    serverInstances: 3
+    serverInstances: 1
     routerInstances: 1 # or use router.instances
     baseServerId: 1000
     podSpec:

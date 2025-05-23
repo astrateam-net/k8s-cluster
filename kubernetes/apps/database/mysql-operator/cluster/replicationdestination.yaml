@@ -15,10 +15,10 @@ spec:
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheStorageClassName: "ceph-block"
     cacheAccessModes: ["ReadWriteOnce"]
-    cacheCapacity: 5Gi
+    cacheCapacity: 2Gi
     storageClassName: "ceph-block"
     accessModes: ["ReadWriteOnce"]
-    capacity: 30Gi
+    capacity: 10Gi
     moverSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000

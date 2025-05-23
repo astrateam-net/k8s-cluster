@@ -13,7 +13,7 @@ spec:
     pruneIntervalDays: 14
     repository: "mysql-db-backup-volsync-secret"
     volumeSnapshotClassName: "csi-ceph-blockpool"
-    cacheCapacity: 30Gi
+    cacheCapacity: 10Gi
     cacheStorageClassName: "ceph-block"
     cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: "ceph-block"
