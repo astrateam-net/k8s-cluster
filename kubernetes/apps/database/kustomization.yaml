@@ -6,4 +6,4 @@ components:
 namespace: database
 resources:
   - ./dragonfly/ks.yaml
-  # - ./mysql-operator/ks.yaml
+  - ./mysql-operator/ks.yaml
