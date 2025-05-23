@@ -27,7 +27,7 @@ spec:
   interval: 15m
   chartRef:
     kind: OCIRepository
-    name: mysql-operator
+    name: mysql-innodbcluster
   maxHistory: 2
   install:
     remediation:
