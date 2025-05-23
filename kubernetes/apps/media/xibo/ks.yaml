@@ -9,8 +9,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
-    - ../../../../components/dragonfly
-    # - ../../../../components/mysql
+    - ../../../../components/memcached
     - ../../../../components/volsync
   dependsOn:
     - name: dragonfly
@@ -24,7 +23,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      MEMCACHED: --memcached_port=11211
       VOLSYNC_CACHE_CAPACITY: 30Gi
       VOLSYNC_CAPACITY: 30Gi
   prune: true
@@ -34,5 +32,5 @@ spec:
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
-  timeout: 15m
+  timeout: 5m
   wait: false
