@@ -40,8 +40,6 @@ spec:
     keepHistory: false
   values:
     image:
-    #  registry: container-registry.oracle.com
-    #  repository: mysql
       pullPolicy: IfNotPresent
       pullSecrets:
         enabled: false
@@ -52,36 +50,25 @@ spec:
       resources:
         requests:
           storage: 30Gi
-
-    credentials:
-      root:
-        user: root
-    #    password: sakila
-        host: "%"
-
     tls:
-      useSelfSigned: false
-    #  caSecretName:
-    #  serverCertAndPKsecretName:
-    #  routerCertAndPKsecretName: # our use router.certAndPKsecretName
-
+      useSelfSigned: true
     serverVersion: 8.0.31
     serverInstances: 3
     routerInstances: 1 # or use router.instances
     baseServerId: 1000
-
-    #router:
-    #  instances: 1
-    #  options:
-    #  - option1: value1
-    #  - option2: value2
-    #  bootstrapOptions:
-    #  - bootstrapOption1: value1
-    #  - bootstrapOption2: value2
-    #  certAndPKsecretName:
-    #  podSpec:
-    #  podAnnotations:
-    #  podLabels:
+    podSpec:
+      resources:
+        requests:
+          cpu: 50m
+          memory: 1200M
+        limits:
+          cpu: 300m
+          memory: 2250M
+    router:
+      resources:
+        requests:
+          cpu: 48m
+          memory: 64M
 
     #instanceService:
     #  annotations:
@@ -300,3 +287,12 @@ spec:
 
     # Set explicit FQDN for MySQL instances
     # serviceFqdnTemplate: "{service}.{namespace}.svc.{domain}"
+  valuesFrom:
+    - targetPath: credentials.root.user
+      kind: Secret
+      name: mysql-secret
+      valuesKey: rootUser
+    - targetPath: credentials.root.password
+      kind: Secret
+      name: mysql-secret
+      valuesKey: rootPassword
