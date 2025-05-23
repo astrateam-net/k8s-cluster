@@ -6,4 +6,5 @@ resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
   - ./replicationsource.yaml
+  - ./pvc.yaml
   # - ./replicationdestination.yaml
