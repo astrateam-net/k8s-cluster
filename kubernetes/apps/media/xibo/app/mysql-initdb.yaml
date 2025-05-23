@@ -1,4 +1,3 @@
----
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -11,18 +10,38 @@ spec:
         - name: mysql-client
           image: mysql:8
           env:
-            - name: MYSQL_PWD
+            - name: MYSQL_ROOT_USER
               valueFrom:
                 secretKeyRef:
-                  name:  xibo-secret
+                  name: xibo-secret
+                  key: rootUser
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: xibo-secret
+                  key: rootPassword
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: xibo-secret
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: xibo-secret
                   key: MYSQL_PASSWORD
-          command: [ "sh", "-c" ]
+          command: [ "bash", "-c" ]
           args:
-            - |
-              for i in $(seq 1 30); do
-                echo "Waiting for MySQL to be ready ($i/30)..."
-                mysqladmin ping -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u root > /dev/null 2>&1 && break
-                sleep 10
-              done
-              echo "MySQL available, creating database..."
-              mysql -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u root -e "CREATE DATABASE IF NOT EXISTS \`xibo-db\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+              - |
+                for i in $(seq 1 30); do
+                  echo "Waiting for MySQL to be ready ($i/30)..."
+                  mysqladmin ping -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u "$MYSQL_ROOT_USER" --password="$MYSQL_ROOT_PASSWORD" > /dev/null 2>&1 && break
+                  sleep 10
+                done
+
+                echo "MySQL available, creating database/user..."
+
+                mysql -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u "$MYSQL_ROOT_USER" --password="$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`xibo-db\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+                mysql -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u "$MYSQL_ROOT_USER" --password="$MYSQL_ROOT_PASSWORD" -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+                mysql -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u "$MYSQL_ROOT_USER" --password="$MYSQL_ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON \`xibo-db\`.* TO '${MYSQL_USER}'@'%';"
+                mysql -h mysql-innodbcluster.database.svc.cluster.local -P 6446 -u "$MYSQL_ROOT_USER" --password="$MYSQL_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
