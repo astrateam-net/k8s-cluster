@@ -6,4 +6,4 @@ resources:
   - ./externalsecret.yaml
   # - ./mysql-initdb.yaml
   - ./helmrelease.yaml
-  - ./pvc.yaml
+  # - ./pvc.yaml
