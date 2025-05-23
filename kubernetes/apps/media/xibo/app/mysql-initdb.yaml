@@ -15,7 +15,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name:  xibo-secret
-                  key: rootPassword
+                  key: MYSQL_PASSWORD
           command: [ "sh", "-c" ]
           args:
             - |
