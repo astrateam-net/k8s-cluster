@@ -18,6 +18,7 @@ spec:
     - --proactor_threads=2
     - --cluster_mode=emulated
     - --memcached_port=11211
+
   resources:
     requests:
       cpu: 100m
