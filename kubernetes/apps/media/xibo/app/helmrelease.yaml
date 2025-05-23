@@ -85,7 +85,7 @@ spec:
         controller: cms-xmr
         ports:
           http:
-            port: 8080
+            port: 9505
       cms-quickchart:
         controller: cms-quickchart
         ports:
