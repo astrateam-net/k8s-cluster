@@ -110,7 +110,7 @@ spec:
                 port: *port
 
     persistence:
-      data:
+      shared:
         existingClaim: *app
         advancedMounts:
           xibo:
@@ -121,7 +121,7 @@ spec:
                 subPath: backup
               - path: /var/www/cms/web/theme/custom
                 subPath: cms/web/theme/custom
-              - path: /var/www/cms/library:Z
+              - path: /var/www/cms/library
                 subPath: cms/library
               - path: /var/www/cms/web/userscripts
                 subPath: cms/web/userscripts
