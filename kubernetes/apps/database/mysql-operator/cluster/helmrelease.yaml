@@ -74,7 +74,7 @@ spec:
         dumpInstance:
           storage:
             persistentVolumeClaim:
-              claimName: mysql-dbbackup
+              claimName: mysql-db-backup-pvc
     backupSchedules:
       - name: mysql-backup-pvc-schedule
         schedule: "0 1 * * *"
