@@ -114,9 +114,17 @@ spec:
             namespace: network
             sectionName: https
         rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /xmr
+            backendRefs:
+              - name: cms-xmr
+                port: 9505
           - backendRefs:
               - name: *app
                 port: *port
+
 
     persistence:
       shared:
