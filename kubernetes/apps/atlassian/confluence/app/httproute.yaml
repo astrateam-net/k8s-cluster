@@ -33,24 +33,24 @@ spec:
         - name: confluence-synchrony
           namespace: atlassian
           port: 80
----
-# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: confluence-help
-spec:
-  hostnames: ["help.astrateam.net"]
-  parentRefs:
-    - name: external
-      namespace: network
-      sectionName: https
-  rules:
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /
-      backendRefs:
-        - name: confluence
-          namespace: atlassian
-          port: 80
+# ---
+# # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: confluence-help
+# spec:
+#   hostnames: ["help.astrateam.net"]
+#   parentRefs:
+#     - name: external
+#       namespace: network
+#       sectionName: https
+#   rules:
+#     - matches:
+#       - path:
+#           type: PathPrefix
+#           value: /
+#       backendRefs:
+#         - name: confluence
+#           namespace: atlassian
+#           port: 80
