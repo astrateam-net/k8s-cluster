@@ -72,51 +72,51 @@ spec:
             image:
               repository: ianw/quickchart
               tag: v1.8.1@sha256:12e2d442e2db9974f2b310b72fadd4f6d595d0a0bf5480c3d50ef5cb5967ee56
-    service:
-      xibo:
-        controller: *app
-        type: LoadBalancer
-        annotations:
-          # lbipam.cilium.io/ips: 10.1.130.120
-          lbipam.cilium.io/sharing-key: "xibo-shared"
-        ports:
-          http:
-            port: &port 80
-      cms-xmr:
-        controller: cms-xmr
-        type: LoadBalancer
-        annotations:
-          # lbipam.cilium.io/ips: 10.1.130.121
-          lbipam.cilium.io/sharing-key: "xibo-shared"
-        ports:
-          http:
-            port: 9505
-      cms-quickchart:
-        controller: cms-quickchart
-        type: LoadBalancer
-        annotations:
-          # lbipam.cilium.io/ips: 10.1.130.122
-          lbipam.cilium.io/sharing-key: "xibo-shared"
-        ports:
-          http:
-            port: 3400
+    # service:
+    #   xibo:
+    #     controller: *app
+    #     type: LoadBalancer
+    #     annotations:
+    #       # lbipam.cilium.io/ips: 10.1.130.120
+    #       lbipam.cilium.io/sharing-key: "xibo-shared"
+    #     ports:
+    #       http:
+    #         port: &port 80
+    #   cms-xmr:
+    #     controller: cms-xmr
+    #     type: LoadBalancer
+    #     annotations:
+    #       # lbipam.cilium.io/ips: 10.1.130.121
+    #       lbipam.cilium.io/sharing-key: "xibo-shared"
+    #     ports:
+    #       http:
+    #         port: 9505
+    #   cms-quickchart:
+    #     controller: cms-quickchart
+    #     type: LoadBalancer
+    #     annotations:
+    #       # lbipam.cilium.io/ips: 10.1.130.122
+    #       lbipam.cilium.io/sharing-key: "xibo-shared"
+    #     ports:
+    #       http:
+    #         port: 3400
 
-    route:
-      app:
-        hostnames: ["xibo.astrateam.net"]
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/name: Xibo
-          gethomepage.dev/group: Главная
-          gethomepage.dev/description: Digital Signage
-        parentRefs:
-          - name: internal
-            namespace: network
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+    # route:
+    #   app:
+    #     hostnames: ["xibo.astrateam.net"]
+    #     annotations:
+    #       gethomepage.dev/enabled: "true"
+    #       gethomepage.dev/name: Xibo
+    #       gethomepage.dev/group: Главная
+    #       gethomepage.dev/description: Digital Signage
+    #     parentRefs:
+    #       - name: internal
+    #         namespace: network
+    #         sectionName: https
+    #     rules:
+    #       - backendRefs:
+    #           - name: *app
+    #             port: *port
 
     persistence:
       shared:
