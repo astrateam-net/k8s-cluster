@@ -101,22 +101,22 @@ spec:
     #       http:
     #         port: 3400
 
-    route:
-      app:
-        hostnames: ["xibo.astrateam.net"]
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/name: Xibo
-          gethomepage.dev/group: Главная
-          gethomepage.dev/description: Digital Signage
-        parentRefs:
-          - name: internal
-            namespace: network
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+    # route:
+    #   app:
+    #     hostnames: ["xibo.astrateam.net"]
+    #     annotations:
+    #       gethomepage.dev/enabled: "true"
+    #       gethomepage.dev/name: Xibo
+    #       gethomepage.dev/group: Главная
+    #       gethomepage.dev/description: Digital Signage
+    #     parentRefs:
+    #       - name: internal
+    #         namespace: network
+    #         sectionName: https
+    #     rules:
+    #       - backendRefs:
+    #           - name: *app
+    #             port: *port
 
     persistence:
       shared:
