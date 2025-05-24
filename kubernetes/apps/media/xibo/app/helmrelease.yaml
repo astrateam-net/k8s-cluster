@@ -86,7 +86,7 @@ spec:
         controller: cms-xmr
         type: LoadBalancer
         annotations:
-          # lbipam.cilium.io/ips: 10.1.130.121
+          lbipam.cilium.io/ips: 10.1.130.120
           lbipam.cilium.io/sharing-key: "xibo-shared"
         ports:
           http:
@@ -95,7 +95,7 @@ spec:
         controller: cms-quickchart
         type: LoadBalancer
         annotations:
-          # lbipam.cilium.io/ips: 10.1.130.122
+          lbipam.cilium.io/ips: 10.1.130.120
           lbipam.cilium.io/sharing-key: "xibo-shared"
         ports:
           http:
