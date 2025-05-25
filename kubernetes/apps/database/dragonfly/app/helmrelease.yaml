@@ -9,23 +9,26 @@ spec:
   chartRef:
     kind: OCIRepository
     name: app-template
+
   install:
     remediation:
       retries: -1
+
   upgrade:
     cleanupOnFail: true
     remediation:
       retries: 3
 
   values:
-    # ========== CONTROLLER / POD ==========
+    # ===================================================================
+    # CONTROLLER / POD SPEC
+    # ===================================================================
     controllers:
       dragonfly-operator:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         serviceAccount:
-          # tell the chart which SA to mount into the Pod
           identifier: dragonfly-operator
 
         containers:
@@ -71,7 +74,9 @@ spec:
               capabilities:
                 drop: ["ALL"]
 
-    # ========== POD DEFAULTS ==========
+    # ===================================================================
+    # POD DEFAULTS
+    # ===================================================================
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -86,7 +91,9 @@ spec:
             matchLabels:
               app.kubernetes.io/name: dragonfly-operator
 
-    # ========== SERVICE ==========
+    # ===================================================================
+    # SERVICE
+    # ===================================================================
     service:
       app:
         controller: dragonfly-operator
@@ -96,7 +103,9 @@ spec:
           metrics:
             port: 8080
 
-    # ========== SERVICE MONITOR ==========
+    # ===================================================================
+    # SERVICE MONITOR
+    # ===================================================================
     serviceMonitor:
       app:
         serviceName: dragonfly-operator
@@ -107,7 +116,9 @@ spec:
             interval: 1m
             scrapeTimeout: 10s
 
-    # ========== RBAC ==========
+    # ===================================================================
+    # RBAC
+    # ===================================================================
     rbac:
       roles:
         dragonfly-operator:
@@ -143,7 +154,8 @@ spec:
           subjects:
             - identifier: dragonfly-operator
 
-    # ========== SERVICE ACCOUNT ==========
+    # ===================================================================
+    # SERVICE ACCOUNT
+    # ===================================================================
     serviceAccount:
-      # triggers SA creation and matches the identifier above
       dragonfly-operator: {}
