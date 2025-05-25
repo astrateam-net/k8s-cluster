@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app dragonfly-operator
+  name: dragonfly-operator
 spec:
   interval: 1h
   chartRef:
@@ -16,12 +16,18 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+
   values:
+    # ========== CONTROLLER / POD ==========
     controllers:
       dragonfly-operator:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
+        serviceAccount:
+          # tell the chart which SA to mount into the Pod
+          identifier: dragonfly-operator
+
         containers:
           app:
             image:
@@ -62,8 +68,10 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities:
+                drop: ["ALL"]
 
+    # ========== POD DEFAULTS ==========
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -71,25 +79,27 @@ spec:
         runAsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
       topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+        - maxSkew:           1
+          topologyKey:       kubernetes.io/hostname
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app.kubernetes.io/name: *app
+              app.kubernetes.io/name: dragonfly-operator
 
+    # ========== SERVICE ==========
     service:
       app:
-        controller: *app
+        controller: dragonfly-operator
         ports:
           http:
             port: *port
           metrics:
             port: 8080
 
+    # ========== SERVICE MONITOR ==========
     serviceMonitor:
       app:
-        serviceName: *app
+        serviceName: dragonfly-operator
         endpoints:
           - port: metrics
             scheme: http
@@ -97,6 +107,7 @@ spec:
             interval: 1m
             scrapeTimeout: 10s
 
+    # ========== RBAC ==========
     rbac:
       roles:
         dragonfly-operator:
@@ -104,25 +115,25 @@ spec:
           rules:
             - apiGroups: ["coordination.k8s.io"]
               resources: ["leases"]
-              verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+              verbs: ["get","list","watch","create","update","patch","delete"]
             - apiGroups: [""]
               resources: ["events"]
-              verbs: ["create", "patch"]
+              verbs: ["create","patch"]
             - apiGroups: [""]
-              resources: ["pods", "services"]
-              verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+              resources: ["pods","services"]
+              verbs: ["create","delete","get","list","patch","update","watch"]
             - apiGroups: ["apps"]
               resources: ["statefulsets"]
-              verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+              verbs: ["create","delete","get","list","patch","update","watch"]
             - apiGroups: ["dragonflydb.io"]
               resources: ["dragonflies"]
-              verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+              verbs: ["create","delete","get","list","patch","update","watch"]
             - apiGroups: ["dragonflydb.io"]
               resources: ["dragonflies/finalizers"]
               verbs: ["update"]
             - apiGroups: ["dragonflydb.io"]
               resources: ["dragonflies/status"]
-              verbs: ["get", "patch", "update"]
+              verbs: ["get","patch","update"]
 
       bindings:
         dragonfly-operator:
@@ -131,5 +142,8 @@ spec:
             identifier: dragonfly-operator
           subjects:
             - identifier: dragonfly-operator
+
+    # ========== SERVICE ACCOUNT ==========
     serviceAccount:
+      # triggers SA creation and matches the identifier above
       dragonfly-operator: {}
