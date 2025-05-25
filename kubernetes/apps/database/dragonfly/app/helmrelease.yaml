@@ -20,6 +20,8 @@ spec:
     controllers:
       dragonfly-operator:
         strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -98,7 +100,7 @@ spec:
     rbac:
       roles:
         dragonfly-operator:
-          type: Role
+          type: ClusterRole
           rules:
             - apiGroups: ["coordination.k8s.io"]
               resources: ["leases"]
@@ -124,7 +126,7 @@ spec:
 
       bindings:
         dragonfly-operator:
-          type: RoleBinding
+          type: ClusterRoleBinding
           roleRef:
             identifier: dragonfly-operator
           subjects:
