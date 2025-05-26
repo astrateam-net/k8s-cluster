@@ -10,14 +10,14 @@ resources:
 configMapGenerator:
   - name: homepage-config
     files:
-      - kubernetes.yaml=resources/kubernetes.yaml
-      - settings.yaml=resources/settings.yaml
-      - bookmarks.yaml=resources/bookmarks.yaml
-      - services.yaml=resources/services.yaml
-      - widgets.yaml=resources/widgets.yaml
-      - docker.yaml=resources/docker.yaml
-      - custom.css=resources/custom.css
-      - custom.js=resources/custom.js
+      - kubernetes.yaml=./resources/kubernetes.yaml
+      - settings.yaml=./resources/settings.yaml
+      - bookmarks.yaml=./resources/bookmarks.yaml
+      - services.yaml=./resources/services.yaml
+      - widgets.yaml=./resources/widgets.yaml
+      - docker.yaml=./resources/docker.yaml
+      - custom.css=./resources/custom.css
+      - custom.js=./resources/custom.js
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
