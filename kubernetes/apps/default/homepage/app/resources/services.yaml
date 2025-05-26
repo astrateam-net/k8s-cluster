@@ -1,0 +1,36 @@
+- Календарь:
+    - Календарь:
+        widget:
+          type: calendar
+          firstDayInWeek: monday
+          view: monthly
+          maxEvents: 10
+          showTime: true
+          timezone: Europe/Moscow
+          # integrations:
+          #   - type: ical
+          #     url: https://www.calend.ru/ical/ical-russtate.ics?v=yy2025&b=1
+          #     name: Праздники РФ
+          #     # color: zinc
+          #     params: # optional - additional params for the service
+          #       showName: true # optional - show name before event title in event line - defaults to false
+- Главная:
+    - Ispring:
+        icon: booklogr.png
+        href: https://atacademy.ispring.ru/
+        description: Платформа для онлайн-обучения
+        siteMonitor: https://atacademy.ispring.ru/
+    # - Confluence:
+    #     icon: confluence.png
+    #     href: https://wiki.astrateam.net
+    #     description: База знаний компании
+    # - Bitwarden:
+    #     icon: bitwarden.png
+    #     href: https://pass.astrateam.net
+    #     description: Менеджер паролей
+
+# - Ресурсы:
+#     - Jira:
+#         icon: jira.png
+#         href: https://jira.astrateam.net
+#         description: Система управления проектами

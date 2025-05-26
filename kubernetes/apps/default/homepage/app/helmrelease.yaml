@@ -123,7 +123,7 @@ spec:
     persistence:
       config-file:
         type: configMap
-        name: homepage-configmap
+        name: homepage-config
         globalMounts:
           - subPath: bookmarks.yaml
             path: /app/config/bookmarks.yaml

@@ -1,0 +1,33 @@
+- search:
+    provider: custom
+    url: https://wiki.astrateam.net/dosearchsite.action?queryString=
+    target: _blank
+    showSearchSuggestions: false
+# - kubernetes:
+#     cluster:
+#       cpu: true
+#       label: cluster
+#       memory: true
+#       show: true
+#       showLabel: true
+#     nodes:
+#       cpu: true
+#       memory: true
+#       show: true
+#       showLabel: true
+- datetime:
+    text_size: l
+    format:
+      dateStyle: long
+      timeStyle: short
+      hourCycle: h23
+- openweathermap:
+    label: Ивантеевка #optional
+    latitude: 55.976201
+    longitude: 37.907414
+    units: metric # or imperial
+    provider: openweathermap
+    apiKey: {{HOMEPAGE_VAR_OPENWEATHERMAP_KEY}} # required only if not using provider, this reveals api key in requests
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1

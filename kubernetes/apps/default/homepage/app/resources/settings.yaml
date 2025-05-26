@@ -1,0 +1,58 @@
+# https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/ICONS.md
+# https://pictogrammers.com/library/mdi/
+# https://simpleicons.org/
+title: AstraTeam Dashboard
+favicon: https://github.com/walkxcode/dashboard-icons/blob/main/png/heimdall.png
+background:
+image: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
+blur: sm # sm, md, xl... see https://tailwindcss.com/docs/backdrop-blur
+saturate: 100 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+opacity: 100 # 0-100
+theme: dark
+color: slate
+headerStyle: clean
+hideVersion: true
+useEqualHeights: true
+language: ru
+quicklaunch:
+searchDescriptions: true
+hideInternetSearch: true
+layout:
+Календарь:
+  style: row
+  header: false
+Главная:
+  style: row
+  columns: 3
+  icon: mdi-home-analytics
+  header: false
+AI:
+  style: row
+  columns: 2
+  icon: si-openapiinitiative
+Media:
+  style: row
+  columns: 2
+  icon: mdi-play-circle
+Downloads:
+  style: row
+  columns: 3
+  icon: mdi-download-circle
+Автоматизация:
+  style: column
+  columns: 2
+  icon: mdi-home-automation
+Observability:
+  style: column
+  icon: mdi-monitor-eye
+Ресурсы:
+  style: column
+  icon: mdi-server-network
+Storage:
+  style: column
+  icon: mdi-database
+System:
+  style: row
+  columns: 4
+  icon: mdi-application
