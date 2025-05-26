@@ -15,9 +15,10 @@ configMapGenerator:
       - bookmarks.yaml=./resources/bookmarks.yaml
       - services.yaml=./resources/services.yaml
       - widgets.yaml=./resources/widgets.yaml
-      - docker.yaml=./resources/docker.yaml
-      - custom.css=./resources/custom.css
-      - custom.js=./resources/custom.js
+    literals:
+      - custom.css=
+      - custom.js=
+      - docker.yaml=
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
