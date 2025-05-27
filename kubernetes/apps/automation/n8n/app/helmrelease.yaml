@@ -39,7 +39,7 @@ spec:
     image:
       repository: ghcr.io/n8n-io/n8n
       pullPolicy: IfNotPresent
-      tag: 1.93.0@sha256:78361e40291fedd5bf07540b8fd435037f45432a0668aa042e1a11e79c45c8d3
+      tag: 1.95.1@sha256:ea6f3a249fbca9e999fcfc21ba7f02a1345ee330014b503782fc08128be1cb4a
     binaryData:
       # -- Available modes of binary data storage. If not set, the default mode will be used. For more information, see https://docs.n8n.io/hosting/configuration/environment-variables/binary-data/
       availableModes: []
