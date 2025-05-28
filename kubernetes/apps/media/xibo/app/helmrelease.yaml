@@ -115,7 +115,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: *app
+              - name: xibo-xibo
                 port: *port
 
 
