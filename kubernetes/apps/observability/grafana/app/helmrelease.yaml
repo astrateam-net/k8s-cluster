@@ -245,7 +245,7 @@ spec:
         enabled: true
         hostnames: ["{{ .Release.Name }}.astrateam.net"]
         parentRefs:
-          - name: external
+          - name: internal
             namespace: network
             sectionName: https
     persistence:
