@@ -82,6 +82,7 @@ spec:
         endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
+        - "-Dhttp.header.security.content.security.policy.value=frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net"
       additionalCertificates:
         secretName: root-ca
       # additionalEnvironmentVariables:
