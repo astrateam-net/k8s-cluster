@@ -1,4 +1,4 @@
----
+no---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
@@ -246,7 +246,7 @@ spec:
         enabled: true
         hostnames: ["{{ .Release.Name }}.astrateam.net"]
         parentRefs:
-          - name: internal
+          - name: external
             namespace: network
             sectionName: https
     persistence:
