@@ -50,7 +50,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/astrateam-net/actions-runner:2.324.0@sha256:fae65bb028353ccf3a71af001c6f25c532ffcfbab71c2beecaa9d9523c4ac9d5
+            image: ghcr.io/astrateam-net/actions-runner:2.325.0@sha256:aaa59d6125004df5e9beb79315050a9a8b9a088584ce1a98a8294f31b063066d
             command: ["/home/runner/run.sh"]
             env:
               - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
