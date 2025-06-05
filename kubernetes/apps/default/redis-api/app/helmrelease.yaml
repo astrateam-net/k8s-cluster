@@ -53,7 +53,7 @@ spec:
           app:
             image:
               repository: ghcr.io/joeferner/redis-commander
-              tag: latest@sha256:7a07cf66d7af8135750b80dc7c75b831cef8e41ed07d1a7822a73d92eb885d6b
+              tag: latest@sha256:7107f0d47a99c976b1d15d17b09a18e1abeaed0d52fefc6e1025be7baf80a6dd
             env:
               REDIS_HOST: redis-api-dragonfly.default.svc.cluster.local
               REDIS_PORT: 6379
