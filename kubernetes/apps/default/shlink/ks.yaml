@@ -21,9 +21,8 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      APP_UID: "2000"
-      APP_GID: "2000"
-      VOLSYNC_CLAIM: shlink-data
+      VOLSYNC_PUID: "2000"
+      VOLSYNC_PGID: "2000"
       VOLSYNC_CAPACITY: 8Gi
   prune: true
   retryInterval: 2m
