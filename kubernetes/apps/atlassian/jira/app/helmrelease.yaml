@@ -90,7 +90,7 @@ spec:
           endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
-        # - "-Datlassian.plugins.startup.options=--disable-all-addons"
+        - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       additionalCertificates:
         secretName: root-ca
