@@ -63,6 +63,9 @@ spec:
           enabled: false
     jira:
       useHelmReleaseNameAsContainerName: false
+      service:
+        port: 80
+        type: LoadBalancer
       readinessProbe:
         enabled: true
       resources:
