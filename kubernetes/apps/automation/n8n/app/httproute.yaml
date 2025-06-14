@@ -13,7 +13,7 @@ metadata:
 spec:
   hostnames: ["n8n.astrateam.net"]
   parentRefs:
-    - name: external
+    - name: internal
       namespace: network
       sectionName: https
   rules:
