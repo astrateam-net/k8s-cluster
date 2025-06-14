@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "jirasoft-local-home-dst"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "jirasoft-local-home-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 25Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 25Gi
+    moverSecurityContext:
+      runAsUser: 2001
+      runAsGroup: 2001
+      fsGroup: 2001
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "jirasoft-shared-home-dst"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "jirasoft-shared-home-volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "csi-ceph-blockpool"
+    cacheStorageClassName: "ceph-block"
+    cacheAccessModes: ["ReadWriteOnce"]
+    cacheCapacity: 5Gi
+    storageClassName: "ceph-block"
+    accessModes: ["ReadWriteOnce"]
+    capacity: 5Gi
+    moverSecurityContext:
+      runAsUser: 2001
+      runAsGroup: 2001
+      fsGroup: 2001
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

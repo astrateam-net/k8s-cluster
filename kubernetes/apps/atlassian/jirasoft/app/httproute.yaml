@@ -1,0 +1,27 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: jirasoft
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: jira.png
+    gethomepage.dev/name: Jira
+    gethomepage.dev/group: Главная
+    gethomepage.dev/description: Система управления проектами
+spec:
+  hostnames: ["jirasoft.astrateam.net"]
+  parentRefs:
+    - name: internal
+      namespace: network
+      sectionName: https
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+        - name: jirasoft
+          namespace: atlassian
+          port: 80

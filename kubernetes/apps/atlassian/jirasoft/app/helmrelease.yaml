@@ -1,0 +1,108 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: jirasoft
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.0.0
+  url: oci://ghcr.io/astrateam-net/oci-charts/jira
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: "^https://token.actions.githubusercontent.com$"
+        subject: "^https://github.com/astrateam-net/oci-charts.*$"
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jirasoft
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: jirasoft
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: jirasoft
+    replicaCount: 1
+    image:
+      repository: ghcr.io/astrateam-net/agile
+      pullPolicy: IfNotPresent
+      tag: 10.7.0
+    database:
+      type: postgres72
+      url: "jdbc:postgresql://10.1.125.55:5000/jiradb"
+      driver: org.postgresql.Driver
+      credentials:
+        secretName: jirasoftdb-credentials-secret
+        usernameSecretKey: JIRA_DB_USERNAME
+        passwordSecretKey: JIRA_DBUSER_PASSWORD
+    volumes:
+      localHome:
+        customVolume:
+          persistentVolumeClaim:
+            claimName: "jirasoft-local-home"
+      sharedHome:
+        customVolume:
+          persistentVolumeClaim:
+            claimName: "jirasoft-shared-home"
+        nfsPermissionFixer:
+          enabled: false
+    jira:
+      useHelmReleaseNameAsContainerName: false
+      service:
+        port: 80
+        type: LoadBalancer
+      readinessProbe:
+        enabled: true
+      resources:
+        jvm:
+          maxHeap: "2g"
+          minHeap: "2g"
+      # postStart:
+      #   command: |
+      #     update-ca-certificates
+      # s3Storage:
+      #   avatars:
+      #     bucketName: jira
+      #     bucketRegion: us-east-1
+      #     endpointOverride: https://s3.astrateam.net
+      #   attachments:
+      #     bucketName: jira
+      #     bucketRegion: us-east-1
+      #     endpointOverride: https://s3.astrateam.net
+      #   backups:
+      #     bucketName: jira
+      #     bucketRegion: us-east-1
+      #     endpointOverride: https://s3.astrateam.net
+      # additionalJvmArgs:
+      #   - "-Dupm.plugin.upload.enabled=true"
+      #   - "-Datlassian.plugins.startup.options=--disable-all-addons"
+        # - "-Dcom.atlassian.jira.status.index.check=false"
+    #   additionalCertificates:
+    #     secretName: root-ca
+    # additionalFiles:
+    #   - name: jira-storage-secret
+    #     type: secret
+    #     key: credentials
+    #     mountPath: /var/atlassian/application-data/jira/.aws/
+    #   - name: minio-ca
+    #     type: secret
+    #     key: minio.crt
+    #     mountPath: /usr/local/share/ca-certificates/minio.crt
+    #     readOnly: true
+    # nodeSelector:
+    #     kubernetes.io/hostname: k8s-01
