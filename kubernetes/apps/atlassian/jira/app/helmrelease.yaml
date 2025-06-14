@@ -65,6 +65,12 @@ spec:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
         enabled: true
+      tomcatConfig:
+        generateByHelm: true
+        secure: true
+        scheme: https
+        proxyName: "jira.astrateam.net"
+        proxyPort: 443
       resources:
         jvm:
           maxHeap: "2g"
