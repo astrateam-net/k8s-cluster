@@ -69,11 +69,17 @@ spec:
         port: 80
         type: LoadBalancer
       readinessProbe:
-        enabled: true
-      resources:
-        jvm:
-          maxHeap: "2g"
-          minHeap: "2g"
+        enabled: false
+      # resources:
+      #   jvm:
+      #     maxHeap: "2g"
+      #     minHeap: "2g"
+      tomcatConfig:
+        generateByHelm: true
+        secure: true
+        scheme: https
+        proxyName: "jirasoft.astrateam.net"
+        proxyPort: 443
       # postStart:
       #   command: |
       #     update-ca-certificates

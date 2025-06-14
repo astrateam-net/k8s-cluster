@@ -54,10 +54,12 @@ spec:
       localHome:
         customVolume:
           persistentVolumeClaim:
+            create: false
             claimName: "jira-local-home"
       sharedHome:
         customVolume:
           persistentVolumeClaim:
+            create: false
             claimName: "jira-shared-home"
         nfsPermissionFixer:
           enabled: false
