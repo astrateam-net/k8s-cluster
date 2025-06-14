@@ -5,10 +5,10 @@ metadata:
   name: jirasoft-local-home
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: "jirasoft-local-home-dst"
+  # dataSourceRef:
+  #   kind: ReplicationDestination
+  #   apiGroup: volsync.backube
+  #   name: "jirasoft-local-home-dst"
   resources:
     requests:
       storage: 25Gi
@@ -20,10 +20,10 @@ metadata:
   name: jirasoft-shared-home
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: "jirasoft-shared-home-dst"
+  # dataSourceRef:
+  #   kind: ReplicationDestination
+  #   apiGroup: volsync.backube
+  #   name: "jirasoft-shared-home-dst"
   resources:
     requests:
       storage: 5Gi
