@@ -20,9 +20,9 @@ spec:
     accessModes: ["ReadWriteOnce"]
     capacity: 25Gi
     moverSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 2001
+      runAsGroup: 2001
+      fsGroup: 2001
     enableFileDeletion: true
     cleanupCachePVC: true
     cleanupTempPVC: true
@@ -48,9 +48,9 @@ spec:
     accessModes: ["ReadWriteOnce"]
     capacity: 5Gi
     moverSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 2001
+      runAsGroup: 2001
+      fsGroup: 2001
     enableFileDeletion: true
     cleanupCachePVC: true
     cleanupTempPVC: true
