@@ -67,7 +67,7 @@ spec:
       useHelmReleaseNameAsContainerName: false
       service:
         port: 80
-        type: LoadBalancer
+        # type: LoadBalancer
       readinessProbe:
         enabled: false
       # resources:
