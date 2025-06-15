@@ -21,3 +21,6 @@ spec:
                   port: 19001
                   targetPort: 19001
                   protocol: TCP
+  clusters:
+    - name: atlassian_jirasoft_80
+      protocol: HTTP
