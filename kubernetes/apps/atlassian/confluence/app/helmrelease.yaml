@@ -41,7 +41,7 @@ spec:
     image:
       repository:  ghcr.io/astrateam-net/wiki
       pullPolicy: IfNotPresent
-      tag: 9.3.2@sha256:f4c591307a64c59627ccb52f59e1955f88b53abc3511b0b95b5d10039d5d13d8
+      tag: 9.4.1
     database:
       type: postgresql
       url: "jdbc:postgresql://10.1.125.55:5000/confdbprod"
