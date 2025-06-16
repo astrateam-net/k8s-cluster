@@ -103,6 +103,15 @@ spec:
             namespace: network
             sectionName: https
         rules:
-          - backendRefs:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+            filters:
+              - type: RequestRedirect
+                requestRedirect:
+                  path:
+                    replacePrefixMatch: /mcp
+            backendRefs:
               - identifier: app
                 port: *port
