@@ -108,8 +108,8 @@ spec:
                   type: PathPrefix
                   value: /
             filters:
-              - type: RequestRedirect
-                requestRedirect:
+              - type: URLRewrite
+                urlRewrite:
                   path:
                     replacePrefixMatch: /mcp
             backendRefs:
