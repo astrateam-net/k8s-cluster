@@ -49,27 +49,28 @@ spec:
               CONFLUENCE_SSL_VERIFY: true
               PORT: &port 8000
               READ_ONLY_MODE: true
+              MCP_LOGGING_STDOUT: true
 
     # ===================================================================
     # SECURITY CONTEXT / RESOURCES / DEFAULT POD OPTIONS
     # ===================================================================
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 5m
-                memory: 50Mi
-              limits:
-                memory: 500Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+    #         securityContext:
+    #           allowPrivilegeEscalation: false
+    #           readOnlyRootFilesystem: true
+    #           capabilities: { drop: ["ALL"] }
+    #         resources:
+    #           requests:
+    #             cpu: 5m
+    #             memory: 50Mi
+    #           limits:
+    #             memory: 500Mi
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 1000
+    #     fsGroup: 1000
+    #     fsGroupChangePolicy: OnRootMismatch
     # ===================================================================
     # SERVICES
     # ===================================================================
