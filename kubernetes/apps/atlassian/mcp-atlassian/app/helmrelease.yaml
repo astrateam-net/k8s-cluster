@@ -103,15 +103,6 @@ spec:
             namespace: network
             sectionName: https
         rules:
-          - matches:
-              - path:
-                  type: PathPrefix
-                  value: /
-            filters:
-              - type: URLRewrite
-                urlRewrite:
-                  path:
-                    replacePrefixMatch: /mcp
-            backendRefs:
-              - identifier: app
+          - backendRefs:
+              - name: *app
                 port: *port
