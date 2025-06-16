@@ -99,10 +99,14 @@ spec:
         hostnames:
           - mcp-atlassian.astrateam.net
         parentRefs:
-          - name: internal
+          - name: intenal
             namespace: network
             sectionName: https
         rules:
-          - backendRefs:
-              - name: *app
+          - matches:
+            - path:
+                type: PathPrefix
+                value: /mcp
+            backendRefs:
+              - name: app
                 port: *port
