@@ -23,6 +23,8 @@ spec:
   values:
     controllers:
       mcp-atlassian:
+        replicas: 1
+        strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -90,5 +92,5 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - identifier: *app
+              - identifier: app
                 port: *port
