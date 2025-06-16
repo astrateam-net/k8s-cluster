@@ -47,10 +47,14 @@ spec:
                     key: CONFLUENCE_PERSONAL_TOKEN
               JIRA_SSL_VERIFYL: true
               CONFLUENCE_SSL_VERIFY: true
-              TRANSPORT: sse
-              PORT: &port 8000
+              TRANSPORT: streamable-http
+              PORT: &port 9000
               READ_ONLY_MODE: true
+              MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
+              # Comma-separated list of tool names to enable. If not set, all tools are enabled
+              #ENABLED_TOOLS:
+
 
     # ===================================================================
     # SECURITY CONTEXT / RESOURCES / DEFAULT POD OPTIONS
