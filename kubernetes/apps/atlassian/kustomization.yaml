@@ -9,3 +9,4 @@ resources:
   - ./confluence/ks.yaml
   - ./jira/ks.yaml
   - ./jirasoft/ks.yaml
+  - ./mcp-atlassian/ks.yaml

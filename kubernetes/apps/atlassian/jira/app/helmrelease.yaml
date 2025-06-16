@@ -40,8 +40,8 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/astrateam-net/agile
-      pullPolicy: IfNotPresent
-      tag: 10.4.1@sha256:60cd3d85d08389e5907dab0a459316111fd02747c20bf12dd0d49452bf85d4c1
+      pullPolicy: Always
+      tag: 10.6.1@sha256:1950a1c3ec7a46e50191fb107441e1b1512d29423bf6c32c498555cd7b7d4087
     database:
       type: postgres72
       url: "jdbc:postgresql://10.1.125.55:5000/jiraprod"
@@ -68,7 +68,7 @@ spec:
       readinessProbe:
         enabled: true
       # NOTE: This is a workaround to force a config update
-      forceConfigUpdate: true
+      # forceConfigUpdate: true
       tomcatConfig:
         generateByHelm: true
         secure: true

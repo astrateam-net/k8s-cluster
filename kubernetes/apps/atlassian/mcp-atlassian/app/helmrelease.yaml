@@ -1,0 +1,94 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name:  &app mcp-atlassian
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  # ===================================================================
+  # CONTROLLER / POD SPEC
+  # ===================================================================
+  values:
+    controllers:
+      mcp-atlassian:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/sooperset/mcp-atlassian
+              tag: 0.11.2
+            env:
+              JIRA_URL: https://jira.astrateam.net
+              CONFLUENCE_URL: https://wiki.astrateam.net
+              JIRA_PERSONAL_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: &secret mcp-atlassian-secret
+                    key: JIRA_PERSONAL_TOKEN
+              CONFLUENCE_PERSONAL_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: *secret
+                    key: CONFLUENCE_PERSONAL_TOKEN
+              JIRA_SSL_VERIFYL: true
+              CONFLUENCE_SSL_VERIFY: true
+              PORT: &port 8000
+              READ_ONLY_MODE: true
+
+    # ===================================================================
+    # SECURITY CONTEXT / RESOURCES / DEFAULT POD OPTIONS
+    # ===================================================================
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 5m
+                memory: 50Mi
+              limits:
+                memory: 500Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    # ===================================================================
+    # SERVICES
+    # ===================================================================
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    # ===================================================================
+    # ROUTES
+    # ===================================================================
+    route:
+      app:
+        hostnames:
+          - mcp-atlassian.astrateam.net
+        parentRefs:
+          - name: internal
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: *app
+                port: *port
