@@ -105,5 +105,5 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: app
+              - name: *app
                 port: *port
