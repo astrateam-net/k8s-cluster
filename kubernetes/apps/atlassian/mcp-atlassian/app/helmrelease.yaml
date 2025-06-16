@@ -32,6 +32,12 @@ spec:
             image:
               repository: ghcr.io/sooperset/mcp-atlassian
               tag: 0.11.2
+            command: []
+            args:
+              - --transport
+              - streamable-http
+              - --port
+              - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
               CONFLUENCE_URL: https://wiki.astrateam.net
@@ -45,10 +51,10 @@ spec:
                   secretKeyRef:
                     name: *secret
                     key: CONFLUENCE_PERSONAL_TOKEN
-              JIRA_SSL_VERIFYL: true
+              JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
-              TRANSPORT: streamable-http
-              PORT: &port 9000
+              # TRANSPORT: streamable-http
+              # PORT: &port 9000
               READ_ONLY_MODE: true
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
