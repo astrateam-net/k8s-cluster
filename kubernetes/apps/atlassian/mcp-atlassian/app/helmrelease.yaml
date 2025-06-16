@@ -104,10 +104,6 @@ spec:
             namespace: network
             sectionName: https
         rules:
-          - matches:
-            - path:
-                type: PathPrefix
-                value: /mcp
-            backendRefs:
+          - backendRefs:
               - name: app
                 port: *port
