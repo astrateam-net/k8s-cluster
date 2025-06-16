@@ -88,6 +88,7 @@ spec:
     service:
       app:
         controller: *app
+        type: LoadBalancer
         ports:
           http:
             port: &port 9000
