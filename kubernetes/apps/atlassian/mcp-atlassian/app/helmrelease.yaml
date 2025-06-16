@@ -47,6 +47,7 @@ spec:
                     key: CONFLUENCE_PERSONAL_TOKEN
               JIRA_SSL_VERIFYL: true
               CONFLUENCE_SSL_VERIFY: true
+              TRANSPORT: sse
               PORT: &port 8000
               READ_ONLY_MODE: true
               MCP_LOGGING_STDOUT: true
