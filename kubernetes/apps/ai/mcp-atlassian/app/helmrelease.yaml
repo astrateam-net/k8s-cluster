@@ -126,7 +126,7 @@ spec:
                   urlRewrite:
                     path:
                       type: ReplacePrefixMatch
-                      replacePrefixMatch: /mcp
+                      replacePrefixMatch: /mcp/
               backendRefs:
                 - name: *app
                   port: *port
