@@ -87,6 +87,11 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+      hostAliases:
+        - ip: "10.1.130.119"
+          hostnames:
+            - "wiki.astrateam.net"
+
     # ===================================================================
     # SERVICES
     # ===================================================================
