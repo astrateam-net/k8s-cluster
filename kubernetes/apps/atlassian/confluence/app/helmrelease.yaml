@@ -76,6 +76,9 @@ spec:
       postStart:
         command: |
           update-ca-certificates
+      service:
+        port: 8443
+        type: LoadBalancer
       s3AttachmentsStorage:
         bucketName: confluence
         bucketRegion: us-east-1
@@ -93,6 +96,9 @@ spec:
       #         key: OPENSEARCH_INITIAL_ADMIN_PASSWORD
     synchrony:
       enabled: true
+      service:
+        port: 8443
+        type: LoadBalancer
       # nodeSelector:
       #   kubernetes.io/hostname: k8s-03
     additionalFiles:
