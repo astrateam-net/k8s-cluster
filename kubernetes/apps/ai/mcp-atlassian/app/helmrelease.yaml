@@ -115,11 +115,12 @@ spec:
                     type: PathPrefix
                     value: /sse
               filters:
-                - type: URLRewrite
-                  urlRewrite:
+                - type: RequestRedirect
+                  requestRedirect:
                     path:
                       type: ReplacePrefixMatch
                       replacePrefixMatch: /mcp
+                    statusCode: 302
               backendRefs:
                 - name: *app
                   port: *port
