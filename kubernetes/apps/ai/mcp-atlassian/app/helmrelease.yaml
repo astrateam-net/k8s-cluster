@@ -56,12 +56,13 @@ spec:
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
+              TRANSPORT: sse
               # TRANSPORT: streamable-http
               PORT: &port 8080
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
-              HTTP_PROXY: http://localhost:8080
+              # HTTP_PROXY: http://localhost:8080
               # Comma-separated list of tool names to enable. If not set, all tools are enabled
               #ENABLED_TOOLS:
 
@@ -95,6 +96,7 @@ spec:
         type: LoadBalancer
         ports:
           http:
+            primary: true
             port: &port 8080
     # ===================================================================
     # ROUTES
