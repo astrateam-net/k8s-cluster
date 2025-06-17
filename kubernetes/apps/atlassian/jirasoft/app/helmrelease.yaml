@@ -75,3 +75,37 @@ spec:
         scheme: https
         proxyName: "jirasoft.astrateam.net"
         proxyPort: 443
+      postStart:
+        command: |
+          update-ca-certificates
+      s3Storage:
+        avatars:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
+        attachments:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
+        backups:
+          bucketName: jira
+          bucketRegion: us-east-1
+          endpointOverride: https://s3.astrateam.net
+      additionalJvmArgs:
+        - "-Dupm.plugin.upload.enabled=true"
+        # - "-Datlassian.plugins.startup.options=--disable-all-addons"
+        # - "-Dcom.atlassian.jira.status.index.check=false"
+      additionalCertificates:
+        secretName: root-ca
+    additionalFiles:
+      - name: jira-storage-secret
+        type: secret
+        key: credentials
+        mountPath: /var/atlassian/application-data/jira/.aws/
+      - name: minio-ca
+        type: secret
+        key: minio.crt
+        mountPath: /usr/local/share/ca-certificates/minio.crt
+        readOnly: true
+    # nodeSelector:
+    #     kubernetes.io/hostname: k8s-01

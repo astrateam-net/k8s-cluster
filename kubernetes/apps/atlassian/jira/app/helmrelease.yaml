@@ -84,15 +84,15 @@ spec:
           update-ca-certificates
       s3Storage:
         avatars:
-          bucketName: jira
+          bucketName: jiras3
           bucketRegion: us-east-1
           endpointOverride: https://s3.astrateam.net
         attachments:
-          bucketName: jira
+          bucketName: jiras3
           bucketRegion: us-east-1
           endpointOverride: https://s3.astrateam.net
         backups:
-          bucketName: jira
+          bucketName: jiras3
           bucketRegion: us-east-1
           endpointOverride: https://s3.astrateam.net
       additionalJvmArgs:
