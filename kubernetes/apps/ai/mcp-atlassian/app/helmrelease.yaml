@@ -101,7 +101,7 @@ spec:
         hostnames:
           - mcp-atlassian.astrateam.net
         parentRefs:
-          - name: internal
+          - name: external
             namespace: network
             sectionName: https
         rules:
