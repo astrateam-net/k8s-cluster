@@ -47,7 +47,7 @@ spec:
       url: "jdbc:postgresql://10.1.125.55:5000/jiradbprod"
       driver: org.postgresql.Driver
       credentials:
-        secretName: jiradb-credentials-secret
+        secretName: jira-credentials-secret
         usernameSecretKey: JIRA_DB_USERNAME
         passwordSecretKey: JIRA_DBUSER_PASSWORD
     volumes:

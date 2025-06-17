@@ -47,7 +47,7 @@ spec:
       url: "jdbc:postgresql://10.1.125.55:5000/jiraprod"
       driver: org.postgresql.Driver
       credentials:
-        secretName: jiradb-credentials-secret
+        secretName: &jirasecret jira-credentials-secret
         usernameSecretKey: JIRA_DB_USERNAME
         passwordSecretKey: JIRA_DBUSER_PASSWORD
     volumes:
@@ -84,32 +84,41 @@ spec:
           update-ca-certificates
       s3Storage:
         avatars:
-          bucketName: jiras3
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+          bucketName: &s3bucket jiras3
+          bucketRegion: &s3region us-east-1
+          endpointOverride: &s3endpoint https://s3.astrateam.net
         attachments:
-          bucketName: jiras3
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+          bucketName: *s3bucket
+          bucketRegion: *s3region
+          endpointOverride: *s3endpoint
         backups:
-          bucketName: jiras3
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
+          bucketName: *s3bucket
+          bucketRegion: *s3region
+          endpointOverride: *s3endpoint
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
+      additionalEnvironmentVariables:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: *jirasecret
+              key: S3_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: *jirasecret
+              key: S3_SECRET_ACCESS_KEY
       additionalCertificates:
         secretName: root-ca
     additionalFiles:
-      - name: jira-storage-secret
-        type: secret
-        key: credentials
-        mountPath: /var/atlassian/application-data/jira/.aws/
+      # - name: jira-storage-secret
+      #   type: secret
+      #   key: credentials
+      #   mountPath: /var/atlassian/application-data/jira/.aws/
       - name: minio-ca
         type: secret
         key: minio.crt
         mountPath: /usr/local/share/ca-certificates/minio.crt
         readOnly: true
-    # nodeSelector:
-    #     kubernetes.io/hostname: k8s-01
