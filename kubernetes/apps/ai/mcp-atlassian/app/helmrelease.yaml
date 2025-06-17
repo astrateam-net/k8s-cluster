@@ -41,8 +41,8 @@ spec:
             # #   - --port
             # #   - "9000"
             env:
-              JIRA_URL: https://jira.astrateam.net
-              CONFLUENCE_URL: https://wiki.astrateam.net
+              JIRA_URL: http://jira.atlassian.svc.cluster.local:80
+              CONFLUENCE_URL: http://wiki.atlassian.svc.cluster.local:80
               JIRA_PERSONAL_TOKEN:
                 valueFrom:
                   secretKeyRef:
@@ -53,8 +53,8 @@ spec:
                   secretKeyRef:
                     name: *secret
                     key: CONFLUENCE_PERSONAL_TOKEN
-              JIRA_SSL_VERIFY: true
-              CONFLUENCE_SSL_VERIFY: true
+              JIRA_SSL_VERIFY: false
+              CONFLUENCE_SSL_VERIFY: falses
               CONFLUENCE_SPACES_FILTER: "AI"
               # # TRANSPORT: sse
               TRANSPORT: streamable-http
