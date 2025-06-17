@@ -34,12 +34,12 @@ spec:
               tag: 0.11.2
             stdin: true
             tty: true
-            command: []
-            args:
-              - --transport
-              - streamable-http
-            #   - --port
-            #   - "9000"
+            # command: []
+            # args:
+            #   - --transport
+            #   - streamable-http
+            # #   - --port
+            # #   - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
               CONFLUENCE_URL: https://wiki.astrateam.net
@@ -57,7 +57,7 @@ spec:
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
               # # TRANSPORT: sse
-              # TRANSPORT: streamable-http
+              TRANSPORT: streamable-http
               PORT: &port 9000
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
@@ -97,7 +97,7 @@ spec:
         ports:
           http:
             primary: true
-            port: &port 8080
+            port: *port
     # ===================================================================
     # ROUTES
     # ===================================================================
