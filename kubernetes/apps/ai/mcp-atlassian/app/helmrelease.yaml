@@ -32,12 +32,14 @@ spec:
             image:
               repository: ghcr.io/sooperset/mcp-atlassian
               tag: 0.11.2
+            stdin: true
+            tty: true
             command: []
-            args:
-              - --transport
-              - streamable-http
-              - --port
-              - "9000"
+            # args:
+            #   - --transport
+            #   - streamable-http
+            #   - --port
+            #   - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
               CONFLUENCE_URL: https://wiki.astrateam.net
@@ -55,10 +57,11 @@ spec:
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
               # TRANSPORT: streamable-http
-              # PORT: &port 9000
+              PORT: &port 8080
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
+              HTTP_PROXY: http://localhost:8080
               # Comma-separated list of tool names to enable. If not set, all tools are enabled
               #ENABLED_TOOLS:
 
@@ -92,7 +95,7 @@ spec:
         type: LoadBalancer
         ports:
           http:
-            port: &port 9000
+            port: &port 8080
     # ===================================================================
     # ROUTES
     # ===================================================================
