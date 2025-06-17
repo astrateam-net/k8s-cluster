@@ -78,7 +78,7 @@ spec:
           update-ca-certificates
       service:
         port: 80
-        type: LoadBalancer
+        # type: LoadBalancer
       s3AttachmentsStorage:
         bucketName: confluence
         bucketRegion: us-east-1
@@ -98,7 +98,7 @@ spec:
       enabled: true
       service:
         port: 80
-        type: LoadBalancer
+        # type: LoadBalancer
       # nodeSelector:
       #   kubernetes.io/hostname: k8s-03
     additionalFiles:
