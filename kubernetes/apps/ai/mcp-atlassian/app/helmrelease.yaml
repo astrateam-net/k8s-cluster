@@ -42,7 +42,7 @@ spec:
             # #   - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
-              CONFLUENCE_URL: https://wiki.astrateam.net
+              CONFLUENCE_URL: http://wiki.astrateam.net
               JIRA_PERSONAL_TOKEN:
                 valueFrom:
                   secretKeyRef:
