@@ -99,24 +99,24 @@ spec:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
-      additionalEnvironmentVariables:
-        - name: &key AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: *jirasecret
-              key: *key
-        - name: &key AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: *jirasecret
-              key: *key
+      # additionalEnvironmentVariables:
+      #   - name: &key AWS_ACCESS_KEY_ID
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: *jirasecret
+      #         key: *key
+      #   - name: &key AWS_SECRET_ACCESS_KEY
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: *jirasecret
+      #         key: *key
       additionalCertificates:
         secretName: root-ca
     additionalFiles:
-      # - name: jira-storage-secret
-      #   type: secret
-      #   key: credentials
-      #   mountPath: /var/atlassian/application-data/jira/.aws/
+      - name: jira-storage-secret
+        type: secret
+        key: credentials
+        mountPath: /var/atlassian/application-data/jira/.aws/
       - name: minio-ca
         type: secret
         key: minio.crt
