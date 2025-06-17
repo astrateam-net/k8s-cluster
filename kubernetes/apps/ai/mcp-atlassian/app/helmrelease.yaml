@@ -42,7 +42,8 @@ spec:
             # #   - "9000"
             env:
               JIRA_URL: http://jira.atlassian.svc.cluster.local:80
-              CONFLUENCE_URL: http://confluence.atlassian.svc.cluster.local:80
+              CONFLUENCE_URL: https://wiki.astrateam.net
+              CONFLUENCE_HTTPS_PROXY: https://confluence.atlassian.svc.cluster.local:8443
               JIRA_PERSONAL_TOKEN:
                 valueFrom:
                   secretKeyRef:
