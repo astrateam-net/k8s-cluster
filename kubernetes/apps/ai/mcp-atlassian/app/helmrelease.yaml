@@ -119,7 +119,7 @@ spec:
                   requestRedirect:
                     path:
                       type: ReplacePrefixMatch
-                      replacePrefixMatch: /mcp
+                      replacePrefixMatch: /mcp/
                     statusCode: 302
               backendRefs:
                 - name: *app
