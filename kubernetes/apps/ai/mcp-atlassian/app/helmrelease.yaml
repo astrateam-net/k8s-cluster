@@ -106,7 +106,7 @@ spec:
         hostnames:
           - mcp-atlassian.astrateam.net
         parentRefs:
-          - name: internal
+          - name: external
             namespace: network
             sectionName: https
         rules:
@@ -114,13 +114,6 @@ spec:
                 - path:
                     type: PathPrefix
                     value: /sse
-              # filters:
-              #   - type: RequestRedirect
-              #     requestRedirect:
-              #       path:
-              #         type: ReplacePrefixMatch
-              #         replacePrefixMatch: /mcp/
-              #       statusCode: 302
               filters:
                 - type: URLRewrite
                   urlRewrite:
