@@ -3,14 +3,14 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: "jira-local-home-dst"
+  name: "jirasoft-local-home-dst"
   labels:
     kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   trigger:
     manual: restore-once
   restic:
-    repository: "jira-local-home-volsync-secret"
+    repository: "jirasoft-local-home-volsync-secret"
     copyMethod: Snapshot
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheStorageClassName: "ceph-block"
@@ -31,14 +31,14 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: "jira-shared-home-dst"
+  name: "jirasoft-shared-home-dst"
   labels:
     kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   trigger:
     manual: restore-once
   restic:
-    repository: "jira-shared-home-volsync-secret"
+    repository: "jirasoft-shared-home-volsync-secret"
     copyMethod: Snapshot
     volumeSnapshotClassName: "csi-ceph-blockpool"
     cacheStorageClassName: "ceph-block"

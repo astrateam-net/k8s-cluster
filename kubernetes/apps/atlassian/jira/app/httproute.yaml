@@ -11,7 +11,7 @@ metadata:
     gethomepage.dev/group: Главная
     gethomepage.dev/description: Система управления проектами
 spec:
-  hostnames: ["jirasoft.astrateam.net"]
+  hostnames: ["jira.astrateam.net"]
   parentRefs:
     - name: external
       namespace: network
