@@ -100,16 +100,16 @@ spec:
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       additionalEnvironmentVariables:
-        - name: AWS_ACCESS_KEY_ID
+        - name: &key AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
               name: *jirasecret
-              key: S3_ACCESS_KEY_ID
-        - name: AWS_SECRET_ACCESS_KEY
+              key: *key
+        - name: &key AWS_SECRET_ACCESS_KEY
           valueFrom:
             secretKeyRef:
               name: *jirasecret
-              key: S3_SECRET_ACCESS_KEY
+              key: *key
       additionalCertificates:
         secretName: root-ca
     additionalFiles:
