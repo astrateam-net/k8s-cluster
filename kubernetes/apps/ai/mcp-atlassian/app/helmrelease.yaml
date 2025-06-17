@@ -34,12 +34,6 @@ spec:
               tag: 0.11.2
             stdin: true
             tty: true
-            # command: []
-            # args:
-            #   - --transport
-            #   - streamable-http
-            # #   - --port
-            # #   - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
               CONFLUENCE_URL: https://wiki.astrateam.net
@@ -56,13 +50,11 @@ spec:
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
-              # # TRANSPORT: sse
               TRANSPORT: streamable-http
               PORT: &port 9000
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
-              # HTTP_PROXY: http://localhost:8080
               # Comma-separated list of tool names to enable. If not set, all tools are enabled
               #ENABLED_TOOLS:
 
@@ -70,10 +62,10 @@ spec:
     # ===================================================================
     # SECURITY CONTEXT / RESOURCES / DEFAULT POD OPTIONS
     # ===================================================================
-    #         securityContext:
-    #           allowPrivilegeEscalation: false
-    #           readOnlyRootFilesystem: true
-    #           capabilities: { drop: ["ALL"] }
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 5m
@@ -87,10 +79,6 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      # hostAliases:
-      #   - ip: "10.1.130.119"
-      #     hostnames:
-      #       - "wiki.astrateam.net"
 
     # ===================================================================
     # SERVICES
@@ -128,3 +116,12 @@ spec:
               backendRefs:
                 - name: *app
                   port: *port
+    # ===================================================================
+    # PERSISTENCE
+    # ===================================================================
+    persistence:
+      mcp-atlassian:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /home/app/.mcp-atlassian
