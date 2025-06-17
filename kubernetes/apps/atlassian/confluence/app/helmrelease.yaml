@@ -77,7 +77,7 @@ spec:
         command: |
           update-ca-certificates
       service:
-        port: 8443
+        port: 80
         type: LoadBalancer
       s3AttachmentsStorage:
         bucketName: confluence
@@ -97,7 +97,7 @@ spec:
     synchrony:
       enabled: true
       service:
-        port: 8443
+        port: 80
         type: LoadBalancer
       # nodeSelector:
       #   kubernetes.io/hostname: k8s-03
