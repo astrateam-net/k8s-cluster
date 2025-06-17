@@ -110,10 +110,23 @@ spec:
             namespace: network
             sectionName: https
         rules:
+            # Redirect bare "/sse" to "/sse/"
+            - matches:
+                - path:
+                    type: PathExact
+                    value: /sse
+              filters:
+                - type: RequestRedirect
+                  requestRedirect:
+                    path:
+                      type: ReplaceFullPath
+                      replaceFullPath: /sse/
+                    statusCode: 308
+            # Rewrite "/sse/" and all subpaths
             - matches:
                 - path:
                     type: PathPrefix
-                    value: /sse
+                    value: /sse/
               filters:
                 - type: URLRewrite
                   urlRewrite:
