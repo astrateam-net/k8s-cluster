@@ -3,17 +3,17 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: jirasoft
-  # annotations:
-  #   gethomepage.dev/enabled: "true"
-  #   gethomepage.dev/icon: jira.png
-  #   gethomepage.dev/name: Jira
-  #   gethomepage.dev/group: Главная
-  #   gethomepage.dev/description: Система управления проектами
+  name: jira
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: jira.png
+    gethomepage.dev/name: Jira
+    gethomepage.dev/group: Главная
+    gethomepage.dev/description: Система управления проектами
 spec:
   hostnames: ["jirasoft.astrateam.net"]
   parentRefs:
-    - name: internal
+    - name: external
       namespace: network
       sectionName: https
   rules:
@@ -22,6 +22,44 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: jirasoft
+        - name: jira
           namespace: atlassian
           port: 80
+# ---
+# # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: jira-help-no-loop
+# spec:
+#   hostnames:
+#     - help.astrateam.net
+#   parentRefs:
+#     - name: external
+#       namespace: network
+#       sectionName: https
+#   rules:
+#     # 1. Rewrite ONLY the root path ("/") to the customer portal
+#     - matches:
+#         - path:
+#             type: Exact
+#             value: /
+#       filters:
+#         - type: URLRewrite
+#           urlRewrite:
+#             path:
+#               type: ReplaceFullPath
+#               replaceFullPath: /servicedesk/customer/portal/1
+#       backendRefs:
+#         - name: jira
+#           namespace: atlassian
+#           port: 80
+#     # 2. Pass through ALL other paths (no rewrite)
+#     - matches:
+#         - path:
+#             type: PathPrefix
+#             value: /
+#       backendRefs:
+#         - name: jira
+#           namespace: atlassian
+#           port: 80

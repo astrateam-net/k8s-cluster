@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jirasoft-local-home
+  name: jira-local-home
 spec:
   accessModes: ["ReadWriteOnce"]
-  # dataSourceRef:
-  #   kind: ReplicationDestination
-  #   apiGroup: volsync.backube
-  #   name: "jirasoft-local-home-dst"
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "jira-local-home-dst"
   resources:
     requests:
       storage: 25Gi
@@ -17,14 +17,29 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jirasoft-shared-home
+  name: jira-shared-home
 spec:
   accessModes: ["ReadWriteOnce"]
-  # dataSourceRef:
-  #   kind: ReplicationDestination
-  #   apiGroup: volsync.backube
-  #   name: "jirasoft-shared-home-dst"
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "jira-shared-home-dst"
   resources:
     requests:
       storage: 5Gi
+  storageClassName: ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: confluence-opensearch
+spec:
+  accessModes: ["ReadWriteOnce"]
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "confluence-opensearch-dst"
+  resources:
+    requests:
+      storage: 10Gi
   storageClassName: ceph-block

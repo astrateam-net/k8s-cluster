@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: jira
+  name: jirasoft
 spec:
   interval: 5m
   layerSelector:
@@ -22,12 +22,12 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jira
+  name: jirasoft
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: jira
+    name: jirasoft
   install:
     remediation:
       retries: -1
@@ -36,7 +36,7 @@ spec:
     remediation:
       retries: 3
   values:
-    fullnameOverride: jira
+    fullnameOverride: jirasoft
     replicaCount: 1
     image:
       repository: ghcr.io/astrateam-net/agile
@@ -75,41 +75,3 @@ spec:
         scheme: https
         proxyName: "jirasoft.astrateam.net"
         proxyPort: 443
-      resources:
-        jvm:
-          maxHeap: "2g"
-          minHeap: "2g"
-      postStart:
-        command: |
-          update-ca-certificates
-      s3Storage:
-        avatars:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
-        attachments:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
-        backups:
-          bucketName: jira
-          bucketRegion: us-east-1
-          endpointOverride: https://s3.astrateam.net
-      additionalJvmArgs:
-        - "-Dupm.plugin.upload.enabled=true"
-        # - "-Datlassian.plugins.startup.options=--disable-all-addons"
-        # - "-Dcom.atlassian.jira.status.index.check=false"
-      additionalCertificates:
-        secretName: root-ca
-    additionalFiles:
-      - name: jira-storage-secret
-        type: secret
-        key: credentials
-        mountPath: /var/atlassian/application-data/jira/.aws/
-      - name: minio-ca
-        type: secret
-        key: minio.crt
-        mountPath: /usr/local/share/ca-certificates/minio.crt
-        readOnly: true
-    # nodeSelector:
-    #     kubernetes.io/hostname: k8s-01

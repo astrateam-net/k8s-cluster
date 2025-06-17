@@ -22,7 +22,7 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: jira
+        - name: jirasoft
           namespace: atlassian
           port: 80
 # ---
