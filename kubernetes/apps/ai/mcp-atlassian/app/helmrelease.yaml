@@ -106,14 +106,14 @@ spec:
         hostnames:
           - mcp-atlassian.astrateam.net
         parentRefs:
-          - name: external
+          - name: internal
             namespace: network
             sectionName: https
         rules:
             - matches:
                 - path:
                     type: PathPrefix
-                    value: /
+                    value: /sse
               filters:
                 - type: URLRewrite
                   urlRewrite:
