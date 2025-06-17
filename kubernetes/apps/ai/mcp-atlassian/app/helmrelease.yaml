@@ -56,8 +56,8 @@ spec:
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
-              TRANSPORT: sse
-              # TRANSPORT: streamable-http
+              # TRANSPORT: sse
+              TRANSPORT: streamable-http
               PORT: &port 8080
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
