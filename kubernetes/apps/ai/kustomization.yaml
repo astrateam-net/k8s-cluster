@@ -8,3 +8,4 @@ components:
 resources:
   - ./flowise/ks.yaml
   # - ./paperless-ai/ks.yaml
+  - ./mcp-atlassian/ks.yaml
