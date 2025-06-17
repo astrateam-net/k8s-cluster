@@ -26,7 +26,7 @@ spec:
       backendRefs:
         - name: confluence
           namespace: atlassian
-          port: 80
+          port: 443
     - matches:
       - path:
           type: PathPrefix
@@ -34,7 +34,7 @@ spec:
       backendRefs:
         - name: confluence-synchrony
           namespace: atlassian
-          port: 80
+          port: 443
 # ---
 # # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 # apiVersion: gateway.networking.k8s.io/v1
