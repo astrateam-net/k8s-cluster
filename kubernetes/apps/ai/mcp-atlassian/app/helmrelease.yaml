@@ -21,6 +21,8 @@ spec:
   # CONTROLLER / POD SPEC
   # ===================================================================
   values:
+    global:
+      fullnameOverride: mcp-atlassian
     controllers:
       mcp-atlassian:
         replicas: 1
