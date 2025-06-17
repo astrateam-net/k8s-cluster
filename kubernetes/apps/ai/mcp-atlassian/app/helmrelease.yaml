@@ -41,7 +41,7 @@ spec:
             # #   - --port
             # #   - "9000"
             env:
-              JIRA_URL: https://jira.astrateam.net
+              JIRA_URL: http://jira.atlassian.svc.cluster.local:80
               CONFLUENCE_URL: http://confluence.atlassian.svc.cluster.local:80
               JIRA_PERSONAL_TOKEN:
                 valueFrom:
