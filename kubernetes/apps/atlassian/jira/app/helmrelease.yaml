@@ -44,7 +44,7 @@ spec:
       tag: 10.6.1
     database:
       type: postgres72
-      url: "jdbc:postgresql://10.1.125.55:5000/jiradbprod"
+      url: "jdbc:postgresql://10.1.125.55:5000/jiraprod"
       driver: org.postgresql.Driver
       credentials:
         secretName: jiradb-credentials-secret
