@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app jirasoft
+  name: &app jira
   namespace: &namespace atlassian
 spec:
   commonMetadata:
@@ -18,10 +18,11 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/atlassian/jirasoft/app
+  path: ./kubernetes/apps/atlassian/jira/app
   postBuild:
     substitute:
       APP: *app
+      
   prune: true
   retryInterval: 2m
   sourceRef:
