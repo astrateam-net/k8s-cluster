@@ -110,6 +110,16 @@ spec:
             namespace: network
             sectionName: https
         rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+            - matches:
+                - path:
+                    type: PathPrefix
+                    value: /sse
+              filters:
+                - type: URLRewrite
+                  urlRewrite:
+                    path:
+                      type: ReplacePrefixMatch
+                      replacePrefixMatch: /mcp
+              backendRefs:
+                - name: *app
+                  port: *port
