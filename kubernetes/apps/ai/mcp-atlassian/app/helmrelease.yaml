@@ -42,7 +42,8 @@ spec:
             # #   - "9000"
             env:
               JIRA_URL: https://jira.astrateam.net
-              CONFLUENCE_URL: http://wiki.astrateam.net
+              CONFLUENCE_URL: https://wiki.astrateam.net
+              CONFLUENCE_HTTP_PROXY: http://confluence.atlassian.svc.cluster.local:80
               JIRA_PERSONAL_TOKEN:
                 valueFrom:
                   secretKeyRef:
@@ -87,10 +88,10 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      hostAliases:
-        - ip: "10.1.130.119"
-          hostnames:
-            - "wiki.astrateam.net"
+      # hostAliases:
+      #   - ip: "10.1.130.119"
+      #     hostnames:
+      #       - "wiki.astrateam.net"
 
     # ===================================================================
     # SERVICES
