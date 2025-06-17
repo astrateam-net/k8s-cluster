@@ -35,9 +35,9 @@ spec:
             stdin: true
             tty: true
             command: []
-            # args:
-            #   - --transport
-            #   - streamable-http
+            args:
+              - --transport
+              - streamable-http
             #   - --port
             #   - "9000"
             env:
@@ -56,9 +56,9 @@ spec:
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
               CONFLUENCE_SPACES_FILTER: "AI"
-              # TRANSPORT: sse
-              TRANSPORT: streamable-http
-              PORT: &port 8080
+              # # TRANSPORT: sse
+              # TRANSPORT: streamable-http
+              PORT: &port 9000
               READ_ONLY_MODE: false
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
