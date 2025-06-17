@@ -119,9 +119,9 @@ spec:
     # ===================================================================
     # PERSISTENCE
     # ===================================================================
-    persistence:
-      mcp-atlassian:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /home/app/.mcp-atlassian
+    # persistence:
+    #   mcp-atlassian:
+    #     enabled: true
+    #     type: emptyDir
+    #     globalMounts:
+    #       - path: /home/app/.mcp-atlassian
