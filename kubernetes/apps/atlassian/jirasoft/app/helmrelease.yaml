@@ -75,6 +75,10 @@ spec:
         scheme: https
         proxyName: "jirasoft.astrateam.net"
         proxyPort: 443
+      resources:
+        jvm:
+          maxHeap: "2g"
+          minHeap: "2g"
       postStart:
         command: |
           update-ca-certificates
