@@ -68,7 +68,7 @@ spec:
       readinessProbe:
         enabled: true
       # NOTE: This is a workaround to force a config update
-      # forceConfigUpdate: true
+      forceConfigUpdate: true
       tomcatConfig:
         generateByHelm: true
         secure: true
