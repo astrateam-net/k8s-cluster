@@ -79,9 +79,9 @@ spec:
         jvm:
           maxHeap: "2g"
           minHeap: "2g"
-    #   postStart:
-    #     command: |
-    #       update-ca-certificates
+      postStart:
+        command: |
+          update-ca-certificates
     #   s3Storage:
     #     avatars:
     #       bucketName: jira
@@ -95,12 +95,12 @@ spec:
     #       bucketName: jira
     #       bucketRegion: us-east-1
     #       endpointOverride: https://s3.astrateam.net
-    #   additionalJvmArgs:
-    #     - "-Dupm.plugin.upload.enabled=true"
+      additionalJvmArgs:
+        - "-Dupm.plugin.upload.enabled=true"
     #     # - "-Datlassian.plugins.startup.options=--disable-all-addons"
     #     # - "-Dcom.atlassian.jira.status.index.check=false"
-    #   additionalCertificates:
-    #     secretName: root-ca
+      additionalCertificates:
+        secretName: root-ca
     # additionalFiles:
     #   - name: jira-storage-secret
     #     type: secret
