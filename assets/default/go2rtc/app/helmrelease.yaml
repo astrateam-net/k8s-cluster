@@ -78,7 +78,7 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.devbu.io"]
         parentRefs:
-          - name: internal
+          - name: external
             namespace: kube-system
             sectionName: https
         rules:

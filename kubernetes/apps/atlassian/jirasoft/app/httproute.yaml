@@ -13,7 +13,7 @@ metadata:
 spec:
   hostnames: ["jiradev.astrateam.net"]
   parentRefs:
-    - name: internal
+    - name: external
       namespace: network
       sectionName: https
   rules:
