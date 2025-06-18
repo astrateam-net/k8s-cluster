@@ -40,7 +40,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/astrateam-net/agile
-      pullPolicy: Always
+      pullPolicy: IfNotPresent
       tag: 10.6.1
     database:
       type: postgres72
