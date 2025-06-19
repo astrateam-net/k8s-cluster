@@ -71,10 +71,10 @@ spec:
       forceConfigUpdate: true
       tomcatConfig:
         generateByHelm: true
-        secure: true
-        scheme: https
+        secure: false
+        scheme: http
         proxyName: "jira.astrateam.net"
-        proxyPort: 443
+        proxyPort: 80
         maxHttpHeaderSize: "12288"
       resources:
         jvm:
