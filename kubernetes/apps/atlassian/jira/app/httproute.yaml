@@ -12,9 +12,13 @@ spec:
       sectionName: https
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /
+        - path:
+            type: PathPrefix
+            value: /
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            hostname: jira.astrateam.net
       backendRefs:
         - name: jira
           namespace: atlassian
