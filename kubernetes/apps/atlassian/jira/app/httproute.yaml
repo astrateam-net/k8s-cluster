@@ -4,12 +4,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: jira
-  annotations:
-    gethomepage.dev/enabled: "true"
-    gethomepage.dev/icon: jira.png
-    gethomepage.dev/name: Jira
-    gethomepage.dev/group: Главная
-    gethomepage.dev/description: Система управления проектами
 spec:
   hostnames: ["jira.astrateam.net"]
   parentRefs:
