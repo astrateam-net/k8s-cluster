@@ -75,6 +75,7 @@ spec:
         scheme: https
         proxyName: "jira.astrateam.net"
         proxyPort: 443
+        maxHttpHeaderSize: "12288"
       resources:
         jvm:
           maxHeap: "2g"
@@ -97,7 +98,7 @@ spec:
           endpointOverride: *s3endpoint
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
-        # - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
+        - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       # additionalEnvironmentVariables:
