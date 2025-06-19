@@ -73,6 +73,9 @@ spec:
         type: LoadBalancer
         port: 80
         loadBalancerIP: 10.1.130.118
+      tunnel:
+        additionalConnectors:
+          port: 8082
       tomcatConfig:
         generateByHelm: true
         secure: false
@@ -102,7 +105,8 @@ spec:
           endpointOverride: *s3endpoint
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
-        - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
+        # - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
+        - "-Dsecure.tunnel.upstream.port=8082"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       # additionalEnvironmentVariables:

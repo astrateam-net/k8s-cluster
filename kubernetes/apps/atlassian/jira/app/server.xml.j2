@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Server port="{{ atl_tomcat_mgmt_port | default('8005') }}"
+        shutdown="SHUTDOWN">
+
+  <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+  <Listener className="org.apache.catalina.core.AprLifecycleListener"
+            SSLEngine="on"/>
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+
+  <Service name="Catalina">
+
+    <Connector port="{{ atl_tomcat_port | default('8080') }}"
+               maxThreads="{{ atl_tomcat_maxthreads | default('100') }}"
+               minSpareThreads="{{ atl_tomcat_minsparethreads | default('10') }}"
+               connectionTimeout="{{ atl_tomcat_connectiontimeout | default('20000') }}"
+               enableLookups="{{ atl_tomcat_enablelookups | default('false') }}"
+               protocol="{{ atl_tomcat_protocol | default('HTTP/1.1') }}"
+               redirectPort="{{ atl_tomcat_redirectport | default('8443') }}"
+               acceptCount="{{ atl_tomcat_acceptcount | default('10') }}"
+               secure="{{ atl_tomcat_secure | default(catalina_connector_secure) | default('false') }}"
+               scheme="{{ atl_tomcat_scheme | default(catalina_connector_scheme) | default('http') }}"
+               proxyName="{{ atl_proxy_name | default(catalina_connector_proxyname) | default('') }}"
+               proxyPort="{{ atl_proxy_port | default(catalina_connector_proxyport) | default('') }}"
+
+               relaxedPathChars="[]|"
+               relaxedQueryChars="[]|{}^\`&quot;&lt;&gt;"
+               bindOnInit="false"
+               maxHttpHeaderSize="{{ atl_tomcat_maxhttpheadersize | default('8192') }}"
+               useBodyEncodingForURI="true"
+               disableUploadTimeout="true" />
+
+     {% if atl_tomcat_additional_connector_port is defined and atl_tomcat_additional_connector_port != "" %}
+     <Connector port="{{ atl_tomcat_additional_connector_port }}"
+                connectionTimeout="{{ atl_tomcat_additional_connector_connection_timeout | default('20000')}}"
+                maxThreads="{{ atl_tomcat_additional_connector_max_threads | default('50')}}"
+                minSpareThreads="{{ atl_tomcat_additional_connector_min_spare_threads | default('10')}}"
+                enableLookups="{{ atl_tomcat_additional_connector_enable_lookups | default('false')}}"
+                acceptCount="{{ atl_tomcat_additional_connector_accept_count | default('10')}}"
+                {% if atl_tomcat_additional_connector_secure == "true" %}
+                secure="true"
+                {% endif %}
+                URIEncoding="{{ atl_tomcat_additional_connector_uri_encoding | default('UTF-8')}}"
+                relaxedPathChars="[]|"
+                relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;" />
+     {% endif %}
+
+    <Engine name="Catalina"
+            defaultHost="localhost">
+
+      <Host name="localhost"
+            appBase="webapps"
+            unpackWARs="true"
+            autoDeploy="true">
+
+        <Context path="{{ atl_tomcat_contextpath | default(catalina_context_path) | default('') }}"
+                 docBase="${catalina.home}/atlassian-jira"
+                 reloadable="false"
+                 useHttpOnly="true">
+          <Resource name="UserTransaction"
+                    auth="Container"
+                    type="javax.transaction.UserTransaction"
+                    factory="org.objectweb.jotm.UserTransactionFactory"
+                    jotm.timeout="60"/>
+          <Manager pathname=""/>
+          <JarScanner scanManifest="false"/>
+          <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve"
+                 threshold="{{ atl_tomcat_stuckthreaddetectionvalve_threshold | default('120') }}" />
+        </Context>
+
+      </Host>
+      <Valve className="org.apache.catalina.valves.AccessLogValve"
+
+             pattern="{{ atl_tomcat_access_log_pattern | default('%a %{jira.request.id}r %{jira.request.username}r %t &quot;%m %U%q %H&quot; %s %b %D &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot; &quot;%{jira.request.assession.id}r&quot;') }}"
+             requestAttributesEnabled="{{ atl_tomcat_requestattributesenabled | default('false') }}"
+             maxDays="{{ atl_tomcat_access_logs_maxdays | default('-1') }}"/>
+     {%- if atl_tomcat_trustedproxies is defined or atl_tomcat_internalproxies is defined %}
+       <Valve className="org.apache.catalina.valves.RemoteIpValve"
+            {%- if atl_tomcat_trustedproxies %}
+              trustedProxies="{{ atl_tomcat_trustedproxies }}"
+            {%- endif %}
+            {%- if atl_tomcat_internalproxies %}
+              internalProxies="{{ atl_tomcat_internalproxies }}"
+            {%- endif %}
+              remoteIpHeader="x-forwarded-for"
+              proxiesHeader="x-forwarded-by"
+              protocolHeader="x-forwarded-proto"/>
+     {%- endif %}
+    </Engine>
+
+  </Service>
+</Server>
