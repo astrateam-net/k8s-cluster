@@ -80,10 +80,10 @@ spec:
       tomcatConfig:
         generateByHelm: true
         secure: false
-        scheme: http
+        scheme: https
         proxyName: "jira.astrateam.net"
-        proxyPort: 80
-        maxHttpHeaderSize: "12288"
+        proxyPort: 443
+        # maxHttpHeaderSize: "12288"
       resources:
         jvm:
           maxHeap: "2g"
