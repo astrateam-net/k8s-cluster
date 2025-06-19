@@ -28,6 +28,15 @@ spec:
                 value: jira.astrateam.net
               - name: X-Requested-With
                 value: XMLHttpRequest
+              - name: X-Atlassian-Token
+                value: no-check
+            set:
+              - name: Accept
+                value: "*/*"
+              - name: Accept-Encoding
+                value: "gzip, deflate, br"
+              - name: Accept-Language
+                value: "en-US,en;q=0.9"
         - type: ResponseHeaderModifier
           responseHeaderModifier:
             add:
@@ -37,6 +46,10 @@ spec:
                 value: nosniff
               - name: X-Frame-Options
                 value: SAMEORIGIN
+              - name: X-XSS-Protection
+                value: "1; mode=block"
+            remove:
+              - "X-Powered-By"
       backendRefs:
         - name: jira
           namespace: atlassian
