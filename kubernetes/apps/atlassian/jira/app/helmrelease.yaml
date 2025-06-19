@@ -69,10 +69,11 @@ spec:
         enabled: true
       # NOTE: This is a workaround to force a config update
       forceConfigUpdate: true
-      service:
-        type: LoadBalancer
-        port: 80
-        loadBalancerIP: 10.1.130.118
+      # TODO Disable this for now
+      # service:
+      #   type: LoadBalancer
+      #   port: 80
+      #   loadBalancerIP: 10.1.130.118
       tunnel:
           additionalConnector:
             port: 8093
