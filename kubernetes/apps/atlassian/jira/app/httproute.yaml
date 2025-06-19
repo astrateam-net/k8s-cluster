@@ -19,6 +19,15 @@ spec:
         - type: URLRewrite
           urlRewrite:
             hostname: jira.astrateam.net
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: X-Forwarded-Proto
+                value: https
+              - name: X-Forwarded-Host
+                value: jira.astrateam.net
+              - name: Connection
+                value: close
       backendRefs:
         - name: jira
           namespace: atlassian
