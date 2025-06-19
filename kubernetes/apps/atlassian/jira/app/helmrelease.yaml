@@ -107,7 +107,7 @@ spec:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
         # - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
-        - "-Dsecure.tunnel.upstream.port=8082"
+        - "-Dsecure.tunnel.upstream.port=8093"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       # additionalEnvironmentVariables:

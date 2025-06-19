@@ -20,16 +20,27 @@
                redirectPort="8443"
                acceptCount="100"
                secure="true"
-               scheme="https"
+               scheme="http"
                proxyName="jira.astrateam.net"
-               proxyPort="443"
+               proxyPort="80"
 
                relaxedPathChars="[]|"
                relaxedQueryChars="[]|{}^\`&quot;&lt;&gt;"
                bindOnInit="false"
-               maxHttpHeaderSize="12288"
+               maxHttpHeaderSize="8192 "
                useBodyEncodingForURI="true"
                disableUploadTimeout="true" />
+
+
+ <Connector port="8093"
+            connectionTimeout="20000"
+            maxThreads="50"
+            minSpareThreads="10"
+            enableLookups="false"
+            acceptCount="10"
+            URIEncoding="UTF-8"
+            relaxedPathChars="[]|"
+            relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;" />
 
     <Engine name="Catalina"
             defaultHost="localhost">
