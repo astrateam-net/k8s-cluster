@@ -21,14 +21,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-      filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            add:
-              - name: X-Forwarded-Proto
-                value: "https"
-              - name: X-Forwarded-Host
-                value: "jira.astrateam.net"
       backendRefs:
         - name: jira
           namespace: atlassian
