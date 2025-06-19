@@ -69,12 +69,12 @@ spec:
         enabled: true
       # NOTE: This is a workaround to force a config update
       forceConfigUpdate: true
-      # tomcatConfig:
-      #   generateByHelm: false
-      #   secure: true
-      #   scheme: https
-      #   proxyName: "jira.astrateam.net"
-      #   proxyPort: 443
+      tomcatConfig:
+        generateByHelm: true
+        secure: true
+        scheme: https
+        proxyName: "jira.astrateam.net"
+        proxyPort: 443
       resources:
         jvm:
           maxHeap: "2g"
