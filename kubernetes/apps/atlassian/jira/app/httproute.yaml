@@ -16,11 +16,9 @@ spec:
             type: PathPrefix
             value: /
       filters:
-        - type: ResponseHeaderModifier
-          responseHeaderModifier:
-            add:
-              - name: Connection
-                value: close
+        - type: URLRewrite
+          urlRewrite:
+            hostname: jira.astrateam.net
         - type: RequestHeaderModifier
           requestHeaderModifier:
             add:
@@ -28,6 +26,17 @@ spec:
                 value: https
               - name: X-Forwarded-Host
                 value: jira.astrateam.net
+              - name: X-Requested-With
+                value: XMLHttpRequest
+        - type: ResponseHeaderModifier
+          responseHeaderModifier:
+            add:
+              - name: Connection
+                value: close
+              - name: X-Content-Type-Options
+                value: nosniff
+              - name: X-Frame-Options
+                value: SAMEORIGIN
       backendRefs:
         - name: jira
           namespace: atlassian
