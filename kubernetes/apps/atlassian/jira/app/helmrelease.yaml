@@ -74,8 +74,8 @@ spec:
         port: 80
         loadBalancerIP: 10.1.130.118
       tunnel:
-        additionalConnectors:
-          port: 8082
+          additionalConnector:
+            port: 8093
       tomcatConfig:
         generateByHelm: true
         secure: false
