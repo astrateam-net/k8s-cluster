@@ -10,7 +10,7 @@ spec:
   parentRefs:
     - name: internal
       namespace: kube-system
-      sectionName: jira-https
+      sectionName: https
   rules:
     - matches:
         - path:
