@@ -4,7 +4,7 @@ originRequest:
 
 ingress:
   - hostname: astrateam.net
-    service: &svc https://envoy-gateway-external.network.svc.cluster.local
+    service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
   - hostname: "*.astrateam.net"
     service: *svc
   - service: http_status:404

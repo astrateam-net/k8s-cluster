@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: astrateam-net
+spec:
+  secretName: astrateam-net-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: astrateam.net
+  dnsNames: ["astrateam.net", "*.astrateam.net"]

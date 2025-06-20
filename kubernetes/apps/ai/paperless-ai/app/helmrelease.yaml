@@ -67,7 +67,7 @@ spec:
           gethomepage.dev/description: AI-платформа для работы с документами
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:

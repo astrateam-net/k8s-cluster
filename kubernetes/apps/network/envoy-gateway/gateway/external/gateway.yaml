@@ -30,7 +30,7 @@ spec:
       hostname: "jira.astrateam.net"
       allowedRoutes:
         namespaces:
-          from: All
+          from: Same
       tls:
         certificateRefs:
           - kind: Secret

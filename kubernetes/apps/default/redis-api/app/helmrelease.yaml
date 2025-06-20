@@ -90,7 +90,7 @@ spec:
         hostnames: ["1cqueue.astrateam.net"]
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:
@@ -100,7 +100,7 @@ spec:
         hostnames: ["redmng.astrateam.net"]
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:

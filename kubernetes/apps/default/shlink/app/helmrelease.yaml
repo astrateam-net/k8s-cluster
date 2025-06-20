@@ -79,7 +79,7 @@ spec:
         hostnames: [*api-host]
         parentRefs:
           - name: external
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:
@@ -89,7 +89,7 @@ spec:
         hostnames: ["shlink.astrateam.net"]
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:

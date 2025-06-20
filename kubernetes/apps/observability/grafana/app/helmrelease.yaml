@@ -246,7 +246,7 @@ spec:
         hostnames: ["{{ .Release.Name }}.astrateam.net"]
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
     persistence:
       enabled: false

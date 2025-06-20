@@ -8,7 +8,7 @@ spec:
   hostnames: ["jiradev.astrateam.net"]
   parentRefs:
     - name: external
-      namespace: network
+      namespace: kube-system
       sectionName: https
   rules:
     - matches:

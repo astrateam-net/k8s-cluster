@@ -7,15 +7,15 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: &hostname internal.astrateam.net
 spec:
-  gatewayClassName: envoy
+  gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 10.1.130.112
+    - type: IPAddress
+      value: ::ffff:10.1.130.112
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: *hostname
-      lbipam.cilium.io/ips: 10.1.130.112
-    parametersRef:
-      group: gateway.envoyproxy.io
-      kind: EnvoyProxy
-      name: internal-proxy-config
   listeners:
     - name: http
       protocol: HTTP
@@ -24,17 +24,6 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same
-    - name: jira-https
-      protocol: HTTPS
-      port: 443
-      hostname: "jira.astrateam.net"
-      allowedRoutes:
-        namespaces:
-          from: Same
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: astrateam-net-tls
     - name: https
       protocol: HTTPS
       port: 443

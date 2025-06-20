@@ -14,7 +14,7 @@ spec:
   hostnames: ["jiradev.astrateam.net"]
   parentRefs:
     - name: internal
-      namespace: network
+      namespace: kube-system
       sectionName: https
   rules:
     - matches:
@@ -36,7 +36,7 @@ spec:
 #     - help.astrateam.net
 #   parentRefs:
 #     - name: external
-#       namespace: network
+#       namespace: kube-system
 #       sectionName: https
 #   rules:
 #     # 1. Rewrite ONLY the root path ("/") to the customer portal

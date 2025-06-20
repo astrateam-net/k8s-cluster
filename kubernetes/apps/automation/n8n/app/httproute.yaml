@@ -14,7 +14,7 @@ spec:
   hostnames: ["n8n.astrateam.net"]
   parentRefs:
     - name: internal
-      namespace: network
+      namespace: kube-system
       sectionName: https
   rules:
     - matches:

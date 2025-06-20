@@ -96,7 +96,7 @@ spec:
           - mcp-atlassian.astrateam.net
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
         rules:
             - matches:
