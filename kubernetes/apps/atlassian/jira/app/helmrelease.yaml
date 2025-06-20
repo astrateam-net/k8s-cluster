@@ -69,9 +69,9 @@ spec:
         enabled: true
       # INFO This is a workaround to force a config update
       forceConfigUpdate: true
-      tunnel:
-          additionalConnector:
-            port: 8093
+      # tunnel:
+      #     additionalConnector:
+      #       port: 8093
       tomcatConfig:
         generateByHelm: true
         secure: false
@@ -102,7 +102,7 @@ spec:
           endpointOverride: *s3endpoint
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
-        - "-Dsecure.tunnel.upstream.port=8093"
+        # - "-Dsecure.tunnel.upstream.port=8093"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
       # TODO S3 auth dosn't work for now when using env vars
