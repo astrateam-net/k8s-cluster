@@ -9,7 +9,7 @@ spec:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: external
-      sectionName: https
+      sectionName: jira-https
   tls:
     alpnProtocols:
       - http/1.1
