@@ -16,19 +16,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-      # filters:
-      #   - type: URLRewrite
-      #     urlRewrite:
-      #       hostname: jira.astrateam.net
-      #   - type: RequestHeaderModifier
-      #     requestHeaderModifier:
-      #       add:
-      #         - name: X-Forwarded-Proto
-      #           value: https
-      #         - name: X-Forwarded-Host
-      #           value: jira.astrateam.net
-      #         - name: X-Forwarded-Port
-      #           value: "443"
       backendRefs:
         - name: jira
           namespace: atlassian

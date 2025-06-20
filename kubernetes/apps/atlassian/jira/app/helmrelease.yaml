@@ -67,13 +67,8 @@ spec:
       useHelmReleaseNameAsContainerName: false
       readinessProbe:
         enabled: true
-      # NOTE: This is a workaround to force a config update
+      # INFO This is a workaround to force a config update
       forceConfigUpdate: true
-      # TODO Disable this for now
-      # service:
-      #   type: LoadBalancer
-      #   port: 80
-      #   loadBalancerIP: 10.1.130.118
       tunnel:
           additionalConnector:
             port: 8093
@@ -92,10 +87,11 @@ spec:
         command: |
           update-ca-certificates
       s3Storage:
-        avatars:
-          bucketName: &s3bucket jiras3
-          bucketRegion: &s3region us-east-1
-          endpointOverride: &s3endpoint https://s3.astrateam.net
+        # NOTE Trying to disable avatars for now
+        # avatars:
+        #   bucketName: &s3bucket jiras3
+        #   bucketRegion: &s3region us-east-1
+        #   endpointOverride: &s3endpoint https://s3.astrateam.net
         attachments:
           bucketName: *s3bucket
           bucketRegion: *s3region
@@ -106,11 +102,13 @@ spec:
           endpointOverride: *s3endpoint
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
-        # - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
         - "-Dsecure.tunnel.upstream.port=8093"
-        # - "-Dcom.atlassian.jira.clickjacking.protection.disabled=true"
         # - "-Datlassian.plugins.startup.options=--disable-all-addons"
         # - "-Dcom.atlassian.jira.status.index.check=false"
+      # TODO S3 auth dosn't work for now when using env vars
+      # [] TODO Add s3 auth
+      # [] TODO Add s3 auth
+      # [] TODO Add s3 auth
       # additionalEnvironmentVariables:
       #   - name: &key AWS_ACCESS_KEY_ID
       #     valueFrom:
@@ -129,6 +127,7 @@ spec:
         type: secret
         key: credentials
         mountPath: /var/atlassian/application-data/jira/.aws/
+      #TODO Switch minio to path based url and change crt to root ca
       - name: minio-ca
         type: secret
         key: minio.crt
