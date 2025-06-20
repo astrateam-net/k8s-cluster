@@ -1,5 +1,6 @@
 ---
 # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+# yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -12,9 +13,22 @@ spec:
       sectionName: https
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /
+        - path:
+            type: PathPrefix
+            value: /
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            hostname: jira.astrateam.net
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: X-Forwarded-Proto
+                value: https
+              - name: X-Forwarded-Host
+                value: jira.astrateam.net
+              - name: X-Forwarded-Port
+                value: "443"
       backendRefs:
         - name: jira
           namespace: atlassian
