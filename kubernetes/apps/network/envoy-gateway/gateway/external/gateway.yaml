@@ -24,10 +24,10 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same
-    - name: https
+    - name: jira-https
       protocol: HTTPS
       port: 443
-      hostname: "*.astrateam.net"
+      hostname: "jira.astrateam.net"
       allowedRoutes:
         namespaces:
           from: All
@@ -35,10 +35,10 @@ spec:
         certificateRefs:
           - kind: Secret
             name: astrateam-net-tls
-    - name: jira-https
+    - name: https
       protocol: HTTPS
       port: 443
-      hostname: "jira.astrateam.net"
+      hostname: "*.astrateam.net"
       allowedRoutes:
         namespaces:
           from: All
