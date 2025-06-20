@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./envoyproxy.yaml
   - ./gateway.yaml
-  - ./clienttrafficpolicy.yaml
+  # - ./clienttrafficpolicy.yaml

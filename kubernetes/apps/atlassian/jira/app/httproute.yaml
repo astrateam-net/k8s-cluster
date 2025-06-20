@@ -7,27 +7,14 @@ metadata:
 spec:
   hostnames: ["jira.astrateam.net"]
   parentRefs:
-    - name: internal
+    - name: external
       namespace: network
       sectionName: https
   rules:
     - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            hostname: jira.astrateam.net
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            add:
-              - name: X-Forwarded-Proto
-                value: https
-              - name: X-Forwarded-Host
-                value: jira.astrateam.net
-              - name: Connection
-                value: close
+      - path:
+          type: PathPrefix
+          value: /
       backendRefs:
         - name: jira
           namespace: atlassian
