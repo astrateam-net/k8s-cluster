@@ -5,4 +5,4 @@ resources:
   - ./envoyproxy.yaml
   - ./gateway.yaml
   # - ./securitypolicy.yaml
-  # - ./clienttrafficpolicy.yaml
+  - ./clienttrafficpolicy.yaml
