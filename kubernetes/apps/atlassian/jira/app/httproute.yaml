@@ -8,7 +8,7 @@ metadata:
 spec:
   hostnames: ["jira.astrateam.net"]
   parentRefs:
-    - name: internal
+    - name: external
       namespace: kube-system
       sectionName: https
   rules:
