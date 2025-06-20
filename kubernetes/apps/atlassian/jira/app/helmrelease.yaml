@@ -93,9 +93,9 @@ spec:
         #   bucketRegion: &s3region us-east-1
         #   endpointOverride: &s3endpoint https://s3.astrateam.net
         attachments:
-          bucketName: *s3bucket
-          bucketRegion: *s3region
-          endpointOverride: *s3endpoint
+          bucketName: &s3bucket jiras3
+          bucketRegion: &s3region us-east-1
+          endpointOverride: &s3endpoint https://s3.astrateam.net
         backups:
           bucketName: *s3bucket
           bucketRegion: *s3region
