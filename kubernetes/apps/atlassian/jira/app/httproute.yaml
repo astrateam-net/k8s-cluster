@@ -10,7 +10,7 @@ spec:
   parentRefs:
     - name: internal
       namespace: network
-      sectionName: jira-https
+      sectionName: https
   rules:
     - matches:
         - path:

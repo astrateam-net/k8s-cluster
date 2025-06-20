@@ -35,14 +35,14 @@ spec:
         certificateRefs:
           - kind: Secret
             name: astrateam-net-tls
-    - name: jira-https
-      protocol: HTTPS
-      port: 443
-      hostname: "jira.astrateam.net"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: astrateam-net-tls
+    # - name: jira-https
+    #   protocol: HTTPS
+    #   port: 443
+    #   hostname: "jira.astrateam.net"
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: All
+    #   tls:
+    #     certificateRefs:
+    #       - kind: Secret
+    #         name: astrateam-net-tls
