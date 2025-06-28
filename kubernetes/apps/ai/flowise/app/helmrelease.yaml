@@ -62,6 +62,12 @@ spec:
       #   cpu: 100m
       #   memory: 128Mi
     extraEnvVars:
+      - name: GLOBAL_AGENT_HTTP_PROXY
+        value: "http://10.0.1.254:8080"
+      - name: GLOBAL_AGENT_HTTPS_PROXY
+        value: "http://10.0.1.254:8080"
+      - name: GLOBAL_AGENT_NO_PROXY
+        value: "*.astrateam.net"
       - name: DATABASE_SSL
         value: "true"
       - name: DATABASE_TYPE
