@@ -67,7 +67,7 @@ spec:
       - name: GLOBAL_AGENT_HTTPS_PROXY
         value: "http://10.0.1.254:8080"
       - name: GLOBAL_AGENT_NO_PROXY
-        value: "*.astrateam.net"
+        value: "*.astrateam.net,*.svc.cluster.local"
       - name: DATABASE_SSL
         value: "true"
       - name: DATABASE_TYPE
