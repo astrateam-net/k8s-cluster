@@ -48,7 +48,7 @@ spec:
                     key: CONFLUENCE_PERSONAL_TOKEN
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
-              CONFLUENCE_SPACES_FILTER: "AI"
+              # CONFLUENCE_SPACES_FILTER: "AI"
               TRANSPORT: streamable-http
               PORT: &port 9000
               READ_ONLY_MODE: false
