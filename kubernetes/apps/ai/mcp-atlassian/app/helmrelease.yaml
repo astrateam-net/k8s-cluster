@@ -93,25 +93,15 @@ spec:
     route:
       app:
         hostnames:
-          - mcp-atlassian.astrateam.net
+          - atlassian.astrateam.net
         parentRefs:
-          - name: internal
+          - name: external
             namespace: kube-system
             sectionName: https
         rules:
-            - matches:
-                - path:
-                    type: PathPrefix
-                    value: /sse/
-              filters:
-                - type: URLRewrite
-                  urlRewrite:
-                    path:
-                      type: ReplacePrefixMatch
-                      replacePrefixMatch: /mcp/
-              backendRefs:
-                - name: *app
-                  port: *port
+          - backendRefs:
+              - name: *app
+                port: *port
     # ===================================================================
     # PERSISTENCE
     # ===================================================================
