@@ -1,9 +1,10 @@
 ---
 # yaml-language-server: $schema=https://k8s-validation-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+# HTTPRoute for internal (all except /api)
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: flowise
+  name: flowise-internal
   annotations:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/icon: openai.png
@@ -11,16 +12,38 @@ metadata:
     gethomepage.dev/group: AI
     gethomepage.dev/description: Платформа для создания LLM-приложений
 spec:
-  hostnames: ["ai.astrateam.net"]
+  hostnames: ["flowise.astrateam.net"]
   parentRefs:
     - name: internal
       namespace: kube-system
       sectionName: https
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: flowise
+          namespace: ai
+          port: 3000
+
+---
+# HTTPRoute for external (/api)
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: flowise-external
+spec:
+  hostnames: ["flowise.astrateam.net"]
+  parentRefs:
+    - name: external
+      namespace: kube-system
+      sectionName: https
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
       backendRefs:
         - name: flowise
           namespace: ai
