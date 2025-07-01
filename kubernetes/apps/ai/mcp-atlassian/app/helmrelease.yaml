@@ -36,22 +36,22 @@ spec:
             env:
               JIRA_URL: https://jira.astrateam.net
               CONFLUENCE_URL: https://wiki.astrateam.net
-              JIRA_PERSONAL_TOKEN:
-                valueFrom:
-                  secretKeyRef:
-                    name: &secret mcp-atlassian-secret
-                    key: JIRA_PERSONAL_TOKEN
-              CONFLUENCE_PERSONAL_TOKEN:
-                valueFrom:
-                  secretKeyRef:
-                    name: *secret
-                    key: CONFLUENCE_PERSONAL_TOKEN
+              # JIRA_PERSONAL_TOKEN:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: &secret mcp-atlassian-secret
+              #       key: JIRA_PERSONAL_TOKEN
+              # CONFLUENCE_PERSONAL_TOKEN:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: *secret
+              #       key: CONFLUENCE_PERSONAL_TOKEN
               JIRA_SSL_VERIFY: true
               CONFLUENCE_SSL_VERIFY: true
               # CONFLUENCE_SPACES_FILTER: "AI"
               TRANSPORT: streamable-http
               PORT: &port 9000
-              READ_ONLY_MODE: false
+              READ_ONLY_MODE: true
               MCP_VERY_VERBOSE: true
               MCP_LOGGING_STDOUT: true
               # Comma-separated list of tool names to enable. If not set, all tools are enabled
