@@ -11,30 +11,6 @@ spec:
       namespace: kube-system
       sectionName: https
   rules:
-    # Specific rule for rewriting problematic URLs.
-    # This rule matches URLs like:
-    # /images/icons/issuetypes/bug.svg?format=png
-    # and rewrites them to:
-    # /images/icons/issuetypes/bug.png
-    - matches:
-        - path:
-            type: RegularExpression
-            value: ^/images/icons/issuetypes/([^/]+)\.svg$
-          queryParams:
-            - type: Exact
-              name: format
-              value: png
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /images/icons/issuetypes/${1}.png
-      backendRefs:
-        - name: jira
-          namespace: atlassian
-          port: 80
-
     # Fallback/generic rule for all other requests:
     - matches:
         - path:
