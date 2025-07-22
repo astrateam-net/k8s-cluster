@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/home-assistant
-              tag: 2025.6.1@sha256:67a762f1675a289ddf5df68813172b63a095ec72eed6f92c4301da498a7b0aaf
+              tag: 2025.7.3@sha256:1454ec5300093d743231bf8055cf8b2b50f6933f61f75c894ceaf62d89186799
             env:
               TZ: Europe/Moscow
               HASS_HTTP_TRUSTED_PROXY_1: 10.1.130.0/24
