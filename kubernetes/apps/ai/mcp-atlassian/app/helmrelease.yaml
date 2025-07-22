@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/sooperset/mcp-atlassian
-              tag: 0.11.8
+              tag: 0.11.9
             stdin: true
             tty: true
             env:
