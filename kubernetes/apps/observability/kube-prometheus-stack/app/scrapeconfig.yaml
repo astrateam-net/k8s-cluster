@@ -68,7 +68,7 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - onepassword.astrateam.net:8080
+        - onepassword.astrateam.net:7080
   metricsPath: /metrics
   relabelings:
     - action: replace
