@@ -96,6 +96,6 @@ spec:
     sidecar:
       image:
         repository: ghcr.io/astrateam-net/k8s-sidecar
-        tag: 1.30.9@sha256:716dd4a06d0289fe87053b6f1f96c28373a350f5111f1f25662912f16ccc53b8
+        tag: 1.30.10@sha256:bb20aa5033134487cc5e4ace2438be1e87c5b4e00aa188064069b361a41da77c
       rules:
         searchNamespace: ALL
