@@ -41,7 +41,7 @@ spec:
       external:
         enable: true
       cephVersion:
-        image: quay.io/ceph/ceph:v19.2.3
+        image: quay.io/ceph/ceph:v20.1.0
       # allowUnsupported: true
       # image: quay.io/ceph/ceph:v19.2.1
       # cephConfig:
