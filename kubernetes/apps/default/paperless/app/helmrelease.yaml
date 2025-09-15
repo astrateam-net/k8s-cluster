@@ -45,7 +45,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/paperless-ngx
-              tag: 2.18.2@sha256:1fa6fa4da32aff97dbc9521bff3996d990527649a0871278b445d0c8244f5681
+              tag: 2.18.4@sha256:ba6e60fb196e504634f4b90fbc63e0c023fb539c20229e1d30caf12bc3d74741
             env:
               PAPERLESS_CONSUMER_POLLING: 5
               PAPERLESS_OCR_LANGUAGE: rus
