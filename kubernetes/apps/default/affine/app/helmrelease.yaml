@@ -27,7 +27,7 @@ spec:
           reloader.stakater.com/auto: "true"
 
         initContainers:
-          migration:
+          affine-migration:
             image:
               repository: ghcr.io/toeverything/affine
               tag: stable
@@ -36,9 +36,8 @@ spec:
               - -c
               - node ./scripts/self-host-predeploy.js
             env:
-              REDIS_SERVER_HOST: affine-dragonfly.default.svc.cluster.local
               AFFINE_INDEXER_ENABLED: "false"
-            envFrom:
+            envFrom: &envFrom
               - secretRef:
                   name: affine-secret
 
@@ -48,13 +47,11 @@ spec:
               repository: ghcr.io/toeverything/affine
               tag: stable
             env:
-              REDIS_SERVER_HOST: affine-dragonfly.default.svc.cluster.local
+              NODE_ENV: production
+              PORT: &port "3010"
               AFFINE_INDEXER_ENABLED: "false"
-              AFFINE_SERVER_PORT: &port "3010"
-              AFFINE_SERVER_HOST: "0.0.0.0"
-            envFrom:
-              - secretRef:
-                  name: affine-secret
+              OAUTH_EMAIL_LOGIN: "false"
+            envFrom: *envFrom
             probes:
               liveness:
                 enabled: true
@@ -70,7 +67,7 @@ spec:
                 cpu: 100m
                 memory: 512Mi
               limits:
-                memory: 4Gi
+                memory: 2Gi
 
     service:
       app:
@@ -98,13 +95,7 @@ spec:
                 port: *port
 
     persistence:
-      config:
-        existingClaim: *app
-        globalMounts:
-          - path: /root/.affine/config
-            subPath: config
-      storage:
+      data:
         existingClaim: *app
         globalMounts:
           - path: /root/.affine/storage
-            subPath: storage
