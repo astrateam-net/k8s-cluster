@@ -60,7 +60,7 @@ spec:
             envFrom: *envFrom
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
                 enabled: true
               startup:
@@ -106,3 +106,9 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /root/.affine/storage
+      config:
+        type: secret
+        name: affine-config-secret
+        globalMounts:
+          - path: /root/.affine/storage/config.json
+            subPath: config.json
