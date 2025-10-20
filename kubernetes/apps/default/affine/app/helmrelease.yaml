@@ -29,7 +29,7 @@ spec:
         initContainers:
           affine-migration:
             image:
-              repository: ghcr.io/toeverything/affine
+              repository: ghcr.io/toeverything/affine-graphql
               tag: stable
             command:
               - sh
@@ -47,7 +47,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/toeverything/affine
+              repository: ghcr.io/toeverything/affine-graphql
               tag: stable
             env:
               NODE_ENV: production
@@ -76,6 +76,45 @@ spec:
                 memory: 512Mi
               limits:
                 memory: 2Gi
+
+          copilot-proxy:
+            image:
+              repository: python
+              tag: 3.13-slim
+            command:
+              - sh
+              - -c
+              - |
+                pip install --no-cache-dir flask openai python-dotenv && \
+                python /app/endpoint.py
+            env:
+              CREATE_LOG: "true"
+              OPENAI_BASE_URL: "https://openrouter.ai/api/v1"
+              OPENAI_MODEL: "google/gemini-2.0-flash-exp"
+            envFrom:
+              - secretRef:
+                  name: affine-copilot-proxy-secret
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 5000
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 5000
+            resources:
+              requests:
+                cpu: 50m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
 
     service:
       app:
@@ -106,11 +145,23 @@ spec:
     persistence:
       data:
         existingClaim: *app
-        globalMounts:
-          - path: /root/.affine/self-host/storage
+        advancedMounts:
+          affine:
+            app:
+              - path: /root/.affine/self-host/storage
       config:
         type: secret
         name: affine-config-secret
-        globalMounts:
-          - path: /root/.affine/self-host/config/config.json
-            subPath: config.json
+        advancedMounts:
+          affine:
+            app:
+              - path: /root/.affine/self-host/config/config.json
+                subPath: config.json
+      copilot-script:
+        type: configMap
+        name: affine-copilot-script
+        advancedMounts:
+          affine:
+            copilot-proxy:
+              - path: /app/endpoint.py
+                subPath: endpoint.py
