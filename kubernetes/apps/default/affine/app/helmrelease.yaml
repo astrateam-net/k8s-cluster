@@ -60,7 +60,7 @@ spec:
               - name: NODE_OPTIONS
                 value: "--max-old-space-size=4096"
               - name: AFFINE_SERVER_PORT
-                value: &port "3010"
+                value: "3010"
               - name: AFFINE_SERVER_HOST
                 value: "0.0.0.0"
             envFrom:
@@ -73,7 +73,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/healthz
-                    port: *port
+                    port: 3010
                   initialDelaySeconds: 30
                   periodSeconds: 10
                   timeoutSeconds: 5
@@ -84,7 +84,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/healthz
-                    port: *port
+                    port: 3010
                   initialDelaySeconds: 15
                   periodSeconds: 5
                   timeoutSeconds: 3
@@ -109,7 +109,7 @@ spec:
         controller: affine
         ports:
           http:
-            port: *port
+            port: 3010
 
     route:
       app:
@@ -121,7 +121,7 @@ spec:
         rules:
           - backendRefs:
               - name: app
-                port: *port
+                port: 3010
 
     persistence:
       config:
