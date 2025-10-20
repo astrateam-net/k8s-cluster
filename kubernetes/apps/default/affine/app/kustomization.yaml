@@ -6,5 +6,4 @@ generatorOptions:
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./httproute.yaml
   - ./pvc.yaml
