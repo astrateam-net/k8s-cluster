@@ -37,6 +37,9 @@ spec:
               - node ./scripts/self-host-predeploy.js
             env:
               AFFINE_INDEXER_ENABLED: "false"
+              REDIS_SERVER_HOST: affine-dragonfly.default.svc.cluster.local
+              REDIS_SERVER_PORT: "6379"
+              REDIS_SERVER_DATABASE: "0"
             envFrom: &envFrom
               - secretRef:
                   name: affine-secret
@@ -51,6 +54,9 @@ spec:
               PORT: &port "3010"
               AFFINE_INDEXER_ENABLED: "false"
               OAUTH_EMAIL_LOGIN: "false"
+              REDIS_SERVER_HOST: affine-dragonfly.default.svc.cluster.local
+              REDIS_SERVER_PORT: "6379"
+              REDIS_SERVER_DATABASE: "0"
             envFrom: *envFrom
             probes:
               liveness:
