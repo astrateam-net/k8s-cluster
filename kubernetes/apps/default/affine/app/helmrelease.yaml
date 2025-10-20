@@ -95,46 +95,6 @@ spec:
               limits:
                 memory: 2Gi
 
-          copilot-proxy:
-            image:
-              repository: python
-              tag: 3.12-slim
-              pullPolicy: IfNotPresent
-            command:
-              - sh
-              - -c
-              - |
-                pip install --no-cache-dir flask openai python-dotenv && \
-                python /app/endpoint.py
-            env:
-              CREATE_LOG: "true"
-              OPENAI_BASE_URL: "https://openrouter.ai/api/v1"
-              OPENAI_MODEL: "google/gemini-2.0-flash-exp"
-            envFrom:
-              - secretRef:
-                  name: affine-copilot-proxy-secret
-            probes:
-              liveness:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: 5000
-              readiness:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /
-                    port: 5000
-            resources:
-              requests:
-                cpu: 50m
-                memory: 128Mi
-              limits:
-                memory: 256Mi
-
     service:
       app:
         controller: *app
@@ -186,11 +146,3 @@ spec:
             app:
               - path: /root/.affine/config/config.json
                 subPath: config.json
-      copilot-script:
-        type: configMap
-        name: affine-copilot-script
-        advancedMounts:
-          affine:
-            copilot-proxy:
-              - path: /app/endpoint.py
-                subPath: endpoint.py
