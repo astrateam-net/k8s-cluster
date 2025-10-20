@@ -82,6 +82,25 @@ spec:
           http:
             port: *port
 
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Productivity
+          gethomepage.dev/name: AFFiNE
+          gethomepage.dev/icon: affine.png
+          gethomepage.dev/description: Knowledge Base & Collaboration
+        hostnames:
+          - "affine.astrateam.net"
+        parentRefs:
+          - name: external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
     persistence:
       data:
         existingClaim: *app
