@@ -29,8 +29,8 @@ spec:
         initContainers:
           affine-migration:
             image:
-              repository: ghcr.io/toeverything/affine-graphql
-              tag: canary-011f92f
+              repository: ghcr.io/toeverything/affine
+              tag: stable
             command:
               - sh
               - -c
@@ -48,8 +48,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/toeverything/affine-graphql
-              tag: canary-011f92f
+              repository: ghcr.io/toeverything/affine
+              tag: stable
             env:
               NODE_ENV: production
               PORT: &port "3010"
