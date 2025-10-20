@@ -36,6 +36,8 @@ spec:
               - -c
               - node ./scripts/self-host-predeploy.js
             env:
+              - name: HOME
+                value: "/app"
               - name: REDIS_SERVER_HOST
                 value: "affine-dragonfly.default.svc.cluster.local"
               - name: AFFINE_INDEXER_ENABLED
@@ -53,6 +55,8 @@ spec:
               tag: stable
               pullPolicy: Always
             env:
+              - name: HOME
+                value: "/app"
               - name: REDIS_SERVER_HOST
                 value: "affine-dragonfly.default.svc.cluster.local"
               - name: AFFINE_INDEXER_ENABLED
@@ -127,10 +131,10 @@ spec:
       config:
         existingClaim: affine
         globalMounts:
-          - path: /root/.affine/config
+          - path: /app/.affine/config
             subPath: config
       storage:
         existingClaim: affine
         globalMounts:
-          - path: /root/.affine/storage
+          - path: /app/.affine/storage
             subPath: storage
