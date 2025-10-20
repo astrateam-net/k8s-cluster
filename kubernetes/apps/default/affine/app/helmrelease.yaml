@@ -30,7 +30,7 @@ spec:
           affine-migration:
             image:
               repository: ghcr.io/toeverything/affine-graphql
-              tag: stable
+              tag: canary-011f92f
             command:
               - sh
               - -c
@@ -49,7 +49,7 @@ spec:
           app:
             image:
               repository: ghcr.io/toeverything/affine-graphql
-              tag: stable
+              tag: canary-011f92f
             env:
               NODE_ENV: production
               PORT: &port "3010"
@@ -115,6 +115,9 @@ spec:
         name: affine-config-secret
         advancedMounts:
           affine:
+            affine-migration:
+              - path: /root/.affine/config/config.json
+                subPath: config.json
             app:
               - path: /root/.affine/config/config.json
                 subPath: config.json
