@@ -80,7 +80,7 @@ spec:
           copilot-proxy:
             image:
               repository: python
-              tag: 3.13-slim
+              tag: 3.14-slim
             command:
               - sh
               - -c
