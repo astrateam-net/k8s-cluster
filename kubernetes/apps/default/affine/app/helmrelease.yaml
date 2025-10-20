@@ -90,7 +90,8 @@ spec:
           gethomepage.dev/name: AFFiNE
           gethomepage.dev/icon: affine.png
           gethomepage.dev/description: Knowledge Base & Collaboration
-        hostnames: ["affine.astrateam.net"]
+        hostnames:
+          - "affine.astrateam.net"
         parentRefs:
           - name: internal
             namespace: kube-system
