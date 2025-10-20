@@ -108,6 +108,8 @@ spec:
         existingClaim: *app
         advancedMounts:
           affine:
+            affine-migration:
+              - path: /root/.affine/storage
             app:
               - path: /root/.affine/storage
       config:
