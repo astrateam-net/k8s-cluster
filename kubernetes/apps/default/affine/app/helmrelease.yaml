@@ -57,7 +57,8 @@ spec:
               REDIS_SERVER_HOST: affine-dragonfly.default.svc.cluster.local
               REDIS_SERVER_PORT: "6379"
               REDIS_SERVER_DATABASE: "0"
-              CONFIG_LOCATION: "/root/.affine/self-host"
+              CONFIG_LOCATION: "/root/.affine/self-host/config"
+              UPLOAD_LOCATION: "/root/.affine/self-host/storage"
             envFrom: *envFrom
             probes:
               liveness:
@@ -106,7 +107,7 @@ spec:
       data:
         existingClaim: *app
         globalMounts:
-          - path: /root/.affine/storage
+          - path: /root/.affine/self-host/storage
       config:
         type: secret
         name: affine-config-secret
