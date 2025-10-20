@@ -49,18 +49,6 @@ spec:
             image:
               repository: ghcr.io/toeverything/affine-graphql
               tag: stable
-            command:
-              - sh
-              - -c
-              - |
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/gemini-embedding-001/text-embedding-3-small/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/claude-sonnet-4@20250514/anthropic\/claude-sonnet-4-20250514/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/claude-sonnet-4-5@20250929/anthropic\/claude-sonnet-4-20250514/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/gemini-2\.5-flash/google\/gemini-2.0-flash-exp/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/gpt-4\.1/openai\/gpt-4o/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/gpt-5-mini/openai\/gpt-4o-mini/g' {} \; &&
-                find . -name '*.js' -type f -not -path '*/node_modules/*' -exec sed -i 's/gpt-image-1/openai\/gpt-4o/g' {} \; &&
-                node ./dist/main.js
             env:
               NODE_ENV: production
               PORT: &port "3010"
