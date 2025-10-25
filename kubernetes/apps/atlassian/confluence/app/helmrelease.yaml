@@ -86,8 +86,8 @@ spec:
       additionalJvmArgs:
         - "-Dupm.plugin.upload.enabled=true"
         - "-Dhttp.header.security.content.security.policy.value=\"frame-ancestors 'self' https://jira.astrateam.net https://help.astrateam.net\""
-      additionalCertificates:
-        secretName: root-ca
+      # additionalCertificates:
+      #   secretName: root-ca
       # additionalEnvironmentVariables:
       #   - name: ATL_OPENSEARCH_PASSWORD
       #     valueFrom:
