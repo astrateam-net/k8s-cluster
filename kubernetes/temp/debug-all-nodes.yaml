@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-k8s-01
+  namespace: default
+spec:
+  hostNetwork: true
+  containers:
+  - name: debugger
+    image: raesene/alpine-containertools:latest
+    command: ["sleep", "3600"]
+    env:
+    - name: CONTAINER_RUNTIME_ENDPOINT
+      value: unix:///host/run/containerd/containerd.sock
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: containerd-sock
+      mountPath: /host/run/containerd
+  volumes:
+  - name: containerd-sock
+    hostPath:
+      path: /run/containerd
+      type: Directory
+  nodeSelector:
+    kubernetes.io/hostname: k8s-01
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-k8s-02
+  namespace: default
+spec:
+  hostNetwork: true
+  containers:
+  - name: debugger
+    image: raesene/alpine-containertools:latest
+    command: ["sleep", "3600"]
+    env:
+    - name: CONTAINER_RUNTIME_ENDPOINT
+      value: unix:///host/run/containerd/containerd.sock
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: containerd-sock
+      mountPath: /host/run/containerd
+  volumes:
+  - name: containerd-sock
+    hostPath:
+      path: /run/containerd
+      type: Directory
+  nodeSelector:
+    kubernetes.io/hostname: k8s-02
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-k8s-03
+  namespace: default
+spec:
+  hostNetwork: true
+  containers:
+  - name: debugger
+    image: raesene/alpine-containertools:latest
+    command: ["sleep", "3600"]
+    env:
+    - name: CONTAINER_RUNTIME_ENDPOINT
+      value: unix:///host/run/containerd/containerd.sock
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: containerd-sock
+      mountPath: /host/run/containerd
+  volumes:
+  - name: containerd-sock
+    hostPath:
+      path: /run/containerd
+      type: Directory
+  nodeSelector:
+    kubernetes.io/hostname: k8s-03
+  restartPolicy: Never
