@@ -33,9 +33,21 @@ spec:
   values:
     controller:
       replicas: 1
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - csi-nfs-controller
+                topologyKey: kubernetes.io/hostname
     nfs:
       image:
-        repository: k8s.gcr.io/sig-storage/nfsplugin
+        repository: registry.k8s.io/sig-storage/nfsplugin
         tag: v4.12.1
     storageClass:
       create: true
