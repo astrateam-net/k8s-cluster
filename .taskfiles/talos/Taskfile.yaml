@@ -96,3 +96,16 @@ tasks:
     preconditions:
       - talosctl --nodes {{.NODE}} get machineconfig
       - which jq talosctl
+
+  debug-node:
+    desc: Open interactive debug shell on a node to remove container images [NODE=required]
+    cmd: kubectl debug node/{{.NODE}} -it --image=raesene/alpine-containertools --env CONTAINER_RUNTIME_ENDPOINT=unix:///host/run/containerd/containerd.sock -- sh
+    requires:
+      vars: [NODE]
+    preconditions:
+      - which kubectl
+    summary: |
+      Debug session on node {{.NODE}}.
+      Use 'crictl images' to list images.
+      Use 'crictl rmi <image-id>' to remove specific image.
+      Use 'crictl rmi --prune' to remove all unused images.
