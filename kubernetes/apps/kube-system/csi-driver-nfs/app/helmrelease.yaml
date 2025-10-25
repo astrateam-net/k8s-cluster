@@ -44,6 +44,8 @@ spec:
                       values:
                         - csi-nfs-controller
                 topologyKey: kubernetes.io/hostname
+      nodeSelector:
+        kubernetes.io/hostname: k8s-02
     storageClass:
       create: true
       name: nfs-slow
