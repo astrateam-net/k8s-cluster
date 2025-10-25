@@ -33,6 +33,10 @@ spec:
   values:
     controller:
       replicas: 1
+    nfs:
+      image:
+        repository: k8s.gcr.io/sig-storage/nfsplugin
+        tag: v4.12.1
     storageClass:
       create: true
       name: nfs-slow
