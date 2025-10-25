@@ -32,7 +32,6 @@ spec:
       retries: 3
   values:
     controller:
-      replicas: 1
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -45,10 +44,6 @@ spec:
                       values:
                         - csi-nfs-controller
                 topologyKey: kubernetes.io/hostname
-    nfs:
-      image:
-        repository: registry.k8s.io/sig-storage/nfsplugin
-        tag: v4.12.1
     storageClass:
       create: true
       name: nfs-slow
