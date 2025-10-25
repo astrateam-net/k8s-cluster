@@ -15,6 +15,9 @@ _.file = [
   "{{config_root}}/onepassword.env",
   "{{config_root}}/kubernetes/apps/system-upgrade/versions.env"
 ]
+
+[tools]
+talos = "1.10.3"
 # _.python.venv = { path = "{{config_root}}/.venv", create = true }
 
 # [tools]
