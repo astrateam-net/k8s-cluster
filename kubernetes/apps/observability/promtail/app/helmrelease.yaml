@@ -38,7 +38,7 @@ spec:
       # # -- Docker image repository
       repository: grafana/promtail
       # # -- Overrides the image tag whose default is the chart's appVersion
-      tag: latest-amd64@sha256:e137f9f2ca29bf9419b49a2927e881295e9226c08df72bcf0ec0e314a5e07c64
+      tag: latest-amd64@sha256:1244956c46fbc0a1ffe7978166299ca9b0700bc1ccf6f46d497958b14623c6ef
       # # -- Docker image pull policy
       pullPolicy: Always
     config:
