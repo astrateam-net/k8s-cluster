@@ -25,7 +25,7 @@ spec:
           init-config:
             image:
               repository: ghcr.io/astrateam-net/k8s-sidecar
-              tag: 1.30.11@sha256:b9c025ea2f76269e729594dd25e644792827523bdac6a22760b1744e3419a17b
+              tag: 2.3.0@sha256:921a565911b5f05c354d1e56b00ad0734a6017ad7cf75f25bec1bdd69f6d7506
             env:
               FOLDER: /config
               LABEL: gatus.io/enabled
