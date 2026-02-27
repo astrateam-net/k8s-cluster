@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: nocodb/nocodb
-              tag: 0.265.1@sha256:8fd57018accf775fb5390392910e4b0ef6bb154f17c5732b478eb76c40ee8d1e
+              tag: 0.301.3@sha256:c3d38b5563234d287710519ff7507d43dfa553241bc70b955f91d90698065340
             env:
               PORT: &port "8080"
               NC_JWT_EXPIRES_IN: 48h
