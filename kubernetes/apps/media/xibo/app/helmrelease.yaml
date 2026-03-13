@@ -58,7 +58,7 @@ spec:
           app:
             image:
               repository: ghcr.io/xibosignage/xibo-xmr
-              tag: 1.1
+              tag: 1.2
             envFrom:
               - secretRef:
                   name: xibo-secret
