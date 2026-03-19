@@ -34,7 +34,7 @@ spec:
     nfs:
       image:
         repository: registry.k8s.io/sig-storage/nfsplugin
-        tag: v4.12.1@sha256:8835d96f4389cb1ea8996b4bf9cad8af960f52508c9b8372a877c6656fd92264
+        tag: v4.13.1@sha256:56ec6dfe3608b72e404a91567b9190128c53d12936ae8fa09c8d949e3b4c970f
     controller:
       affinity:
         podAntiAffinity:
