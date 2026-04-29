@@ -17,7 +17,7 @@ _.file = [
 ]
 
 [tools]
-talos = "1.10.3"
+talos = "1.13.0"
 # _.python.venv = { path = "{{config_root}}/.venv", create = true }
 
 # [tools]
