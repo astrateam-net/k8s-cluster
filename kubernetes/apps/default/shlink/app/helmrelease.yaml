@@ -29,7 +29,7 @@ spec:
           api:
             image:
               repository: ghcr.io/shlinkio/shlink
-              tag: 4.5.3@sha256:bd4bf920bcfc396140ba18ddf8891a55969a444485e2b1709030cbcc2d6623cd
+              tag: 5.0.2@sha256:231065c2564f242bb68a00b06ae558744ef7ab25d2a253b0def15291cce2cc72
             env:
               USER_ID: "2000"
               SHLINK_SERVER_NAME: "AstraTeam"
