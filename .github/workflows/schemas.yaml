@@ -48,7 +48,7 @@ jobs:
 
       - name: Load secret
         id: op-load-secret
-        uses: 1password/load-secrets-action@dafbe7cb03502b260e2b2893c753c352eee545bf # v3
+        uses: 1password/load-secrets-action@eb2efd0703da22a93c467f2d1ffbb6826c11e19c # v4
         with:
           export-env: false
         env:
