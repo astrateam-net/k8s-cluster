@@ -51,7 +51,7 @@ spec:
           web:
             image:
               repository: ghcr.io/shlinkio/shlink-web-client
-              tag: 4.5.1@sha256:0e695130f19307dd89c5a2b9b3486106b2445319da88b3af489af162a8f05ee4
+              tag: 4.9.0@sha256:9ea53f612d361de240555036065e2b8ea0cd0411b0125afaf2f7d39f2a928f18
             env:
               UID: "2000"
               SHLINK_SERVER_URL: "https://ln.astrateam.net"
