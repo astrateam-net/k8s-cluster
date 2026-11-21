@@ -104,7 +104,7 @@ spec:
           app:
             image:
               repository: ghcr.io/astrateam-net/gotenberg
-              tag: 8.21.1@sha256:c4eea130872c4db9e5c1ecf2d455431d6586a047c23837106e78c52d7c8f08b7
+              tag: 8.34.0@sha256:24c922b09373f2ac59c8f1bcf5ca3411eb95a55e1c7886d8f1c135b39af008ce
               pullPolicy: Always
             # env:
             #   DISABLE_GOOGLE_CHROME: "1"
