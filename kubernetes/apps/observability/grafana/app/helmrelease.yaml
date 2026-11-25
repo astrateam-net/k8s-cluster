@@ -218,7 +218,7 @@ spec:
       image:
         registry: ghcr.io
         repository: astrateam-net/k8s-sidecar
-        tag: 1.30.11@sha256:b9c025ea2f76269e729594dd25e644792827523bdac6a22760b1744e3419a17b
+        tag: 2.14.3@sha256:1b0e3540df26b4db25c1d7c6dcc8bf54df84175369e2bd94e5f2600f359d1b03
       dashboards:
         enabled: true
         searchNamespace: ALL
